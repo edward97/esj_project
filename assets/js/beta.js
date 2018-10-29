@@ -2,10 +2,7 @@ $(document).ready(function() {
     // variable
     let link, error;
 
-    // login-background
-    $.backstretch(url+"assets/img/login-bg.jpg", { speed: 500 });
-
-    // login
+    // sign-in
     $(document).on("click", "#sign-in", function() {
         // clear content
         $("div").removeClass("has-error");

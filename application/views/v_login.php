@@ -99,6 +99,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <script>
         let url = "<?php echo base_url() ?>";
+
+        // login-background
+        $.backstretch(url+"assets/img/login-bg.jpg", { speed: 500 });
     </script>
 </body>
 </html>

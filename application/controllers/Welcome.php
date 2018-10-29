@@ -32,6 +32,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('v_login');
 	}
 
+	public function logout() {
+		$this->session->sess_destroy();
+		redirect('welcome/login');
+	}
+
 	public function login_act() {
 		$data = array(
 			'status' => FALSE,

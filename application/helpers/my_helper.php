@@ -34,3 +34,10 @@ function at_link($path, $x = 'class="active"') {
     }
     return $data;
 }
+
+// get uri
+function gt_uri($x) {
+    $CI =& get_instance();
+    $uri = $CI->uri->segment($x);
+    return $uri;
+}
