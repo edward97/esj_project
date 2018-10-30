@@ -40,6 +40,11 @@
     <script src="<?=base_url('assets/js/custom.js')?>"></script>
     <script src="<?=base_url('assets/js/beta.js')?>"></script>
 
+    <!-- Setup -->
+<?php if (gt_uri(2) === 'user' ): ?>
+    <script src="<?=base_url('assets/js/setup/user.js')?>"></script>
+<?php endif ?>
+
     <script>
         let url = "<?=base_url()?>";
     </script>

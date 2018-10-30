@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2018 at 06:43 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Oct 30, 2018 at 10:59 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.1.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,6 +32,9 @@ CREATE TABLE `tbl_users` (
   `id_user` int(5) UNSIGNED ZEROFILL NOT NULL,
   `nm_user` varchar(255) NOT NULL,
   `pass_user` varchar(255) NOT NULL,
+  `nav_color` varchar(255) NOT NULL DEFAULT 'chiller-theme',
+  `nav_bg` varchar(255) DEFAULT 'bg1',
+  `nav_status` varchar(255) DEFAULT 'sidebar-bg',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -40,8 +43,8 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `created_at`, `updated_at`) VALUES
-(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', '2018-10-28 16:54:08', '2018-10-28 16:55:22');
+INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `nav_color`, `nav_bg`, `nav_status`, `created_at`, `updated_at`) VALUES
+(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', 'chiller-theme', 'bg4', 'sidebar-bg', '2018-10-30 02:59:02', '2018-10-30 09:59:07');
 
 --
 -- Indexes for dumped tables
