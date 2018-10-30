@@ -63,12 +63,6 @@ body {
     transition: all .3s ease;
 }
 
-/*----------------custom-bg----------------*/
-.bg-theme {
-    background: #4ecdc4;
-    color: #fff !important;
-}
-
 /*----------------login-page----------------*/
 .form-login {
     max-width: 330px;

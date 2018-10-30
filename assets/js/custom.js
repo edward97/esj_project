@@ -40,7 +40,7 @@ jQuery(function ($) {
         $('[data-theme]').removeClass("selected");
         $(this).addClass("selected");
 
-        $.post(url+'setup/user/theme/bg_color', {name: x}, function(data, status) {
+        $.post(url+'dashboard/theme/bg_color', {name: x}, function(data, status) {
             if (data) {
                 $('.page-wrapper').removeClass(themes);
                 $('.page-wrapper').addClass(x);
@@ -57,7 +57,7 @@ jQuery(function ($) {
         $('[data-bg]').removeClass("selected");
         $(this).addClass("selected");
 
-        $.post(url+'setup/user/theme/bg_img', {name: x}, function(data, status) {
+        $.post(url+'dashboard/theme/bg_img', {name: x}, function(data, status) {
             if (data) {
                 $('.page-wrapper').removeClass(bgs);
                 $('.page-wrapper').addClass(x);   
@@ -72,7 +72,7 @@ jQuery(function ($) {
         e.preventDefault();
         x = ($(this).is(':checked')) ? 1 : 0;
 
-        $.post(url+'setup/user/theme/bg_status', {name: x}, function(data, status) {
+        $.post(url+'dashboard/theme/bg_status', {name: x}, function(data, status) {
             $('.page-wrapper').toggleClass("sidebar-bg");
         });
     });

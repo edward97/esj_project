@@ -1,9 +1,9 @@
 
-    <!-- Modal -->
+    <!-- Logout -->
     <div class="modal fade" id="sign-out" tabindex="-1" role="dialog" aria-labelledby="logoutLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-theme">
+                <div class="modal-header bg-info text-white">
                     <h5 class="modal-title" id="logoutLabel">Sign-out</h5>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -17,7 +17,7 @@
 
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-sm btn-light" data-dismiss="modal">Cancel</a>
-                    <a href="<?=site_url('welcome/logout')?>" class="btn btn-sm bg-theme">Submit</a>
+                    <a href="<?=site_url('welcome/logout')?>" class="btn btn-sm btn-info">Submit</a>
                 </div>
             </div>
         </div>

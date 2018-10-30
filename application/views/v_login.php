@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
     <div class="container">
         <form class="form-login">
-            <h2 class="form-login-heading bg-theme">sign in now</h2>
+            <h2 class="form-login-heading bg-info text-white">sign in now</h2>
 
             <div class="login-wrap">
                 <div class="form-group">
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
 
-                <button type="button" class="btn bg-theme btn-sm btn-block" id="sign-in">
+                <button type="button" class="btn btn-info btn-sm btn-block" id="sign-in">
                     <i class="fas fa-lock"></i> SIGN IN
                 </button>
                 <hr>
@@ -59,8 +59,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header bg-theme">
-                            <h5 class="modal-title" id="forgotPasswordLabel">Forgot Password</h5>
+                        <div class="modal-header bg-info">
+                            <h5 class="modal-title text-white" id="forgotPasswordLabel">Forgot Password</h5>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-sm bg-theme">Submit</button>
+                            <button type="button" class="btn btn-sm btn-info">Submit</button>
                         </div>
                     </div>
                 </div>
