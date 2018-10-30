@@ -1,7 +1,11 @@
 jQuery(function ($) {
+    // variable
+    let x;
+    let themes = "chiller-theme ice-theme cool-theme light-theme";
+    let bgs = "bg1 bg2 bg3 bg4";
+
     // add active class on current active page
-    $("a.active").css('color', 'white')
-    .closest("div.sidebar-submenu")
+    $("a.active").closest("div.sidebar-submenu")
     .css('display', 'block')
     .closest("li.sidebar-dropdown")
     .addClass('active');
@@ -17,7 +21,6 @@ jQuery(function ($) {
             $(this).next(".sidebar-submenu").slideDown(200);
             $(this).parent().addClass("active");
         }
-
     });
 
     // close sidebar 
@@ -31,27 +34,47 @@ jQuery(function ($) {
     });
 
     //switch between themes 
-    var themes = "chiller-theme ice-theme cool-theme light-theme";
     $('[data-theme]').click(function () {
+        x = $(this).data('theme');
+
         $('[data-theme]').removeClass("selected");
         $(this).addClass("selected");
-        $('.page-wrapper').removeClass(themes);
-        $('.page-wrapper').addClass($(this).attr('data-theme'));
+
+        $.post(url+'setup/user/theme/bg_color', {name: x}, function(data, status) {
+            if (data) {
+                $('.page-wrapper').removeClass(themes);
+                $('.page-wrapper').addClass(x);
+            } else {
+                alert('Error Change Color Theme...');
+            }
+        });
     });
 
     // switch between background images
-    var bgs = "bg1 bg2 bg3 bg4";
     $('[data-bg]').click(function () {
+        x = $(this).data('bg');
+
         $('[data-bg]').removeClass("selected");
         $(this).addClass("selected");
-        $('.page-wrapper').removeClass(bgs);
-        $('.page-wrapper').addClass($(this).attr('data-bg'));
+
+        $.post(url+'setup/user/theme/bg_img', {name: x}, function(data, status) {
+            if (data) {
+                $('.page-wrapper').removeClass(bgs);
+                $('.page-wrapper').addClass(x);   
+            } else {
+                alert('Error Change Background Theme...');
+            }
+        });
     });
 
     // toggle background image
-    $("#toggle-bg").change(function (e) { 
+    $("#toggle-bg").change(function (e) {
         e.preventDefault();
-        $('.page-wrapper').toggleClass("sidebar-bg");
+        x = ($(this).is(':checked')) ? 1 : 0;
+
+        $.post(url+'setup/user/theme/bg_status', {name: x}, function(data, status) {
+            $('.page-wrapper').toggleClass("sidebar-bg");
+        });
     });
 
     //custom scroll bar is only used on desktop

@@ -55,12 +55,18 @@ class Welcome extends CI_Controller {
 				'nm_user' => $user,
 				'pass_user' => md5($pass),
 			);
-			$check = $this->beta->_read_where('tbl_users', $where)->num_rows();
+			$query = $this->beta->_read_where('tbl_users', $where);
 
-			if ($check) {
+			if ($query->num_rows()) {
+				$val = $query->row_array();
+
 				$attr = array(
 					'logged_in' => TRUE,
-					'ses_nm' => strtoupper($user),
+					'ses_id' => $val['id_user'],
+					'ses_nm' => strtoupper($val['nm_user']),
+					'ses_color' => $val['nav_color'],
+					'ses_bg' => $val['nav_bg'],
+					'ses_status' => $val['nav_status'],
 				);
 				$this->session->set_userdata($attr);
 
@@ -70,7 +76,7 @@ class Welcome extends CI_Controller {
 				$data['status'] = '2';
 			}
 		} else {
-			foreach ($_POST as $key => $value) {
+			foreach ($_POST as $key => $val) {
 				$data['msg'][$key] = form_error($key);
 			}
 		}

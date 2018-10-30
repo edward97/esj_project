@@ -11,6 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+
+    <!-- Bootstrap CSS DataTables 4 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
 
     <!-- Malihu custom scrollbar plugin CSS -->
@@ -24,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
     <!-- page-wrapper -->
-    <div class="page-wrapper chiller-theme sidebar-bg bg1 toggled">
+    <div class="page-wrapper <?=$this->session->userdata('ses_color')?> <?=$this->session->userdata('ses_status')?> <?=$this->session->userdata('ses_bg')?> toggled">
         <a id="show-sidebar" class="btn btn-sm btn-dark" href="javascript:;">
             <i class="fas fa-bars"></i>
         </a>

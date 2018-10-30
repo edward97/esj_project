@@ -45,7 +45,8 @@
 .chiller-theme .sidebar-wrapper ul li:hover a i,
 .chiller-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
-.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+.chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i,
+.chiller-theme .sidebar-wrapper .sidebar-menu a.active {
     color: #ffffff;
 }
 
@@ -162,7 +163,8 @@
 .ice-theme .sidebar-wrapper ul li:hover a i,
 .ice-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .ice-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
-.ice-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+.ice-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i,
+.ice-theme .sidebar-wrapper .sidebar-menu a.active {
     color: #EFEFEF;
 }
 
@@ -275,7 +277,8 @@
 .cool-theme .sidebar-wrapper ul li:hover a i,
 .cool-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .cool-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
-.cool-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+.cool-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i,
+.cool-theme .sidebar-wrapper .sidebar-menu a.active {
     color: #ff7bdb;
 }
 
@@ -401,7 +404,8 @@
 .light-theme .sidebar-wrapper ul li:hover a i,
 .light-theme .sidebar-wrapper .sidebar-dropdown .sidebar-submenu li a:hover:before,
 .light-theme .sidebar-wrapper .sidebar-search input.search-menu:focus+span,
-.light-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i {
+.light-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown.active a i,
+.light-theme .sidebar-wrapper .sidebar-menu a.active {
     color: #00a9fd;
 }
 

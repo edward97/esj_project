@@ -16,23 +16,23 @@
                                 <h5 class="card-title">Themes</h5>
                                 <p class="card-text">Here are more themes that you can use</p>
                                 <div class="form-group">
-                                    <a href="javascript:;" data-theme="chiller-theme" class="theme chiller-theme selected"></a>
-                                    <a href="javascript:;" data-theme="ice-theme" class="theme ice-theme"></a>
-                                    <a href="javascript:;" data-theme="cool-theme" class="theme cool-theme"></a>
-                                    <a href="javascript:;" data-theme="light-theme" class="theme light-theme"></a>
+                                    <a href="javascript:;" data-theme="chiller-theme" class="theme chiller-theme <?=ct_theme('nav_color', 'chiller-theme')?>"></a>
+                                    <a href="javascript:;" data-theme="ice-theme" class="theme ice-theme <?=ct_theme('nav_color', 'ice-theme')?>"></a>
+                                    <a href="javascript:;" data-theme="cool-theme" class="theme cool-theme <?=ct_theme('nav_color', 'cool-theme')?>"></a>
+                                    <a href="javascript:;" data-theme="light-theme" class="theme light-theme <?=ct_theme('nav_color', 'light-theme')?>"></a>
                                 </div>
 
                                 <p class="card-text">You can also use background image</p>
                                 <div class="form-group">
-                                    <a href="javascript:;" data-bg="bg1" class="theme theme-bg selected"></a>
-                                    <a href="javascript:;" data-bg="bg2" class="theme theme-bg"></a>
-                                    <a href="javascript:;" data-bg="bg3" class="theme theme-bg"></a>
-                                    <a href="javascript:;" data-bg="bg4" class="theme theme-bg"></a>
+                                    <a href="javascript:;" data-bg="bg1" class="theme theme-bg <?=ct_theme('nav_bg', 'bg1')?>"></a>
+                                    <a href="javascript:;" data-bg="bg2" class="theme theme-bg <?=ct_theme('nav_bg', 'bg2')?>"></a>
+                                    <a href="javascript:;" data-bg="bg3" class="theme theme-bg <?=ct_theme('nav_bg', 'bg3')?>"></a>
+                                    <a href="javascript:;" data-bg="bg4" class="theme theme-bg <?=ct_theme('nav_bg', 'bg4')?>"></a>
                                 </div>
 
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" name="" id="toggle-bg" checked>Background image
+                                        <input type="checkbox" class="form-check-input" name="" id="toggle-bg" <?=ct_theme('nav_status', 'sidebar-bg')?>>Background image
                                     </label>
                                 </div>
                             </div>

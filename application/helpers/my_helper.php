@@ -41,3 +41,23 @@ function gt_uri($x) {
     $uri = $CI->uri->segment($x);
     return $uri;
 }
+
+// get current session theme
+function ct_theme($x, $y, $z = 'selected') {
+    $CI =& get_instance();
+
+    if ($x === 'nav_color') {
+        $curr_color = $CI->session->userdata('ses_color');
+        $data = ($y === $curr_color) ? $z : '';
+    }
+    elseif ($x === 'nav_bg') {
+        $curr_bg = $CI->session->userdata('ses_bg');
+        $data = ($y === $curr_bg) ? $z : '';
+    } else {
+        $z = 'checked';
+        
+        $curr_status = $CI->session->userdata('ses_status');
+        $data = ($y == $curr_status) ? $z : '';
+    }
+    return $data;
+}
