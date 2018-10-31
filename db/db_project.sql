@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2018 at 10:59 AM
+-- Generation Time: Oct 31, 2018 at 04:04 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.1.23
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_esj_beta`
+-- Database: `db_project`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +44,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `nav_color`, `nav_bg`, `nav_status`, `created_at`, `updated_at`) VALUES
-(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', 'chiller-theme', 'bg4', 'sidebar-bg', '2018-10-30 02:59:02', '2018-10-30 09:59:07');
+(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', 'light-theme', 'bg1', NULL, '2018-10-30 02:59:02', '2018-10-31 02:39:17');
 
 --
 -- Indexes for dumped tables
