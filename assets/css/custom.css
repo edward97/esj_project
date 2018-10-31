@@ -553,7 +553,7 @@ body {
     overflow-x: hidden;
 }
 
-/*----------------  Scroll bar style   --------------- */
+/*----------------  Scroll bar style  --------------- */
 
 .mCSB_scrollTools {
     width: 6px;
@@ -563,7 +563,12 @@ body {
     margin-right: 0px;
 }
 
-/*----------------  Bootstrap Custom  --------------- */
+/*----------------  Bootstrap custom  --------------- */
 .card {
     margin-bottom: 1rem;
+}
+
+table#table-data tr th:first-child, table#table-data tr th:last-child,
+table#table-data tr td:first-child, table#table-data tr td:last-child {
+    text-align: center !important;
 }

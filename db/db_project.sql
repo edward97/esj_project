@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2018 at 04:04 AM
+-- Generation Time: Oct 31, 2018 at 10:57 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.1.23
 
@@ -32,6 +32,7 @@ CREATE TABLE `tbl_users` (
   `id_user` int(5) UNSIGNED ZEROFILL NOT NULL,
   `nm_user` varchar(255) NOT NULL,
   `pass_user` varchar(255) NOT NULL,
+  `divisi` int(6) UNSIGNED ZEROFILL NOT NULL,
   `nav_color` varchar(255) NOT NULL DEFAULT 'chiller-theme',
   `nav_bg` varchar(255) DEFAULT 'bg1',
   `nav_status` varchar(255) DEFAULT 'sidebar-bg',
@@ -43,8 +44,8 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `nav_color`, `nav_bg`, `nav_status`, `created_at`, `updated_at`) VALUES
-(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', 'light-theme', 'bg1', NULL, '2018-10-30 02:59:02', '2018-10-31 02:39:17');
+INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `divisi`, `nav_color`, `nav_bg`, `nav_status`, `created_at`, `updated_at`) VALUES
+(00001, 'esj', 'd8c2a2fe69ca96256fc08895d1607e01', 000000, 'light-theme', 'bg1', NULL, '2018-10-30 02:59:02', '2018-10-31 02:39:17');
 
 --
 -- Indexes for dumped tables

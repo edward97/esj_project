@@ -23,13 +23,14 @@
                             </div>
 
                             <div class="card-body">
-                                <table class="table table-striped table-bordered table-hover" id="table-data">
+                                <table class="table table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>User ID</th>
                                             <th>Username</th>
                                             <th>Divisi</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
 
@@ -41,6 +42,7 @@
                                             <th>User ID</th>
                                             <th>Username</th>
                                             <th>Divisi</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -88,7 +90,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-sm btn-primary" id="save-data">Submit</button>
+                            <button type="button" class="btn btn-sm btn-primary" id="save-data">Save</button>
                         </div>
                     </div>
                 </div>
