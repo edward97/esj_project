@@ -1,13 +1,10 @@
 $(document).ready(function() {
+    'use strict';
     // variable
-    let link, error;
+    let link, html;
 
     // sign-in
     $(document).on("click", "#sign-in", function() {
-        // clear content
-        $("div").removeClass("has-error");
-        $(".text-danger").remove();
-
         link = url+"welcome/login_act";
         $(this).attr("disabled", true);
 
@@ -21,12 +18,13 @@ $(document).ready(function() {
                     window.location.href = url+"dashboard";
                 }
                 else if(data.status === '2') {
-                    $(".login-wrap").prepend('<span class="text-danger">'+data.msg+'</span>');
+                    $(".form-control").removeClass("is-invalid").next().remove();
+                    alert(data.msg);
                 } else {
                     $.each(data.msg, function(key, value) {
-                        error = $("#"+key);
-                        error.closest("div.form-group").addClass(value.length > 0  ? "has-error" : '');
-                        error.after(value);
+                        html = $("#"+key);
+                        html.removeClass("is-invalid").addClass(value.length > 0 ? "is-invalid" : "").next().remove();
+                        html.after(value);
                     });
                 }
             },
@@ -35,5 +33,14 @@ $(document).ready(function() {
             }
         });
         $(this).attr("disabled", false);
+    });
+
+    // sign-out
+    $(document).on("click", "#sign-out", function(e) {
+        e.preventDefault();
+        
+        if (confirm("Are you sure want to sign-out?")) {
+            window.location.href = url+"welcome/logout";
+        }
     });
 });

@@ -33,7 +33,9 @@ class User extends CI_Controller {
 			$row[] = $i->nm_user;
 			$row[] = $i->divisi;
 
-			$row[] = '<button class="btn btn-primary btn-sm update" id="'.$i->id_user.'"><i class="far fa-edit"></i></button><button class="btn btn-danger btn-sm delete" id="'.$i->id_user.'"><i class="far fa-trash-alt"></i></button>';
+			// $row[] = '<button class="btn btn-primary btn-sm" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></button><button class="btn btn-danger btn-sm" data-delete="'.$i->id_user.'"><i class="far fa-trash-alt"></i></button>';
+			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_user.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
@@ -54,10 +56,19 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[255]|is_unique[tbl_users.nm_user]');
 		$this->form_validation->set_rules('userpass', 'Password', 'trim|required|max_length[255]');
-		$this->form_validation->set_error_delimiters('<div class="text-danger">', '</span>');
+		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$data['msg'] = 'Success';
+			$username = dt_filter($this->input->post('username'));
+			$userpass = $this->input->post('userpass');
+
+			$val = array(
+				'nm_user' => $username,
+				'pass_user' => md5($userpass)
+			);
+			$add = $this->beta->_create('tbl_users', $val);
+
+			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$add.' ] Add User - Successfully...</div>';
 			$data['status'] = TRUE;
 		} else {
 			foreach ($_POST as $key => $value) {
@@ -65,6 +76,77 @@ class User extends CI_Controller {
 			}
 		}
 		echo json_encode($data);
+	}
+
+	public function edit($id) {
+		$where = array(
+			'id_user' => $id
+		);
+		$data = $this->beta->_read_where('tbl_users', $where)->row();
+
+		echo json_encode($data);
+	}
+
+	public function update() {
+		$data = array(
+			'status' => FALSE,
+			'msg' => array()
+		);
+
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[255]|callback_user_check');
+		$this->form_validation->set_rules('userpass', 'Password', 'trim|required|max_length[255]');
+		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
+
+		if ($this->form_validation->run()) {
+			$userid = $this->input->post('userid');
+			$username = dt_filter($this->input->post('username'));
+			$userpass = $this->input->post('userpass');
+
+			$val = array(
+				'nm_user' => $username,
+				'pass_user' => md5($userpass)
+			);
+			$where = array(
+				'id_user' => $userid
+			);
+			$this->beta->_update('tbl_users', $val, $where);
+
+			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$userid.' ] Update User - Successfully...</div>';
+			$data['status'] = TRUE;
+		} else {
+			foreach ($_POST as $key => $value) {
+				$data['msg'][$key] = form_error($key);
+			}
+		}
+		echo json_encode($data);
+	}
+
+	public function delete($id) {
+		$where = array(
+			'id_user' => $id
+		);
+		$this->beta->_delete('tbl_users', $where);
+
+		echo json_encode(array('status' => TRUE));
+	}
+
+	// custom validation
+	public function user_check() {
+		$userid = dt_filter($this->input->post('userid'));
+		$username = $this->input->post('username');
+
+		$where = array(
+			'id_user !=' => $userid,
+			'nm_user' => $username
+		);
+		$check = $this->beta->_read_where('tbl_users', $where)->num_rows();
+
+		if ($check) {
+			$this->form_validation->set_message('user_check', 'The {field} already exists');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }
 

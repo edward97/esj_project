@@ -20,24 +20,78 @@ $(document).ready(function() {
     });
 
     // add-data
-    $(document).on("click", "#add-data", function() {
+    $(document).on("click", "[data-add]", function() {
         sv_method = "create";
 
-        $(".text-danger").remove();
-        $(".modal-title").text("Add User");
+        // change-class
+        $(".modal-title").text("Add User").parent().removeClass("bg-primary").addClass("bg-success");
+        $(".form-control").removeClass("is-invalid").next().remove();
+        $(".alert").remove();
 
+        // change-id
         $("#form-data")[0].reset();
-        $("#info").empty();
         $("#save-data").removeClass("btn-primary").addClass("btn-success");
 
-        // show modal
+        // show-modal
         $("#modal-data").modal("show");
+    });
+
+    // edit-data
+    $(document).on("click", "[data-edit]", function() {
+        sv_method = "update";
+        id = $(this).data("edit");
+
+        // change-class
+        $(".modal-title").text("Edit User").parent().removeClass("bg-success").addClass("bg-primary");
+        $(".form-control").removeClass("is-invalid").next().remove();
+        $(".alert").remove();
+
+        // change-id
+        $("#form-data")[0].reset();
+        $("#save-data").removeClass("btn-success").addClass("btn-primary");
+
+        $.ajax({
+            url: url+"setup/user/edit/"+id,
+            type: "get",
+            dataType: "json",
+            success: function(data) {
+                $('[name="userid"]').val(data.id_user);
+                $('[name="username"]').val(data.nm_user);
+
+                // show-modal
+                $("#modal-data").modal("show");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("Error get data...");
+            }
+        });
+    });
+
+    // delete-data
+    $(document).on("click", "[data-delete]", function(e) {
+        e.preventDefault();
+        id = $(this).data('delete');
+
+        if (confirm("Are you sure want to delete this?")) {
+            $.ajax({
+                url: url+"setup/user/delete/"+id,
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    reload_table();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("Error deleting data...");
+                }
+            });
+        }
     });
 
     // save-data
     $(document).on("click", "#save-data", function() {
         $(this).attr("disabled", true).text("Saving...");
 
+        // url
         path = (sv_method === "create") ? url+"setup/user/add" : url+"setup/user/update";
 
         $.ajax({
@@ -47,19 +101,15 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 if (data.status) {
-                    $(".text-danger").remove();
-                    $("#info").addClass("text-success").text(data.msg);
+                    $(".alert").remove();
+                    $(".form-control").removeClass("is-invalid").next().remove();
+                    $("#info").prepend(data.msg);
 
                     reload_table();
                 } else {
                     $.each(data.msg, function(key, value) {
                         html = $("#"+key);
-
-                        html.closest("div.form-group")
-                        .removeClass("has-error")
-                        .addClass(value.length > 0 ? "has-error" : "")
-                        .find(".text-danger").remove();
-
+                        html.removeClass("is-invalid").addClass(value.length > 0 ? "is-invalid" : "").next().remove();
                         html.after(value);
                     });
                 }
@@ -70,4 +120,14 @@ $(document).ready(function() {
         });
         $(this).attr("disabled", false).text("Save");
     });
+
+    // event reload table
+    $(document).on("click", "#reload-data", function() {
+        reload_table();
+    });
+
+    // reload table
+    function reload_table() {
+        table.ajax.reload(null, false);
+    }
 });

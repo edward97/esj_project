@@ -45,7 +45,7 @@ class Welcome extends CI_Controller {
 
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
-		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
 			$user = dt_filter($this->input->post('username'));

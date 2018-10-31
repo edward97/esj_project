@@ -44,6 +44,11 @@ body {
     font-size: .9rem;
 }
 
+.form-group .required:after {
+    content: "*";
+    color: red;
+}
+
 .page-wrapper .sidebar-wrapper,
 .sidebar-wrapper .sidebar-brand>a,
 .sidebar-wrapper .sidebar-dropdown>a:after,
@@ -566,9 +571,4 @@ body {
 /*----------------  Bootstrap custom  --------------- */
 .card {
     margin-bottom: 1rem;
-}
-
-table#table-data tr th:first-child, table#table-data tr th:last-child,
-table#table-data tr td:first-child, table#table-data tr td:last-child {
-    text-align: center !important;
 }

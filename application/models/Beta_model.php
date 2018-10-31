@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Beta_model extends CI_Model {
+    // create
+    public function _create($table, $data) {
+        $this->db->insert($table, $data);
+        $id = $this->db->insert_id();
+        // return id data
+        return (isset($id)) ? $id : FALSE;
+    }
+
     // read
     public function _read($table) {
         return $this->db->get($table);
@@ -15,5 +23,10 @@ class Beta_model extends CI_Model {
     public function _update($table, $data, $where) {
         $this->db->where($where);
         $this->db->update($table, $data);
+    }
+
+    // delete
+    public function _delete($table, $where) {
+        $this->db->delete($table, $where);
     }
 }

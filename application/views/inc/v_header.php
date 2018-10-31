@@ -255,7 +255,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
                 <div>
-                    <a href="javascript:;" data-toggle="modal" data-target="#sign-out">
+                    <a href="javascript:;" id="sign-out">
                         <i class="fas fa-power-off"></i>
                     </a>
                 </div>

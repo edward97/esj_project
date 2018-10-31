@@ -1,4 +1,5 @@
 jQuery(function ($) {
+    'use strict';
     // variable
     let x;
     let themes = "chiller-theme ice-theme cool-theme light-theme";
