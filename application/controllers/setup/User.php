@@ -9,7 +9,7 @@ class User extends CI_Controller {
             redirect('welcome/login');
         }
 		$this->load->model('beta_model', 'beta');
-		$this->load->model('setup/user_model', 'user');
+		$this->load->model('setup/user_model');
 	}
 
 	public function index() {
@@ -21,7 +21,7 @@ class User extends CI_Controller {
 	}
 
 	public function list() {
-		$list = $this->user->read_data();
+		$list = $this->user_model->read_data();
 		$data = array();
 		$no = $_POST['start'];
 
@@ -31,7 +31,7 @@ class User extends CI_Controller {
 			$row[] = ++$no;
 			$row[] = $i->id_user;
 			$row[] = $i->nm_user;
-			$row[] = $i->divisi;
+			$row[] = $i->id_divisi;
 
 			// $row[] = '<button class="btn btn-primary btn-sm" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></button><button class="btn btn-danger btn-sm" data-delete="'.$i->id_user.'"><i class="far fa-trash-alt"></i></button>';
 			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></a>
@@ -41,8 +41,8 @@ class User extends CI_Controller {
 		}
 		$output = array(
 			'draw' => $_POST['draw'],
-			'recordsTotal' => $this->user->count_data(),
-			'recordsFiltered' => $this->user->count_data_filtered(),
+			'recordsTotal' => $this->user_model->count_data(),
+			'recordsFiltered' => $this->user_model->count_data_filtered(),
 			'data' => $data
 		);
 		echo json_encode($output);
@@ -54,17 +54,20 @@ class User extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[255]|is_unique[tbl_users.nm_user]');
-		$this->form_validation->set_rules('userpass', 'Password', 'trim|required|max_length[255]');
+		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|is_unique[tbl_users.nm_user]');
+		$this->form_validation->set_rules('user-pass', 'Password', 'trim|required|max_length[255]');
+		$this->form_validation->set_rules('divisi-id', 'Divisi', 'trim|required|callback_divisi_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$username = dt_filter($this->input->post('username'));
-			$userpass = $this->input->post('userpass');
+			$username = dt_filter($this->input->post('user-nm'));
+			$userpass = $this->input->post('user-pass');
+			$divisiid = $this->input->post('divisi-id');
 
 			$val = array(
 				'nm_user' => $username,
-				'pass_user' => md5($userpass)
+				'pass_user' => md5($userpass),
+				'id_divisi' => $divisiid
 			);
 			$add = $this->beta->_create('tbl_users', $val);
 
@@ -93,18 +96,21 @@ class User extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[255]|callback_user_check');
-		$this->form_validation->set_rules('userpass', 'Password', 'trim|required|max_length[255]');
+		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|callback_user_check');
+		$this->form_validation->set_rules('user-pass', 'Password', 'trim|required|max_length[255]');
+		$this->form_validation->set_rules('divisi-id', 'Divisi', 'trim|required|callback_divisi_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$userid = $this->input->post('userid');
-			$username = dt_filter($this->input->post('username'));
-			$userpass = $this->input->post('userpass');
+			$userid = $this->input->post('user-id');
+			$username = dt_filter($this->input->post('user-nm'));
+			$userpass = $this->input->post('user-pass');
+			$divisiid = $this->input->post('divisi-id');
 
 			$val = array(
 				'nm_user' => $username,
-				'pass_user' => md5($userpass)
+				'pass_user' => md5($userpass),
+				'id_divisi' => $divisiid
 			);
 			$where = array(
 				'id_user' => $userid
@@ -132,8 +138,8 @@ class User extends CI_Controller {
 
 	// custom validation
 	public function user_check() {
-		$userid = dt_filter($this->input->post('userid'));
-		$username = $this->input->post('username');
+		$userid = dt_filter($this->input->post('user-id'));
+		$username = $this->input->post('user-nm');
 
 		$where = array(
 			'id_user !=' => $userid,
@@ -148,5 +154,17 @@ class User extends CI_Controller {
 			return TRUE;
 		}
 	}
-}
 
+	public function divisi_check($data) {
+		$where = array(
+			'id_divisi' => $data
+		);
+		$check = $this->beta->_read_where('tbl_divisi', $where)->num_rows();
+		if (!$check) {
+			$this->form_validation->set_message('divisi_check', 'The {field} does not exist');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+}

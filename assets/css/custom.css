@@ -572,3 +572,7 @@ body {
 .card {
     margin-bottom: 1rem;
 }
+/*----------------  autocomplete on modal  --------------- */
+.ui-autocomplete {
+	z-index: 5000;
+}

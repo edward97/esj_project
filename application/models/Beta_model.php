@@ -27,6 +27,17 @@ class Beta_model extends CI_Model {
 
     // delete
     public function _delete($table, $where) {
-        $this->db->delete($table, $where);
+        if (!$this->db->delete($table, $where)) {
+            $error = $this->db->error(); // Has keys 'code' and 'message';
+        }
+        return $error;
     }
+    
+    // search data - like
+	public function _search($table, $column, $data) {
+		$this->db->like($column, $data, 'both');
+		$this->db->limit(5);
+
+		return $this->db->get($table);
+	}
 }

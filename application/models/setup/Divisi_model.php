@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends CI_Model {
-    private $table = 'tbl_users';
-    private $column_order = array(NULL, 'id_user', 'nm_user', 'id_divisi', NULL);
-    private $column_search = array('id_user', 'nm_user', 'id_divisi');
-    private $order = array('id_user' => 'DESC');
+class Divisi_model extends CI_Model {
+    private $table = 'tbl_divisi';
+    private $column_order = array(NULL, 'id_divisi', 'nm_divisi', NULL);
+    private $column_search = array('id_divisi', 'nm_divisi');
+    private $order = array('id_divisi' => 'DESC');
 
     private function _get_data() {
         $this->db->from($this->table);

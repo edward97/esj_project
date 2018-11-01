@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>User List</h2>
+                        <h2>Divisi List</h2>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum suscipit itaque hic laborum, quia maxime similique maiores dolorem error.</p>
                     </div>
                 </div>
@@ -27,8 +27,7 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th style="width: 15px;">#</th>
-                                            <th>User ID</th>
-                                            <th>Username</th>
+                                            <th>Divisi ID</th>
                                             <th>Divisi</th>
                                             <th style="width: 50px;">Action</th>
                                         </tr>
@@ -39,8 +38,7 @@
                                     <tfoot>
                                         <tr class="text-center">
                                             <th>#</th>
-                                            <th>User ID</th>
-                                            <th>Username</th>
+                                            <th>Divisi ID</th>
                                             <th>Divisi</th>
                                             <th>Action</th>
                                         </tr>
@@ -52,7 +50,7 @@
                 </div>
             </div>
 
-            <!-- User -->
+            <!-- Divisi -->
             <div class="modal fade" id="modal-data" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -68,26 +66,13 @@
                             <form id="form-data">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="user-id">User ID</label>
-                                        <input type="text" name="user-id" class="form-control form-control-sm" id="user-id" placeholder="[Auto]" readonly>
+                                        <label for="divisi-id">Divisi ID</label>
+                                        <input type="text" name="divisi-id" class="form-control form-control-sm" id="divisi-id" placeholder="[Auto]" readonly>
                                     </div>
-                                </div>
 
-                                <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="user-nm" class="required">Username</label>
-                                        <input type="text" name="user-nm" class="form-control form-control-sm" id="user-nm" placeholder="Username">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="user-pass" class="required">Password</label>
-                                        <input type="password" name="user-pass" class="form-control form-control-sm" id="user-pass" placeholder="Password">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="divisi-id" class="required">Divisi</label>
-                                        <input type="text" name="divisi-id" class="form-control form-control-sm ui-divisi" id="divisi-id" placeholder="Divisi">
+                                        <label for="divisi-nm" class="required">Divisi</label>
+                                        <input type="text" name="divisi-nm" class="form-control form-control-sm" id="divisi-nm" placeholder="Divisi">
                                     </div>
                                 </div>
                             </form>

@@ -8,7 +8,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": url+"setup/user/list",
+            "url": url+"setup/divisi/list",
             "type": "post",
         },
         "columnDefs": [
@@ -51,13 +51,12 @@ $(document).ready(function() {
         $("#save-data").removeClass("btn-success").addClass("btn-primary");
 
         $.ajax({
-            url: url+"setup/user/edit/"+id,
+            url: url+"setup/divisi/edit/"+id,
             type: "get",
             dataType: "json",
             success: function(data) {
-                $('[name="user-id"]').val(data.id_user);
-                $('[name="user-nm"]').val(data.nm_user);
                 $('[name="divisi-id"]').val(data.id_divisi);
+                $('[name="divisi-nm"]').val(data.nm_divisi);
 
                 // show-modal
                 $("#modal-data").modal("show");
@@ -75,13 +74,16 @@ $(document).ready(function() {
 
         if (confirm("Are you sure want to delete this?")) {
             $.ajax({
-                url: url+"setup/user/delete/"+id,
+                url: url+"setup/divisi/delete/"+id,
                 type: "post",
                 dataType: "json",
                 success: function(data) {
+                    console.log(data.status);
+
                     reload_table();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
                     alert("Error deleting data...");
                 }
             });
@@ -93,7 +95,7 @@ $(document).ready(function() {
         $(this).attr("disabled", true).text("Saving...");
 
         // url
-        path = (sv_method === "create") ? url+"setup/user/add" : url+"setup/user/update";
+        path = (sv_method === "create") ? url+"setup/divisi/add" : url+"setup/divisi/update";
 
         $.ajax({
             url: path,

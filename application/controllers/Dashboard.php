@@ -54,4 +54,27 @@ class Dashboard extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+
+	// search for autocomplete
+	public function search($id) {
+		if (isset($_GET['term']) && $id == 'divisi') {
+			$result = $this->beta->_search('tbl_divisi', 'nm_divisi', $_GET['term'])->result();
+
+			if (count($result)) {
+				foreach ($result as $i) {
+					$data[] = array(
+						'label' => $i->nm_divisi,
+						'value' => $i->id_divisi
+					);
+				}
+			} else {
+				$data[] = array(
+					'label' => 'no-records',
+					'value' => 'no-records',
+				);
+			}
+		}
+
+		echo json_encode($data);
+	}
 }
