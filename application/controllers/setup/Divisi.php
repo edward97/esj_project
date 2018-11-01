@@ -8,7 +8,6 @@ class Divisi extends CI_Controller {
         if ($this->session->userdata('logged_in') !== TRUE) {
             redirect('welcome/login');
         }
-		$this->load->model('beta_model', 'beta');
 		$this->load->model('setup/divisi_model');
 	}
 
@@ -57,15 +56,10 @@ class Divisi extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$divisiname = dt_filter($this->input->post('divisi-nm'));
+			$sql = $this->divisi_model->_create();
 
-			$val = array(
-				'nm_divisi' => $divisiname,
-			);
-			$add = $this->beta->_create('tbl_divisi', $val);
-
-			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$add.' ] Add Divisi - Successfully...</div>';
 			$data['status'] = TRUE;
+			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Divisi - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -75,11 +69,7 @@ class Divisi extends CI_Controller {
 	}
 
 	public function edit($id) {
-		$where = array(
-			'id_divisi' => $id
-		);
-		$data = $this->beta->_read_where('tbl_divisi', $where)->row();
-
+		$data = $this->divisi_model->_read_where($id);
 		echo json_encode($data);
 	}
 
@@ -93,19 +83,10 @@ class Divisi extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$divisiid = $this->input->post('divisi-id');
-			$divisiname = $this->input->post('divisi-nm');
+			$sql = $this->divisi_model->_update();
 
-			$val = array(
-				'nm_divisi' => $divisiname,
-			);
-			$where = array(
-				'id_divisi' => $divisiid
-			);
-			$this->beta->_update('tbl_divisi', $val, $where);
-
-			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$divisiname.' ] Update Divisi - Successfully...</div>';
 			$data['status'] = TRUE;
+			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Divisi - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -115,31 +96,13 @@ class Divisi extends CI_Controller {
 	}
 
 	public function delete($id) {
-		$data = array(
-			'status' => TRUE,
-		);
-
-		$where = array(
-			'id_divisi' => $id
-		);
-		$this->beta->_delete('tbl_divisi', $where);
-
-		$data['status'] = $this->db->last_query();
-
-
+		$data = $this->divisi_model->_delete($id);
 		echo json_encode($data);
 	}
 
 	// custom validation
 	public function divisi_check() {
-		$divisiid = dt_filter($this->input->post('divisi-id'));
-		$divisiname = $this->input->post('divisi-nm');
-
-		$where = array(
-			'id_divisi !=' => $divisiid,
-            'nm_divisi' => $divisiname
-        );
-		$check = $this->beta->_read_where('tbl_divisi', $where)->num_rows();
+		$check = $this->divisi_model->_count_data();
 
 		if ($check) {
 			$this->form_validation->set_message('divisi_check', 'The {field} already exists');

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2018 at 10:27 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.1.23
+-- Generation Time: Nov 01, 2018 at 06:41 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,14 +40,9 @@ CREATE TABLE `tbl_divisi` (
 --
 
 INSERT INTO `tbl_divisi` (`id_divisi`, `nm_divisi`, `created_at`, `updated_at`) VALUES
-(00001, 'ADM', '2018-11-01 04:19:50', '2018-11-01 04:19:50'),
-(00002, 'CS - CEMARA', '2018-11-01 04:19:59', '2018-11-01 04:53:56'),
-(00003, 'FINANCE', '2018-11-01 04:20:03', '2018-11-01 04:20:03'),
-(00004, 'IT', '2018-11-01 04:21:10', '2018-11-01 04:21:10'),
-(00005, 'HRD', '2018-11-01 04:47:54', '2018-11-01 04:47:54'),
-(00006, 'ACCOUNTING', '2018-11-01 04:48:18', '2018-11-01 04:48:18'),
-(00007, 'MARKETING', '2018-11-01 04:48:33', '2018-11-01 04:48:33'),
-(00009, 'CS - PABRIK', '2018-11-01 07:24:49', '2018-11-01 07:24:49');
+(00001, 'IT - CEMARA', '2018-11-01 04:19:50', '2018-11-01 17:35:19'),
+(00032, 'CS - CEMARA', '2018-11-01 17:19:48', '2018-11-01 17:27:52'),
+(00034, 'CS - BINJAI', '2018-11-01 17:34:23', '2018-11-01 17:35:08');
 
 -- --------------------------------------------------------
 
@@ -72,8 +67,9 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `nm_user`, `pass_user`, `id_divisi`, `nav_color`, `nav_bg`, `nav_status`, `created_at`, `updated_at`) VALUES
-(00001, 'esj', '604e1aaea3ffbfc063b9e7e44b25e757', 000005, 'chiller-theme', 'bg3', 'sidebar-bg', '2018-10-30 02:59:02', '2018-11-01 07:17:50'),
-(00037, 'edward', 'a53f3929621dba1306f8a61588f52f55', 000009, 'chiller-theme', 'bg1', 'sidebar-bg', '2018-11-01 07:25:01', '2018-11-01 07:25:01');
+(00001, 'esj', '604e1aaea3ffbfc063b9e7e44b25e757', 000001, 'cool-theme', 'bg3', 'sidebar-bg', '2018-10-30 02:59:02', '2018-11-01 17:29:41'),
+(00037, 'edward', 'a53f3929621dba1306f8a61588f52f55', 000032, 'chiller-theme', 'bg1', 'sidebar-bg', '2018-11-01 07:25:01', '2018-11-01 17:29:52'),
+(00038, 'admin', '21232f297a57a5a743894a0e4a801fc3', 000034, 'chiller-theme', 'bg1', 'sidebar-bg', '2018-11-01 17:34:37', '2018-11-01 17:34:37');
 
 --
 -- Indexes for dumped tables
@@ -100,13 +96,13 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_divisi`
 --
 ALTER TABLE `tbl_divisi`
-  MODIFY `id_divisi` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_divisi` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_user` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
@@ -116,7 +112,7 @@ ALTER TABLE `tbl_users`
 -- Constraints for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  ADD CONSTRAINT `fk_user_divisi` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi` (`id_divisi`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_user_divisi` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi` (`id_divisi`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

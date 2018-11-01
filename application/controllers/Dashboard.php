@@ -67,11 +67,6 @@ class Dashboard extends CI_Controller {
 						'value' => $i->id_divisi
 					);
 				}
-			} else {
-				$data[] = array(
-					'label' => 'no-records',
-					'value' => 'no-records',
-				);
 			}
 		}
 

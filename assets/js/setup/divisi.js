@@ -78,8 +78,11 @@ $(document).ready(function() {
                 type: "post",
                 dataType: "json",
                 success: function(data) {
-                    console.log(data.status);
-                    reload_table();
+                    if (data.status) {
+                        reload_table();
+                    } else {
+                        alert('Error code: '+data.msg.code+'\nMessage: '+data.msg.message);
+                    }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     alert("Error deleting data...");
