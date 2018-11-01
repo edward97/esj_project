@@ -115,12 +115,19 @@ class Divisi extends CI_Controller {
 	}
 
 	public function delete($id) {
+		$data = array(
+			'status' => TRUE,
+		);
+
 		$where = array(
 			'id_divisi' => $id
 		);
-		$x = $this->beta->_delete('tbl_divisi', $where);
+		$this->beta->_delete('tbl_divisi', $where);
 
-		echo json_encode(array('status' => $x));
+		$data['status'] = $this->db->last_query();
+
+
+		echo json_encode($data);
 	}
 
 	// custom validation

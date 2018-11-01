@@ -79,11 +79,9 @@ $(document).ready(function() {
                 dataType: "json",
                 success: function(data) {
                     console.log(data.status);
-
                     reload_table();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(errorThrown);
                     alert("Error deleting data...");
                 }
             });
