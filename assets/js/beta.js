@@ -1,14 +1,7 @@
 $(document).ready(function() {
-    'use strict';
+    "use strict";
     // variable
     let link, html;
-
-    // tinymce
-    tinymce.init({
-        // selector: 'textarea',
-        selector: '.txt',
-        height: '200',
-    });
 
     // sign-in
     $(document).on("click", "#sign-in", function() {

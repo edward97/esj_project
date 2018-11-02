@@ -109,11 +109,11 @@ class User extends CI_Controller {
 	// custom form_validation
 	public function user_check() {
 		$userid = $this->input->post('user-id');
-		$username = $this->input->post('user-nm');
+		$usernm = $this->input->post('user-nm');
 
 		$where = array(
 			'id_user !=' => $userid,
-			'nm_user' => $username
+			'nm_user' => $usernm
 		);
 		$check = $this->beta->_read_where('tbl_users', $where)->num_rows();
 

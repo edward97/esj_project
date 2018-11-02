@@ -112,7 +112,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">Warehouse</a>
+                                        <a href="<?=site_url('setup/warehouse')?>" <?=at_link('setup/warehouse')?>>Warehouse</a>
                                     </li>
                                 </ul>
                             </div>

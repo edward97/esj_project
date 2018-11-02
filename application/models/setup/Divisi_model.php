@@ -63,10 +63,10 @@ class Divisi_model extends CI_Model {
 
     // create
     public function _create() {
-        $divisiname = dt_filter($this->input->post('divisi-nm'));
+        $divisinm = dt_filter($this->input->post('divisi-nm'));
 
         $data = array(
-            'nm_divisi' => $divisiname
+            'nm_divisi' => $divisinm
         );
         $this->db->insert($this->table, $data);
 
@@ -92,10 +92,10 @@ class Divisi_model extends CI_Model {
     // update
     public function _update() {
         $divisiid = $this->input->post('divisi-id');
-        $divisiname = dt_filter($this->input->post('divisi-nm'));
+        $divisinm = dt_filter($this->input->post('divisi-nm'));
 
         $data = array(
-            'nm_divisi' => $divisiname,
+            'nm_divisi' => $divisinm,
         );
         $where = array(
             'id_divisi' => $divisiid

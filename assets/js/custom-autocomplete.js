@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    'use strict';
+    "use strict";
     
     // ui-autocomplete
     $("#divisi-id").autocomplete({

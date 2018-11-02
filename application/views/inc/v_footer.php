@@ -23,13 +23,13 @@
     <script src="<?=base_url('assets/js/custom-autocomplete.js')?>"></script>
     <script src="<?=base_url('assets/js/beta.js')?>"></script>
 
+<?php if (gt_uri(1) === 'setup'): ?>
     <!-- Setup -->
-<?php if (gt_uri(2) === 'divisi' ): ?>
-    <script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
-<?php elseif (gt_uri(2) === 'supplier' ): ?>
-    <script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>
-<?php elseif (gt_uri(2) === 'user' ): ?>
-    <script src="<?=base_url('assets/js/setup/user.js')?>"></script>
+    <?php if (gt_uri(2)     === 'divisi' ):     ?><script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'supplier' ):   ?><script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'user' ):       ?><script src="<?=base_url('assets/js/setup/user.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'warehouse' ):  ?><script src="<?=base_url('assets/js/setup/warehouse.js')?>"></script>
+    <?php endif ?>
 <?php endif ?>
 
     <script>

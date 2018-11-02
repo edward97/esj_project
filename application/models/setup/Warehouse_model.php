@@ -1,18 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends CI_Model {
-    private $table = 'tbl_users';
-    private $column_order = array(NULL, 'id_user', 'nm_user', 'tbl_divisi.nm_divisi', NULL);
-    private $column_search = array('id_user', 'nm_user', 'tbl_divisi.nm_divisi');
-    private $order = array('id_user' => 'DESC');
-
+class Warehouse_model extends CI_Model {
+    private $table = 'tbl_warehouse';
+    private $column_order = array(NULL, 'id_warehouse', 'nm_warehouse', NULL);
+    private $column_search = array('id_warehouse', 'nm_warehouse');
+    private $order = array('id_warehouse' => 'DESC');
+    
     private function _get_data() {
         $this->db->from($this->table);
-
-        // join tbl_divisi
-        $this->db->join('tbl_divisi', 'tbl_divisi.id_divisi = tbl_users.id_divisi', 'left');
-
         $i = 0;
 
         foreach ($this->column_search as $item) {
@@ -62,19 +58,15 @@ class User_model extends CI_Model {
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
-    
+
     // ----------------------------------------
 
     // create
     public function _create() {
-        $usernm = dt_filter($this->input->post('user-nm'));
-        $userpass = $this->input->post('user-pass');
-        $divisiid = $this->input->post('divisi-id');
+        $warehousenm = dt_filter($this->input->post('warehouse-nm'));
 
         $data = array(
-            'nm_user' => $usernm,
-            'pass_user' => md5($userpass),
-            'id_divisi' => $divisiid
+            'nm_warehouse' => $warehousenm
         );
         $this->db->insert($this->table, $data);
 
@@ -90,7 +82,7 @@ class User_model extends CI_Model {
     // read by id
     public function _read_where($id) {
         $where = array(
-			'id_user' => $id
+			'id_warehouse' => $id
         );
         
         // return row data
@@ -99,27 +91,23 @@ class User_model extends CI_Model {
 
     // update
     public function _update() {
-        $userid = $this->input->post('user-id');
-        $usernm = dt_filter($this->input->post('user-nm'));
-        $userpass = $this->input->post('user-pass');
-        $divisiid = $this->input->post('divisi-id');
+        $warehouseid = $this->input->post('warehouse-id');
+        $warehousenm = dt_filter($this->input->post('warehouse-nm'));
 
         $data = array(
-            'nm_user' => $usernm,
-            'pass_user' => md5($userpass),
-            'id_divisi' => $divisiid
+            'nm_warehouse' => $warehousenm,
         );
         $where = array(
-            'id_user' => $userid
+            'id_warehouse' => $warehouseid
         );
         $this->db->update($this->table, $data, $where);
 
-        return $userid;
+        return $warehouseid;
     }
 
     // delete
     public function _delete($id) {
-        if ($this->db->simple_query('DELETE FROM `'.$this->table.'` WHERE `id_user` = '.$id)) {
+        if ($this->db->simple_query('DELETE FROM `'.$this->table.'` WHERE `id_warehouse` = '.$id)) {
             $data = array(
                 'status' => TRUE
             );

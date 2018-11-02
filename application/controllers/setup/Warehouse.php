@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Divisi extends CI_Controller {
+class Warehouse extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
@@ -9,14 +9,14 @@ class Divisi extends CI_Controller {
             redirect('welcome/login');
         }
 		$this->load->model('beta_model', 'beta');
-		$this->load->model('setup/divisi_model', 'model');
+		$this->load->model('setup/warehouse_model', 'model');
 	}
 
 	public function index() {
-        $data['title'] = 'Divisi';
+        $data['title'] = 'Warehouse';
 
 		$this->load->view('inc/v_header', $data);
-		$this->load->view('setup/v_divisi');
+		$this->load->view('setup/v_warehouse');
 		$this->load->view('inc/v_footer');
 	}
 
@@ -29,11 +29,11 @@ class Divisi extends CI_Controller {
 			$row = array();
 			
 			$row[] = ++$no;
-			$row[] = $i->id_divisi;
-			$row[] = $i->nm_divisi;
+			$row[] = $i->id_warehouse;
+			$row[] = $i->nm_warehouse;
 
-			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_divisi.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_divisi.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_warehouse.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_warehouse.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
@@ -52,14 +52,14 @@ class Divisi extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|max_length[255]|is_unique[tbl_divisi.nm_divisi]');
+		$this->form_validation->set_rules('warehouse-nm', 'Warehouse', 'trim|required|max_length[255]|is_unique[tbl_warehouse.nm_warehouse]');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
 			$sql = $this->model->_create();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Divisi - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Warehouse - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -79,14 +79,14 @@ class Divisi extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|max_length[255]|callback_divisi_check');
+		$this->form_validation->set_rules('warehouse-nm', 'Warehouse', 'trim|required|max_length[255]|callback_warehouse_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
 			$sql = $this->model->_update();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Divisi - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Warehouse - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -102,18 +102,18 @@ class Divisi extends CI_Controller {
 
 	// ----------------------
 	// custom form_validation
-	public function divisi_check() {
-		$divisiid = $this->input->post('divisi-id');
-		$divisinm = $this->input->post('divisi-nm');
+	public function warehouse_check() {
+		$warehouseid = $this->input->post('warehouse-id');
+		$warehousenm = $this->input->post('warehouse-nm');
 
 		$where = array(
-			'id_divisi !=' => $divisiid,
-            'nm_divisi' => $divisinm
+			'id_warehouse !=' => $warehouseid,
+            'nm_warehouse' => $warehousenm
 		);
-		$check = $this->beta->_read_where('tbl_divisi', $where)->num_rows();
+		$check = $this->beta->_read_where('tbl_warehouse', $where)->num_rows();
 
 		if ($check) {
-			$this->form_validation->set_message('divisi_check', 'The {field} already exists');
+			$this->form_validation->set_message('warehouse_check', 'The {field} already exists');
 			return FALSE;
 		} else {
 			return TRUE;
