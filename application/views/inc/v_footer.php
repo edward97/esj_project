@@ -15,16 +15,21 @@
     <!-- Malihu custom scrollbar plugin JS -->
     <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
+    <!-- TinyMCE -->
+    <script src="<?=base_url('assets/vendor/tinymce/tinymce.min.js')?>"></script>
+
     <!-- Custom JS -->
     <script src="<?=base_url('assets/js/custom.js')?>"></script>
     <script src="<?=base_url('assets/js/custom-autocomplete.js')?>"></script>
     <script src="<?=base_url('assets/js/beta.js')?>"></script>
 
     <!-- Setup -->
-<?php if (gt_uri(2) === 'user' ): ?>
-    <script src="<?=base_url('assets/js/setup/user.js')?>"></script>
-<?php elseif (gt_uri(2) === 'divisi' ): ?>
+<?php if (gt_uri(2) === 'divisi' ): ?>
     <script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
+<?php elseif (gt_uri(2) === 'supplier' ): ?>
+    <script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>
+<?php elseif (gt_uri(2) === 'user' ): ?>
+    <script src="<?=base_url('assets/js/setup/user.js')?>"></script>
 <?php endif ?>
 
     <script>

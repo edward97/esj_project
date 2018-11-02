@@ -1,18 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_model extends CI_Model {
-    private $table = 'tbl_users';
-    private $column_order = array(NULL, 'id_user', 'nm_user', 'tbl_divisi.nm_divisi', NULL);
-    private $column_search = array('id_user', 'nm_user', 'tbl_divisi.nm_divisi');
-    private $order = array('id_user' => 'DESC');
-
+class Supplier_model extends CI_Model {
+    private $table = 'tbl_supplier';
+    private $column_order = array(NULL, 'id_supplier', 'nm_supplier', 'address', NULL);
+    private $column_search = array('id_supplier', 'nm_supplier', 'address');
+    private $order = array('id_supplier' => 'DESC');
+    
     private function _get_data() {
         $this->db->from($this->table);
-
-        // join tbl_divisi
-        $this->db->join('tbl_divisi', 'tbl_divisi.id_divisi = tbl_users.id_divisi', 'left');
-
         $i = 0;
 
         foreach ($this->column_search as $item) {
@@ -62,19 +58,17 @@ class User_model extends CI_Model {
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
-    
+
     // ----------------------------------------
 
     // create
     public function _create() {
-        $username = dt_filter($this->input->post('user-nm'));
-        $userpass = $this->input->post('user-pass');
-        $divisiid = $this->input->post('divisi-id');
+        $suppliernm = dt_filter($this->input->post('supplier-nm'));
+        $supplieraddr = $this->input->post('supplier-addr');
 
         $data = array(
-            'nm_user' => $username,
-            'pass_user' => md5($userpass),
-            'id_divisi' => $divisiid
+            'nm_supplier' => $suppliernm,
+            'address' => ($supplieraddr != '') ? $supplieraddr : NULL,
         );
         $this->db->insert($this->table, $data);
 
@@ -90,7 +84,7 @@ class User_model extends CI_Model {
     // read by id
     public function _read_where($id) {
         $where = array(
-			'id_user' => $id
+			'id_supplier' => $id
         );
         
         // return row data
@@ -99,27 +93,25 @@ class User_model extends CI_Model {
 
     // update
     public function _update() {
-        $userid = $this->input->post('user-id');
-        $username = dt_filter($this->input->post('user-nm'));
-        $userpass = $this->input->post('user-pass');
-        $divisiid = $this->input->post('divisi-id');
+        $supplierid = $this->input->post('supplier-id');
+        $suppliernm = dt_filter($this->input->post('supplier-nm'));
+        $supplieraddr = $this->input->post('supplier-addr');
 
         $data = array(
-            'nm_user' => $username,
-            'pass_user' => md5($userpass),
-            'id_divisi' => $divisiid
+            'nm_supplier' => $suppliernm,
+            'address' => ($supplieraddr != '') ? $supplieraddr : NULL,
         );
         $where = array(
-            'id_user' => $userid
+            'id_supplier' => $supplierid
         );
         $this->db->update($this->table, $data, $where);
 
-        return $userid;
+        return $supplierid;
     }
 
     // delete
     public function _delete($id) {
-        if ($this->db->simple_query('DELETE FROM `'.$this->table.'` WHERE `id_user` = '.$id)) {
+        if ($this->db->simple_query('DELETE FROM `'.$this->table.'` WHERE `id_supplier` = '.$id)) {
             $data = array(
                 'status' => TRUE
             );

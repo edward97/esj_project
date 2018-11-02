@@ -36,5 +36,11 @@ class Beta_model extends CI_Model {
 		$this->db->limit(5);
 
 		return $this->db->get($table);
+    }
+    
+    // custom - get list table
+    public function _get_table() {
+		$sql = $this->db->query("SELECT t.TABLE_NAME AS t_name FROM INFORMATION_SCHEMA.TABLES AS t WHERE t.TABLE_SCHEMA = 'db_project'");
+		return $sql;
 	}
 }

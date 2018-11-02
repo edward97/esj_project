@@ -3,6 +3,13 @@ $(document).ready(function() {
     // variable
     let link, html;
 
+    // tinymce
+    tinymce.init({
+        // selector: 'textarea',
+        selector: '.txt',
+        height: '200',
+    });
+
     // sign-in
     $(document).on("click", "#sign-in", function() {
         link = url+"welcome/login_act";

@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>User List</h2>
+                        <h2>User</h2>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum suscipit itaque hic laborum, quia maxime similique maiores dolorem error.</p>
                     </div>
                 </div>
@@ -12,20 +12,21 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow">
-                            <div class="card-header text-right">
-                                <button type="button" class="btn btn-sm btn-success" data-add="">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-sm btn-info" id="reload-data">
-                                    <i class="fas fa-sync-alt"></i>
-                                </button>
+                            <div class="card-header clearfix">
+                                <div class="float-left">
+                                    <i class="fas fa-angle-right"></i> User List
+                                </div>
+                                
+                                <div class="float-right">
+                                    <a href="javascript:;" class="badge badge-success" data-add=""><i class="fas fa-plus"></i></a>
+                                    <a href="javascript:;" class="badge badge-info" id="reload-data"><i class="fas fa-sync-alt"></i></a>
+                                </div>
                             </div>
-
+                            
                             <div class="card-body">
                                 <table class="table table-sm table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
                                     <thead>
-                                        <tr class="text-center">
+                                        <tr>
                                             <th style="width: 15px;">#</th>
                                             <th>User ID</th>
                                             <th>Username</th>
@@ -37,7 +38,7 @@
                                     <tbody></tbody>
 
                                     <tfoot>
-                                        <tr class="text-center">
+                                        <tr>
                                             <th>#</th>
                                             <th>User ID</th>
                                             <th>Username</th>
@@ -52,7 +53,7 @@
                 </div>
             </div>
 
-            <!-- User -->
+            <!-- Modal -->
             <div class="modal fade" id="modal-data" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

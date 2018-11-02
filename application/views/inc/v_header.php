@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?=site_url('setup/divisi')?>" <?=at_link('setup/divisi')?>>Divisi</a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">Supplier</a>
+                                        <a href="<?=site_url('setup/supplier')?>" <?=at_link('setup/supplier')?>>Supplier</a>
                                     </li>
                                     <li>
                                         <a href="<?=site_url('setup/user')?>" <?=at_link('setup/user')?>>User
@@ -131,6 +131,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="javascript:;">
                                 <i class="fas fa-book"></i>
                                 <span>Documentation</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=site_url('database')?>" <?=at_link('database')?>>
+                                <i class="fas fa-database"></i>
+                                <span>Database</span>
                             </a>
                         </li>
                     </ul>

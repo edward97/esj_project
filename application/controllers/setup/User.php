@@ -9,7 +9,7 @@ class User extends CI_Controller {
             redirect('welcome/login');
         }
 		$this->load->model('beta_model', 'beta');
-		$this->load->model('setup/user_model');
+		$this->load->model('setup/user_model', 'model');
 	}
 
 	public function index() {
@@ -21,7 +21,7 @@ class User extends CI_Controller {
 	}
 
 	public function list() {
-		$list = $this->user_model->read_data();
+		$list = $this->model->read_data();
 		$data = array();
 		$no = $_POST['start'];
 
@@ -31,9 +31,8 @@ class User extends CI_Controller {
 			$row[] = ++$no;
 			$row[] = $i->id_user;
 			$row[] = $i->nm_user;
-			$row[] = $i->id_divisi;
+			$row[] = $i->nm_divisi;
 
-			// $row[] = '<button class="btn btn-primary btn-sm" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></button><button class="btn btn-danger btn-sm" data-delete="'.$i->id_user.'"><i class="far fa-trash-alt"></i></button>';
 			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_user.'"><i class="far fa-edit"></i></a>
 			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_user.'"><i class="far fa-trash-alt"></i></a>';
 
@@ -41,8 +40,8 @@ class User extends CI_Controller {
 		}
 		$output = array(
 			'draw' => $_POST['draw'],
-			'recordsTotal' => $this->user_model->count_data(),
-			'recordsFiltered' => $this->user_model->count_data_filtered(),
+			'recordsTotal' => $this->model->count_data(),
+			'recordsFiltered' => $this->model->count_data_filtered(),
 			'data' => $data
 		);
 		echo json_encode($output);
@@ -60,18 +59,9 @@ class User extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$username = dt_filter($this->input->post('user-nm'));
-			$userpass = $this->input->post('user-pass');
-			$divisiid = $this->input->post('divisi-id');
+			$sql = $this->model->_create();
 
-			$val = array(
-				'nm_user' => $username,
-				'pass_user' => md5($userpass),
-				'id_divisi' => $divisiid
-			);
-			$add = $this->beta->_create('tbl_users', $val);
-
-			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$add.' ] Add User - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add User - Successfully...</div>';
 			$data['status'] = TRUE;
 		} else {
 			foreach ($_POST as $key => $value) {
@@ -82,11 +72,7 @@ class User extends CI_Controller {
 	}
 
 	public function edit($id) {
-		$where = array(
-			'id_user' => $id
-		);
-		$data = $this->beta->_read_where('tbl_users', $where)->row();
-
+		$data = $this->model->_read_where($id);
 		echo json_encode($data);
 	}
 
@@ -102,22 +88,9 @@ class User extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
-			$userid = $this->input->post('user-id');
-			$username = dt_filter($this->input->post('user-nm'));
-			$userpass = $this->input->post('user-pass');
-			$divisiid = $this->input->post('divisi-id');
+			$sql = $this->model->_update();
 
-			$val = array(
-				'nm_user' => $username,
-				'pass_user' => md5($userpass),
-				'id_divisi' => $divisiid
-			);
-			$where = array(
-				'id_user' => $userid
-			);
-			$this->beta->_update('tbl_users', $val, $where);
-
-			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$userid.' ] Update User - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update User - Successfully...</div>';
 			$data['status'] = TRUE;
 		} else {
 			foreach ($_POST as $key => $value) {
@@ -128,17 +101,14 @@ class User extends CI_Controller {
 	}
 
 	public function delete($id) {
-		$where = array(
-			'id_user' => $id
-		);
-		$this->beta->_delete('tbl_users', $where);
-
+		$this->model->_delete($id);
 		echo json_encode(array('status' => TRUE));
 	}
 
-	// custom validation
+	// ----------------------
+	// custom form_validation
 	public function user_check() {
-		$userid = dt_filter($this->input->post('user-id'));
+		$userid = $this->input->post('user-id');
 		$username = $this->input->post('user-nm');
 
 		$where = array(

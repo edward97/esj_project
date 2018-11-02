@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Divisi extends CI_Controller {
+class Supplier extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
@@ -9,14 +9,14 @@ class Divisi extends CI_Controller {
             redirect('welcome/login');
         }
 		$this->load->model('beta_model', 'beta');
-		$this->load->model('setup/divisi_model', 'model');
+		$this->load->model('setup/supplier_model', 'model');
 	}
 
 	public function index() {
-        $data['title'] = 'Divisi';
+        $data['title'] = 'Supplier';
 
 		$this->load->view('inc/v_header', $data);
-		$this->load->view('setup/v_divisi');
+		$this->load->view('setup/v_supplier');
 		$this->load->view('inc/v_footer');
 	}
 
@@ -29,11 +29,12 @@ class Divisi extends CI_Controller {
 			$row = array();
 			
 			$row[] = ++$no;
-			$row[] = $i->id_divisi;
-			$row[] = $i->nm_divisi;
+			$row[] = $i->id_supplier;
+			$row[] = $i->nm_supplier;
+			$row[] = $i->address;
 
-			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_divisi.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_divisi.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_supplier.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_supplier.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
@@ -52,14 +53,14 @@ class Divisi extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|max_length[255]|is_unique[tbl_divisi.nm_divisi]');
+		$this->form_validation->set_rules('supplier-nm', 'Supplier', 'trim|required|max_length[255]|is_unique[tbl_supplier.nm_supplier]');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
 			$sql = $this->model->_create();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Divisi - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Supplier - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -79,14 +80,14 @@ class Divisi extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|max_length[255]|callback_divisi_check');
+		$this->form_validation->set_rules('supplier-nm', 'Supplier', 'trim|required|max_length[255]|callback_supplier_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
 			$sql = $this->model->_update();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Divisi - Successfully...</div>';
+			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Supplier - Successfully...</div>';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -102,18 +103,18 @@ class Divisi extends CI_Controller {
 
 	// ----------------------
 	// custom form_validation
-	public function divisi_check() {
-		$divisiid = $this->input->post('divisi-id');
-		$divisiname = $this->input->post('divisi-nm');
+	public function supplier_check() {
+		$supplierid = $this->input->post('supplier-id');
+		$suppliernm = $this->input->post('supplier-nm');
 
 		$where = array(
-			'id_divisi !=' => $divisiid,
-            'nm_divisi' => $divisiname
+			'id_supplier !=' => $supplierid,
+            'nm_supplier' => $suppliernm
 		);
-		$check = $this->beta->_read_where('tbl_divisi', $where)->num_rows();
+		$check = $this->beta->_read_where('tbl_supplier', $where)->num_rows();
 
 		if ($check) {
-			$this->form_validation->set_message('divisi_check', 'The {field} already exists');
+			$this->form_validation->set_message('supplier_check', 'The {field} already exists');
 			return FALSE;
 		} else {
 			return TRUE;

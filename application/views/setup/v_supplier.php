@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Divisi</h2>
+                        <h2>Supplier</h2>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum suscipit itaque hic laborum, quia maxime similique maiores dolorem error.</p>
                     </div>
                 </div>
@@ -14,7 +14,7 @@
                         <div class="card shadow">
                             <div class="card-header clearfix">
                                 <div class="float-left">
-                                    <i class="fas fa-angle-right"></i> Divisi List
+                                    <i class="fas fa-angle-right"></i> Supplier List
                                 </div>
                                 
                                 <div class="float-right">
@@ -28,8 +28,9 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 15px;">#</th>
-                                            <th>Divisi ID</th>
-                                            <th>Divisi</th>
+                                            <th>Supplier ID</th>
+                                            <th>Supplier</th>
+                                            <th>Address</th>
                                             <th style="width: 50px;">Action</th>
                                         </tr>
                                     </thead>
@@ -39,8 +40,9 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>Divisi ID</th>
-                                            <th>Divisi</th>
+                                            <th>Supplier ID</th>
+                                            <th>Supplier</th>
+                                            <th>Address</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -67,13 +69,20 @@
                             <form id="form-data">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="divisi-id">Divisi ID</label>
-                                        <input type="text" name="divisi-id" class="form-control form-control-sm" id="divisi-id" placeholder="[Auto]" readonly>
+                                        <label for="supplier-id">Supplier ID</label>
+                                        <input type="text" name="supplier-id" class="form-control form-control-sm" id="supplier-id" placeholder="[Auto]" readonly>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="divisi-nm" class="required">Divisi</label>
-                                        <input type="text" name="divisi-nm" class="form-control form-control-sm" id="divisi-nm" placeholder="Divisi">
+                                        <label for="supplier-nm" class="required">Supplier</label>
+                                        <input type="text" name="supplier-nm" class="form-control form-control-sm" id="supplier-nm" placeholder="Supplier">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="supplier-addr">Address</label>
+                                        <textarea name="supplier-addr" class="form-control form-control-sm" id="supplier-addr" rows="3"></textarea>
                                     </div>
                                 </div>
                             </form>

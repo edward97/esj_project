@@ -119,16 +119,4 @@ class Divisi_model extends CI_Model {
         }
         return $data;
     }
-
-    // count where
-    public function _count_data() {
-        $divisiid = $this->input->post('divisi-id');
-		$divisiname = $this->input->post('divisi-nm');
-
-		$where = array(
-			'id_divisi !=' => $divisiid,
-            'nm_divisi' => $divisiname
-        );
-        return $this->db->get_where($this->table, $where)->num_rows();
-    }
 }
