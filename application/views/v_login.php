@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-info btn-sm btn-block" id="sign-in">
+                <button type="submit" class="btn btn-info btn-sm btn-block">
                     <i class="fas fa-lock"></i> SIGN IN
                 </button>
                 <hr>

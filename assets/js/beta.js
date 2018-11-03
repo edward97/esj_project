@@ -4,7 +4,9 @@ $(document).ready(function() {
     let link, html;
 
     // sign-in
-    $(document).on("click", "#sign-in", function() {
+    $(document).on("submit", "form.form-login", function(e) {
+        e.preventDefault();
+
         link = url+"welcome/login_act";
         $(this).attr("disabled", true);
 
