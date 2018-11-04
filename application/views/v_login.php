@@ -19,70 +19,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
-    <div class="container">
-        <form class="form-login">
-            <h2 class="form-login-heading bg-info text-white">sign in now</h2>
-
-            <div class="login-wrap">
-                <div class="form-group">
-                    <input type="text" name="username" class="form-control form-control-sm" id="username" placeholder="Username" autofocus>
+    <div class="login-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7 text-white">
+                    <h1>Beta Project</h1>
+                    <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </div>
+                <div class="col-sm-5">
+                    <div class="card">
+                        <h5 class="card-header bg-info text-white text-center">
+                            <img src="<?=base_url('assets/img/brand.png')?>" width="25" height="25" class="d-inline-block align-top" alt="">
+                            WELCOME !
+                        </h5>
 
-                <div class="form-group">
-                    <input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="Password">
-                </div>
+                        <div class="card-body">
+                            <form class="form-login">
+                                <div class="form-group">
+                                    <input type="text" name="username" class="form-control form-control-sm" id="username" placeholder="Username" autofocus>
+                                </div>
 
-                <div class="clearfix">
-                    <div class="form-group form-check float-left">
-                        <input type="checkbox" class="form-check-input" id="remember-me">
-                        <label for="remember-me" class="form-check-label">Remember me</label>
-                    </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="Password">
+                                </div>
 
-                    <div class="form-group float-right">
-                        <a href="javascript:;" class="badge badge-light" data-toggle="modal" data-target="#forgotPassword">Forgot Password?</a>
-                    </div>
-                </div>
+                                <div class="clearfix">
+                                    <div class="form-group form-check float-left">
+                                        <input type="checkbox" class="form-check-input" id="remember-me">
+                                        <label for="remember-me" class="form-check-label">Remember me</label>
+                                    </div>
 
-                <button type="submit" class="btn btn-info btn-sm btn-block">
-                    <i class="fas fa-lock"></i> SIGN IN
-                </button>
-                <hr>
+                                    <div class="form-group float-right">
+                                        <a href="javascript:;" class="badge badge-light" data-toggle="modal" data-target="#forgotPassword">Forgot Password?</a>
+                                    </div>
+                                </div>
 
-                <div class="text-center">
-                    Don't have an account yet?
-                    <br />
-                    <a href="javascript:;">Create an account</a>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info">
-                            <h5 class="modal-title text-white" id="forgotPasswordLabel">Forgot Password</h5>
-
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-
-                        <div class="modal-body">
-                            <p>Enter your e-mail address below to reset your password.</p>
-
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-sm" placeholder="E-mail" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-sm btn-info">Submit</button>
+                                <button type="submit" class="btn btn-info btn-sm btn-block">
+                                    <i class="fas fa-lock"></i> SIGN IN
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+
+            <div class="row login-footer">
+                <div class="col-sm-4">
+                    <h3>Column 1</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Column 2</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Column 3</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white" id="forgotPasswordLabel">Forgot Password</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Enter your e-mail address below to reset your password.</p>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Email Address" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-info">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript -->

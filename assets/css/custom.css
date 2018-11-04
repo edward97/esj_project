@@ -69,27 +69,17 @@ body {
 }
 
 /*----------------login-page----------------*/
-.form-login {
-    max-width: 330px;
-    margin: 100px auto 0;
-    background: #fff;
+.login-main {
+    margin: 85px auto 0;
     border-radius: 5px;
     -webkit-border-radius: 5px;
 }
 
-.form-login h2.form-login-heading {
-    margin: 0;
-    padding: 25px 20px;
-    text-align: center;
-    border-radius: 5px 5px 0 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 300;
-}
-
-.login-wrap {
-    padding: 20px;
+.login-footer {
+    color: white;
+    border-top: 1px dashed white;
+    margin-top: 20px;
+    padding-top: 25px;
 }
 
 /*----------------page-wrapper----------------*/
@@ -572,6 +562,16 @@ body {
 .card {
     margin-bottom: 1rem;
 }
+
+.breadcrumb {
+    background-color: rgba(0,0,0,.03);
+
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    content:">";
+}
+
 /*----------------  autocomplete on modal  --------------- */
 .ui-autocomplete {
 	z-index: 5000;

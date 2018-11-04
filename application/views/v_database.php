@@ -11,6 +11,12 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-12">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active">Database</li>
+                        </ol>
+                    </div>
+
+                    <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-body">
                                 <?=$this->session->flashdata('msg')?>
