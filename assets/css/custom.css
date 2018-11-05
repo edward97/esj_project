@@ -576,3 +576,8 @@ body {
 .ui-autocomplete {
 	z-index: 5000;
 }
+
+/* custom */
+textarea {
+    resize: none;
+}

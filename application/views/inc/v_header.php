@@ -24,6 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Malihu custom scrollbar plugin CSS -->
     <link rel="stylesheet" href="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
+    <!-- DateTimePicker jQuery plugin select date and time -->
+    <link rel="stylesheet" href="<?=base_url('assets/vendor/datetimepicker/jquery.datetimepicker.min.css')?>" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?=base_url('assets/css/custom.css')?>" />
     <link rel="stylesheet" href="<?=base_url('assets/css/custom-themes.css')?>" />
@@ -116,6 +119,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </li>
                                     <li>
                                         <a href="<?=site_url('setup/warehouse')?>" <?=at_link('setup/warehouse')?>>Warehouse</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="javascript:;">
+                                <i class="fas fa-cogs"></i>
+                                <span>Transaction</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="<?=site_url('transaction/po')?>" <?=at_link('transaction/po')?>>Purchase Order</a>
                                     </li>
                                 </ul>
                             </div>

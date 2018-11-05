@@ -15,6 +15,9 @@
     <!-- Malihu custom scrollbar plugin JS -->
     <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
+    <!-- DateTimePicker jQuery plugin select date and time -->
+    <script src="<?=base_url('assets/vendor/datetimepicker/jquery.datetimepicker.full.min.js')?>"></script>
+
     <!-- TinyMCE -->
     <script src="<?=base_url('assets/vendor/tinymce/tinymce.min.js')?>"></script>
 
@@ -25,14 +28,20 @@
 
 <?php if (gt_uri(1) === 'setup'): ?>
     <!-- Setup -->
-    <?php if (gt_uri(2)     === 'divisi' ):     ?><script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'item' ):   ?><script src="<?=base_url('assets/js/setup/item.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'size' ):   ?><script src="<?=base_url('assets/js/setup/size.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'supplier' ):   ?><script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'user' ):       ?><script src="<?=base_url('assets/js/setup/user.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'warehouse' ):  ?><script src="<?=base_url('assets/js/setup/warehouse.js')?>"></script>
+    <?php if (gt_uri(2)     === 'divisi'):     ?><script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'item'):       ?><script src="<?=base_url('assets/js/setup/item.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'size'):       ?><script src="<?=base_url('assets/js/setup/size.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'supplier'):   ?><script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'user'):       ?><script src="<?=base_url('assets/js/setup/user.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'warehouse'):  ?><script src="<?=base_url('assets/js/setup/warehouse.js')?>"></script>
+    <?php endif ?>
+
+<?php elseif (gt_uri(1) === 'transaction'): ?>
+    <!-- Transaction -->
+    <?php if (gt_uri(2) === 'po'): ?><script src="<?=base_url('assets/js/transaction/po.js')?>"></script>
     <?php endif ?>
 <?php endif ?>
+
 
     <script>
         let url = "<?=base_url()?>";
