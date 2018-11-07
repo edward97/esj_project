@@ -71,27 +71,34 @@ $(document).ready(function() {
     });
 
     // delete-data
-    $(document).on("click", "[data-delete]", function(e) {
-        e.preventDefault();
+    $(document).on("click", "[data-delete]", function() {
         id = $(this).data('delete');
 
-        if (confirm("Are you sure want to delete this?")) {
-            $.ajax({
-                url: url+"transaction/po/delete/"+id,
-                type: "post",
-                dataType: "json",
-                success: function(data) {
-                    if (data.status) {
-                        reload_table();
-                    } else {
-                        alert('Error code: '+data.msg.code+'\nMessage: '+data.msg.message);
+        swal({
+            title: "Are you sure want to delete this data?",
+            text: "You cant undo this data anymore!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((res) => {
+            if (res) {
+                $.ajax({
+                    url: url+"transaction/po/delete/"+id,
+                    type: "post",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.status) {
+                            swal("Poof! Delete success!", { icon: "success" }).then(reload_table());
+                        } else {
+                            swal("Error code: "+data.msg.code, "Message: "+data.msg.message, "error");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("Error deleting data...");
                     }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    alert("Error deleting data...");
-                }
-            });
-        }
+                });
+            }
+        });
     });
 
     // save-data

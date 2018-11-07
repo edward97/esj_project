@@ -17,11 +17,21 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 if (data.status === '1') {
-                    window.location.href = url+"dashboard";
+                    swal({
+                        title: "Login Success!",
+                        text: "Welcome!",
+                        icon: "success",
+                        buttons: false,
+                        timer: 2000
+                    }).then(
+                        function() {
+                            window.location.href = url+"dashboard";
+                        }
+                    );
                 }
                 else if(data.status === '2') {
                     $(".form-control").removeClass("is-invalid").next().remove();
-                    alert(data.msg);
+                    swal("Oops!", data.msg, "error");
                 } else {
                     $.each(data.msg, function(key, value) {
                         html = $("#"+key);
@@ -40,9 +50,16 @@ $(document).ready(function() {
     // sign-out
     $(document).on("click", "#sign-out", function(e) {
         e.preventDefault();
-        
-        if (confirm("Are you sure want to sign-out?")) {
-            window.location.href = url+"welcome/logout";
-        }
+
+        swal({
+            title: "Are you sure?",
+            text: ":(",
+            icon: "warning",
+            buttons: true
+        }).then((res) => {
+            if (res) {
+                swal("Poof! Sign-out success!", { icon: "success" }).then(function() {window.location.href = url+"welcome/logout";});
+            }
+        });
     });
 });

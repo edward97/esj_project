@@ -104,7 +104,7 @@
                                     </div>
 
                                     <div class="col-md-5">
-                                        <label for="description" class="required">Warehouse</label>
+                                        <label for="description" class="required">Description</label>
                                         <textarea name="description" class="form-control form-control-sm" id="description" rows="5"></textarea>
                                     </div>
                                 </div>
