@@ -33,7 +33,7 @@ class Beta_model extends CI_Model {
     // search data - like
 	public function _search($table, $column, $data) {
 		$this->db->like($column, $data, 'both');
-		$this->db->limit(5);
+		$this->db->limit(10);
 
 		return $this->db->get($table);
     }

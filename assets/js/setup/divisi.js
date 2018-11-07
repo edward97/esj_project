@@ -23,14 +23,8 @@ $(document).ready(function() {
     $(document).on("click", "[data-add]", function() {
         sv_method = "create";
 
-        // change-class
-        $(".modal-title").text("Add Data").parent().removeClass("bg-primary").addClass("bg-success");
-        $(".form-control").removeClass("is-invalid").next().remove();
-        $(".alert").remove();
-
-        // change-id
-        $("#form-data")[0].reset();
-        $("#save-data").removeClass("btn-primary").addClass("btn-success");
+        // call function
+        addModal();
 
         // show-modal
         $("#modal-data").modal("show");
@@ -41,14 +35,8 @@ $(document).ready(function() {
         sv_method = "update";
         id = $(this).data("edit");
 
-        // change-class
-        $(".modal-title").text("Edit Data").parent().removeClass("bg-success").addClass("bg-primary");
-        $(".form-control").removeClass("is-invalid").next().remove();
-        $(".alert").remove();
-
-        // change-id
-        $("#form-data")[0].reset();
-        $("#save-data").removeClass("btn-success").addClass("btn-primary");
+        // call function
+        editModal();
 
         $.ajax({
             url: url+"setup/divisi/edit/"+id,
@@ -136,9 +124,4 @@ $(document).ready(function() {
     $(document).on("click", "#reload-data", function() {
         reload_table();
     });
-
-    // reload table
-    function reload_table() {
-        table.ajax.reload(null, false);
-    }
 });

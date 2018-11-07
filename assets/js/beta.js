@@ -63,3 +63,32 @@ $(document).ready(function() {
         });
     });
 });
+
+// ---------- custom ----------
+function addModal() {
+    // change-class
+    $(".modal-title").text("Add Data").parent().removeClass("bg-primary").addClass("bg-success");
+    $(".form-control").removeClass("is-invalid").next().remove();
+    $(".alert").remove();
+
+    // change-id
+    $("#form-data")[0].reset();
+    $("#save-data").removeClass("btn-primary").addClass("btn-success");
+}
+
+function editModal() {
+    // change-class
+    $(".modal-title").text("Edit Data").parent().removeClass("bg-success").addClass("bg-primary");
+    $(".form-control").removeClass("is-invalid").next().remove();
+    $(".alert").remove();
+
+    // change-id
+    $("#form-data")[0].reset();
+    $("#save-data").removeClass("btn-success").addClass("btn-primary");
+}
+
+// reload table
+    function reload_table() {
+        $("#table-data").DataTable().ajax.reload(null, false);
+    }
+// ---------- end custom ----------

@@ -574,7 +574,10 @@ body {
 
 /*----------------  autocomplete on modal  --------------- */
 .ui-autocomplete {
-	z-index: 5000;
+    z-index: 5000;
+    max-height: 8.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* custom */

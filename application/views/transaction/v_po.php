@@ -109,10 +109,34 @@
                                     </div>
                                 </div>
 
+                                <div class="row"><div class="col-md-12"><div class="bg-light">&nbsp;</div></div></div>
+
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque autem modi placeat totam. Eveniet perspiciatis labore itaque rerum odit ducimus delectus consequuntur veniam, quos vel excepturi iure possimus culpa beatae.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="detail-item">
+                                                <thead>
+                                                    <tr>
+                                                        <td>#</td>
+                                                        <td>Item ID</td>
+                                                        <td>Itemname</td>
+                                                        <td>Qty</td>
+                                                        <td>Rate</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr id="row-1">
+                                                        <td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>
+                                                        <td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-1"></td>
+                                                        <td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-1"></td>
+                                                        <td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-1"></td>
+                                                        <td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-1"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <a href="javascript:;" data-action="add" class="badge badge-success"><i class="fas fa-plus"></i> Add Row</a>
                                         </div>
                                     </div>
                                 </div>

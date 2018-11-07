@@ -1,6 +1,8 @@
 $(document).ready(function() {
     "use strict";
-    let id, table, sv_method, path, html;
+    let id, table, sv_method, path, html, tableBody, rowCount = 2;
+
+    tableBody = $("#detail-item tbody");
     
     // table
     table = $("#table-data").DataTable({
@@ -23,14 +25,8 @@ $(document).ready(function() {
     $(document).on("click", "[data-add]", function() {
         sv_method = "create";
 
-        // change-class
-        $(".modal-title").text("Add Data").parent().removeClass("bg-primary").addClass("bg-success");
-        $(".form-control").removeClass("is-invalid").next().remove();
-        $(".alert").remove();
-
-        // change-id
-        $("#form-data")[0].reset();
-        $("#save-data").removeClass("btn-primary").addClass("btn-success");
+        // call function
+        addModal();
 
         // show-modal
         $("#modal-data").modal("show");
@@ -41,14 +37,8 @@ $(document).ready(function() {
         sv_method = "update";
         id = $(this).data("edit");
 
-        // change-class
-        $(".modal-title").text("Edit Data").parent().removeClass("bg-success").addClass("bg-primary");
-        $(".form-control").removeClass("is-invalid").next().remove();
-        $(".alert").remove();
-
-        // change-id
-        $("#form-data")[0].reset();
-        $("#save-data").removeClass("btn-success").addClass("btn-primary");
+        // call function
+        editModal();
 
         $.ajax({
             url: url+"transaction/po/edit/"+id,
@@ -140,13 +130,37 @@ $(document).ready(function() {
         reload_table();
     });
 
-    // reload table
-    function reload_table() {
-        table.ajax.reload(null, false);
-    }
-
     $.datetimepicker.setLocale('en');
     $('#po-date').datetimepicker({
         mask:'9999/19/39 29:59'
     });
+
+    // -----------
+    // detail item
+    // -----------
+    $(document).on("click", "[data-action]", function() {
+        id = $(this).data('action');
+
+        if (id === 'add') {
+            $("#save-data").prop("disabled", false);
+
+            html = '<tr id="row-'+rowCount+'">'
+            +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
+            +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
+            +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
+            +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
+            +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
+            +'</tr>';
+
+            tableBody.append(html);
+            rowCount++;
+        } else {
+            $(this).parents("tr").remove();
+        }
+        (!$("#detail-item tbody tr").length) ? $("#save-data").prop("disabled", true) : $("#save-data").prop("disabled", false);
+    });
+
+
+
+        
 });

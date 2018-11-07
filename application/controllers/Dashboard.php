@@ -57,15 +57,16 @@ class Dashboard extends CI_Controller {
 
 	// search for autocomplete
 	public function search($id) {
+		$data = array();
 		if (isset($_GET['term']) && $id == 'divisi') {
 			$result = $this->beta->_search('tbl_divisi', 'nm_divisi', $_GET['term'])->result();
 
 			if (count($result)) {
 				foreach ($result as $i) {
-					$data[] = array(
+					array_push($data, array(
 						'label' => $i->nm_divisi,
-						'value' => $i->id_divisi
-					);
+						'value' => $i->id_divisi,
+					));
 				}
 			}
 		}
@@ -74,10 +75,10 @@ class Dashboard extends CI_Controller {
 
 			if (count($result)) {
 				foreach ($result as $i) {
-					$data[] = array(
+					array_push($data, array(
 						'label' => $i->nm_supplier,
 						'value' => $i->id_supplier
-					);
+					));
 				}
 			}
 		}
@@ -86,10 +87,10 @@ class Dashboard extends CI_Controller {
 
 			if (count($result)) {
 				foreach ($result as $i) {
-					$data[] = array(
+					array_push($data, array(
 						'label' => $i->nm_warehouse,
 						'value' => $i->id_warehouse
-					);
+					));
 				}
 			}
 		}
