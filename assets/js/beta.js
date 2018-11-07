@@ -1,8 +1,7 @@
-$(document).ready(function() {
-    "use strict";
-    // variable
-    let link, html;
+"use strict";
+let id, id_parent, table, link, sv_method, path, html, tableBody, rowCount;
 
+$(document).ready(function() {
     // sign-in
     $(document).on("submit", "form.form-login", function(e) {
         e.preventDefault();
@@ -66,29 +65,42 @@ $(document).ready(function() {
 
 // ---------- custom ----------
 function addModal() {
-    // change-class
     $(".modal-title").text("Add Data").parent().removeClass("bg-primary").addClass("bg-success");
     $(".form-control").removeClass("is-invalid").next().remove();
     $(".alert").remove();
 
-    // change-id
     $("#form-data")[0].reset();
     $("#save-data").removeClass("btn-primary").addClass("btn-success");
 }
 
 function editModal() {
-    // change-class
     $(".modal-title").text("Edit Data").parent().removeClass("bg-success").addClass("bg-primary");
     $(".form-control").removeClass("is-invalid").next().remove();
     $(".alert").remove();
 
-    // change-id
     $("#form-data")[0].reset();
     $("#save-data").removeClass("btn-success").addClass("btn-primary");
 }
 
 // reload table
-    function reload_table() {
-        $("#table-data").DataTable().ajax.reload(null, false);
-    }
+function reload_table() {
+    $("#table-data").DataTable().ajax.reload(null, false);
+}
+
+function formDetail() {
+    html = '<tr id="row-'+rowCount+'">'
+    +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
+    +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
+    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
+    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
+    +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
+    +'</tr>';
+
+    rowCount++;
+    return html;
+}
+
+function btnSave() {
+    (!$("#table-detail tbody tr").length) ? $("#save-data").prop("disabled", true) : $("#save-data").prop("disabled", false);
+}
 // ---------- end custom ----------

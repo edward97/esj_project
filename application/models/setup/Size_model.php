@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Size_model extends CI_Model {
-    private $table = 'tbl_items_size';
+    private $table = 'tbl_items_detail';
     private $column_order = array(NULL, 'id_size', 'nm_size', NULL);
     private $column_search = array('id_size', 'nm_size');
     private $order = array('id_size' => 'DESC');

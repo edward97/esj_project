@@ -94,6 +94,18 @@ class Dashboard extends CI_Controller {
 				}
 			}
 		}
+		elseif (isset($_GET['term']) && $id == 'item') {
+			$result = $this->beta->_search_custom_size($_GET['term'])->result();
+
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->nm_item.'-'.$i->nm_size,
+                        'value' => $i->id_item.'-'.$i->id_size,
+					));
+				}
+			}
+		}
 		echo json_encode($data);
 	}
 }

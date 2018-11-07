@@ -1,10 +1,8 @@
-$(document).ready(function() {
-    "use strict";
-    let id, table, sv_method, path, html, tableBody, rowCount = 2;
+"use strict";
 
-    tableBody = $("#detail-item tbody");
+$(document).ready(function() {
+    tableBody = $("#table-detail tbody");
     
-    // table
     table = $("#table-data").DataTable({
         "processing": true,
         "serverSide": true,
@@ -28,6 +26,12 @@ $(document).ready(function() {
         // call function
         addModal();
 
+        // remove col
+        tableBody.empty();
+        rowCount = 1;
+        tableBody.append(formDetail());
+        btnSave();
+
         // show-modal
         $("#modal-data").modal("show");
     });
@@ -39,6 +43,10 @@ $(document).ready(function() {
 
         // call function
         editModal();
+
+        // remove col
+        tableBody.empty();
+        btnSave();
 
         $.ajax({
             url: url+"transaction/po/edit/"+id,
@@ -144,23 +152,11 @@ $(document).ready(function() {
         if (id === 'add') {
             $("#save-data").prop("disabled", false);
 
-            html = '<tr id="row-'+rowCount+'">'
-            +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
-            +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
-            +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
-            +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
-            +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
-            +'</tr>';
-
-            tableBody.append(html);
-            rowCount++;
+            tableBody.append(formDetail());
         } else {
             $(this).parents("tr").remove();
         }
-        (!$("#detail-item tbody tr").length) ? $("#save-data").prop("disabled", true) : $("#save-data").prop("disabled", false);
+
+        btnSave();
     });
-
-
-
-        
 });

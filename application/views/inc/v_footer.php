@@ -45,7 +45,6 @@
     <?php endif ?>
 <?php endif ?>
 
-
     <script>
         let url = "<?=base_url()?>";
     </script>

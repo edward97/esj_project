@@ -31,33 +31,35 @@
                             </div>
 
                             <div class="card-body">
-                                <table class="table table-sm table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 15px;">#</th>
-                                            <th>Po ID</th>
-                                            <th>Date</th>
-                                            <th>Supplier</th>
-                                            <th>Warehouse</th>
-                                            <th>Description</th>
-                                            <th style="width: 50px;">Action</th>
-                                        </tr>
-                                    </thead>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 15px;">#</th>
+                                                <th>Po ID</th>
+                                                <th>Date</th>
+                                                <th>Supplier</th>
+                                                <th>Warehouse</th>
+                                                <th>Description</th>
+                                                <th style="width: 50px;">Action</th>
+                                            </tr>
+                                        </thead>
 
-                                    <tbody></tbody>
+                                        <tbody></tbody>
 
-                                    <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Po ID</th>
-                                            <th>Date</th>
-                                            <th>Supplier</th>
-                                            <th>Warehouse</th>
-                                            <th>Description</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Po ID</th>
+                                                <th>Date</th>
+                                                <th>Supplier</th>
+                                                <th>Warehouse</th>
+                                                <th>Description</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -114,30 +116,21 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <table class="table table-hover" id="detail-item">
+                                            <table class="table table-hover" id="table-detail" style="width: 50rem">
                                                 <thead>
                                                     <tr>
-                                                        <td>#</td>
-                                                        <td>Item ID</td>
-                                                        <td>Itemname</td>
-                                                        <td>Qty</td>
-                                                        <td>Rate</td>
+                                                        <th>#</th>
+                                                        <th style="width: 15rem">Item ID</th>
+                                                        <th style="width: 15rem">Itemname</th>
+                                                        <th style="width: 7rem">Qty</th>
+                                                        <th style="width: 13rem">Rate</th>
                                                     </tr>
                                                 </thead>
 
-                                                <tbody>
-                                                    <tr id="row-1">
-                                                        <td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>
-                                                        <td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-1"></td>
-                                                        <td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-1"></td>
-                                                        <td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-1"></td>
-                                                        <td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-1"></td>
-                                                    </tr>
-                                                </tbody>
+                                                <tbody></tbody>
                                             </table>
-
-                                            <a href="javascript:;" data-action="add" class="badge badge-success"><i class="fas fa-plus"></i> Add Row</a>
                                         </div>
+                                        <a href="javascript:;" data-action="add" class="badge badge-success"><i class="fas fa-plus"></i> Add Row</a>
                                     </div>
                                 </div>
                             </form>

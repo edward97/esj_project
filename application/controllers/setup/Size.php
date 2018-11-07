@@ -126,7 +126,7 @@ class Size extends CI_Controller {
             'nm_size' => $sizenm,
             'id_item' => $itemid
 		);
-		$check = $this->beta->_read_where('tbl_items_size', $where)->num_rows();
+		$check = $this->beta->_read_where('tbl_items_detail', $where)->num_rows();
 
 		if ($check) {
 			$this->form_validation->set_message('size_check', 'The {field} already exists');

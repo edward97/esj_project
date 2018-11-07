@@ -1,10 +1,10 @@
-$(document).ready(function() {
-    "use strict";
-    let id, id_parent, table, sv_method, path, html;
+"use strict";
 
+$(document).ready(function() {
     id_parent = $("#id-parent").text();
+
+    console.log(id_parent);
     
-    // table
     table = $("#table-data").DataTable({
         "processing": true,
         "serverSide": true,
@@ -27,6 +27,7 @@ $(document).ready(function() {
 
         // call function
         addModal();
+        $('[name="item-id"]').val(id_parent);
 
         // show-modal
         $("#modal-data").modal("show");

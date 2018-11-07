@@ -31,29 +31,31 @@
                             </div>
 
                             <div class="card-body">
-                                <table class="table table-sm table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 15px;">#</th>
-                                            <th>Item ID</th>
-                                            <th>Item</th>
-                                            <th>UOM</th>
-                                            <th style="width: 50px;">Action</th>
-                                        </tr>
-                                    </thead>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-striped table-bordered table-hover" id="table-data" style="width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 15px;">#</th>
+                                                <th>Item ID</th>
+                                                <th>Item</th>
+                                                <th>UOM</th>
+                                                <th style="width: 50px;">Action</th>
+                                            </tr>
+                                        </thead>
 
-                                    <tbody></tbody>
+                                        <tbody></tbody>
 
-                                    <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Item ID</th>
-                                            <th>Item</th>
-                                            <th>UOM</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Item ID</th>
+                                                <th>Item</th>
+                                                <th>UOM</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

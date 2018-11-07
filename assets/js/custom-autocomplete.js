@@ -1,6 +1,6 @@
+"use strict";
+
 $(document).ready(function() {
-    "use strict";
-    
     $(".ui-divisi").autocomplete({
         source: url+"dashboard/search/divisi",
         minLength: 0,
@@ -21,13 +21,20 @@ $(document).ready(function() {
     }).focus(function() {
         $(this).autocomplete("search");
     });
+
+    $(document).on("focus", ".ui-item", function() {
+        id = $(this).attr("id").split("-");
+        id = id[id.length-1];
+
+        $(this).autocomplete({
+            source: url+"dashboard/search/item",
+            minLength: 1,
+
+            select: function(event, ui) {
+                $("#detail-name-"+id).val(ui.item.label);
+                $("#detail-qty-"+id).val(0);
+                $("#detail-rate-"+id).val(0);
+            }
+        });
+    });
 });
-
-// old style
-// $(".ui-supplier").autocomplete({
-//     source: url+"dashboard/search/supplier",
-
-//     select: function(event, ui) {
-//         $('[name="supplier-id"]').val(ui.item.label);
-//     }
-// });

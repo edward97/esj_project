@@ -1,8 +1,6 @@
+"use strict";
+
 $(document).ready(function() {
-    "use strict";
-    let id, table, sv_method, path, html;
-    
-    // table
     table = $("#table-data").DataTable({
         "processing": true,
         "serverSide": true,

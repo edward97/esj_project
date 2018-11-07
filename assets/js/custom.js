@@ -1,9 +1,12 @@
 jQuery(function ($) {
     "use strict";
     // variable
-    let x;
+    let x, wSize;
     let themes = "chiller-theme ice-theme cool-theme light-theme";
     let bgs = "bg1 bg2 bg3 bg4";
+
+    $(window).on('load', responsiveView);
+    $(window).on('resize', responsiveView);
 
     // add active class on current active page
     $("a.active").closest("div.sidebar-submenu")
@@ -33,6 +36,8 @@ jQuery(function ($) {
     $("#show-sidebar").click(function () {
         $(".page-wrapper").addClass("toggled");
     });
+
+    // show / close sidebar on load & resize
 
     //switch between themes 
     $('[data-theme]').click(function () {
@@ -89,3 +94,13 @@ jQuery(function ($) {
 
     }
 });
+
+function responsiveView() {
+    wSize = $(window).width();
+
+    if (wSize <= 768) {
+        $(".page-wrapper").removeClass("toggled");
+    } else {
+        $(".page-wrapper").addClass("toggled");
+    }
+}
