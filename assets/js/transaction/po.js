@@ -46,21 +46,35 @@ $(document).ready(function() {
 
         // remove col
         tableBody.empty();
-        btnSave();
 
         $.ajax({
             url: url+"transaction/po/edit/"+id,
             type: "get",
             dataType: "json",
             success: function(data) {
-                $('[name="po-id"]').val(data.id_po);
-                $('[name="po-date"]').val(data.date);
-                $('[name="supplier-id"]').val(data.id_supplier);
-                $('[name="warehouse-id"]').val(data.id_warehouse);
-                $('[name="description"]').val(data.description);
+                $('[name="po-id"]').val(data.po.id_po);
+                $('[name="po-date"]').val(data.po.date);
+                $('[name="supplier-id"]').val(data.po.id_supplier);
+                $('[name="warehouse-id"]').val(data.po.id_warehouse);
+                $('[name="description"]').val(data.po.description);
 
+                // list item detail
+                rowCount = 1;
+                $.each(data.po_detail, function(key, value) {
+                    html = '<tr id="row-'+rowCount+'">'
+                    +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
+                    +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
+                    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
+                    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                    +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                    +'</tr>';
+
+                    tableBody.append(html);
+                    rowCount++;
+                })
                 // show-modal
                 $("#modal-data").modal("show");
+                btnSave();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error get data...");

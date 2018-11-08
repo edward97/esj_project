@@ -31,6 +31,7 @@ $(document).ready(function() {
             minLength: 1,
 
             select: function(event, ui) {
+                // $("#detail-id-"+id).prop("disabled", true);
                 $("#detail-name-"+id).val(ui.item.label);
                 $("#detail-qty-"+id).val(0);
                 $("#detail-rate-"+id).val(0);

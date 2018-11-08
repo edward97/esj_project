@@ -74,7 +74,8 @@ class Po extends CI_Controller {
 	}
 
 	public function edit($id) {
-		$data = $this->model->_read_where($id);
+		$data['po'] = $this->model->_read_where($id);
+		$data['po_detail'] = $this->model->_read_where_list($id);
 		echo json_encode($data);
 	}
 

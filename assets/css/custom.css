@@ -577,7 +577,7 @@ body {
     z-index: 5000;
     max-height: 8.5rem;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 /* custom */

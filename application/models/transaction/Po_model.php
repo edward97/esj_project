@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Po_model extends CI_Model {
     private $table = 'tbl_po';
+    private $table_detail = 'tbl_po_detail';
     private $column_order = array(NULL, 'id_po', 'date', 'nm_supplier', 'nm_warehouse', 'description', NULL);
     private $column_search = array('id_po', 'date', 'nm_supplier', 'nm_warehouse', 'description');
     private $order = array('id_po' => 'DESC');
@@ -73,6 +74,12 @@ class Po_model extends CI_Model {
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');
 
+        // array item detail
+        $detailid = $this->input->post('detail-id');
+        $detailname = $this->input->post('detail-name');
+        $detailqty = $this->input->post('detail-qty');
+        $detailrate = $this->input->post('detail-rate');
+
         $data = array(
             'date' => $podate,
             'description' => $description,
@@ -80,9 +87,25 @@ class Po_model extends CI_Model {
             'id_warehouse' => $warehouseid,
         );
         $this->db->insert($this->table, $data);
+        $id = $this->db->insert_id();
+
+        $arr_data = array();
+        foreach ($detailid as $i => $item) {
+            $x = explode('-', $item);
+
+            array_push($arr_data, array(
+                'nm_po_item' => $detailname[$i],
+                'qty' => $detailqty[$i],
+                'rate' => $detailrate[$i],
+                'id_po' => $id,
+                'id_item' => $x[0],
+                'id_size' => $x[1],
+            ));
+        }
+        $this->db->insert_batch($this->table_detail, $arr_data);
 
         // return last insert id
-        return $this->db->insert_id();
+        return $id;
     }
 
     // read
@@ -98,6 +121,15 @@ class Po_model extends CI_Model {
         
         // return row data
 		return $this->db->get_where($this->table, $where)->row();
+    }
+
+    // read list by id
+    public function _read_where_list($id) {
+        $where = array(
+			'id_po' => $id
+        );
+        // return row data
+		return $this->db->get_where($this->table_detail, $where)->result();
     }
 
     // update
