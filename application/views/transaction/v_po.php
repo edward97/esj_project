@@ -25,8 +25,8 @@
                                 </div>
                                 
                                 <div class="float-right">
-                                    <a href="javascript:;" class="badge badge-success" data-add=""><i class="fas fa-plus"></i></a>
-                                    <a href="javascript:;" class="badge badge-info" id="reload-data"><i class="fas fa-sync-alt"></i></a>
+                                    <a href="javascript:;" class="btn-custom btn-success" data-add=""><i class="fas fa-plus"></i></a>
+                                    <a href="javascript:;" class="btn-custom btn-info" id="reload-data"><i class="fas fa-sync-alt"></i></a>
                                 </div>
                             </div>
 
@@ -130,7 +130,7 @@
                                                 <tbody></tbody>
                                             </table>
                                         </div>
-                                        <a href="javascript:;" data-action="add" class="badge badge-success"><i class="fas fa-plus"></i> Add Row</a>
+                                        <a href="javascript:;" data-action="add" class="btn-custom btn-success"><i class="fas fa-plus"></i> Add Row</a>
                                     </div>
                                 </div>
                             </form>

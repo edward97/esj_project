@@ -46,8 +46,8 @@ class Size extends CI_Controller {
 			$row[] = $i->id_size;
 			$row[] = $i->nm_size;
 
-			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_size.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_size.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn-custom btn-primary" data-edit="'.$i->id_size.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="btn-custom btn-danger" data-delete="'.$i->id_size.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}

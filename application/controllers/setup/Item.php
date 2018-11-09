@@ -33,8 +33,8 @@ class Item extends CI_Controller {
 			$row[] = $i->nm_item;
 			$row[] = $i->uom;
 
-			$row[] = '<a href="javascript:;" class="badge badge-primary" data-edit="'.$i->id_item.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="badge badge-danger" data-delete="'.$i->id_item.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn-custom btn-primary" data-edit="'.$i->id_item.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="btn-custom btn-danger" data-delete="'.$i->id_item.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
