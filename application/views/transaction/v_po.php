@@ -115,7 +115,7 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" style="height: 300px;">
                                             <table class="table table-hover" id="table-detail" style="width: 50rem">
                                                 <thead>
                                                     <tr>

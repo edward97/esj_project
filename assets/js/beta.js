@@ -87,20 +87,8 @@ function reload_table() {
     $("#table-data").DataTable().ajax.reload(null, false);
 }
 
-function formDetail() {
-    html = '<tr id="row-'+rowCount+'">'
-    +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
-    +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
-    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
-    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
-    +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
-    +'</tr>';
-
-    rowCount++;
-    return html;
-}
-
 function btnSave() {
     (!$("#table-detail tbody tr").length) ? $("#save-data").prop("disabled", true) : $("#save-data").prop("disabled", false);
 }
 // ---------- end custom ----------
+

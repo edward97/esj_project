@@ -25,12 +25,10 @@ $(document).ready(function() {
 
         // call function
         addModal();
-
-        // remove col
         tableBody.empty();
+
         rowCount = 1;
-        tableBody.append(formDetail());
-        btnSave();
+        appHtml("add", "");
 
         // show-modal
         $("#modal-data").modal("show");
@@ -38,14 +36,12 @@ $(document).ready(function() {
 
     // edit-data
     $(document).on("click", "[data-edit]", function() {
-        sv_method = "update";
         id = $(this).data("edit");
+
+        sv_method = id;
 
         // call function
         editModal();
-
-        // remove col
-        tableBody.empty();
 
         $.ajax({
             url: url+"transaction/po/edit/"+id,
@@ -58,23 +54,10 @@ $(document).ready(function() {
                 $('[name="warehouse-id"]').val(data.po.id_warehouse);
                 $('[name="description"]').val(data.po.description);
 
-                // list item detail
-                rowCount = 1;
-                $.each(data.po_detail, function(key, value) {
-                    html = '<tr id="row-'+rowCount+'">'
-                    +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
-                    +'<td><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
-                    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-                    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
-                    +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
-                    +'</tr>';
+                appHtml("edit", id);
 
-                    tableBody.append(html);
-                    rowCount++;
-                })
                 // show-modal
                 $("#modal-data").modal("show");
-                btnSave();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error get data...");
@@ -115,7 +98,8 @@ $(document).ready(function() {
 
     // save-data
     $(document).on("click", "#save-data", function() {
-        $(this).attr("disabled", true).text("Saving...");
+        id = $(this);
+        id.attr("disabled", true).text("Saving...");
 
         // url
         path = (sv_method === "create") ? url+"transaction/po/add" : url+"transaction/po/update";
@@ -131,6 +115,9 @@ $(document).ready(function() {
                     $(".form-control").removeClass("is-invalid").next().remove();
                     $("#info").prepend(data.msg);
 
+                    if (sv_method !== "create") {
+                        appHtml("edit", sv_method);
+                    }
                     reload_table();
                 } else {
                     $.each(data.msg, function(key, value) {
@@ -139,12 +126,12 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
+                id.attr("disabled", false).text("Save");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error adding/update data...");
             }
         });
-        $(this).attr("disabled", false).text("Save");
     });
 
     // event reload table
@@ -165,12 +152,54 @@ $(document).ready(function() {
 
         if (id === 'add') {
             $("#save-data").prop("disabled", false);
-
-            tableBody.append(formDetail());
+            appHtml("add", "");
         } else {
             $(this).parents("tr").remove();
         }
-
         btnSave();
     });
+
+    function appHtml(act, id) {
+        if (act === "add") {
+            html = '<tr id="row-'+rowCount+'">'
+            +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
+            +'<td><input type="hidden" name="addr[]"value="New"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
+            +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
+            +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
+            +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
+            +'</tr>';
+
+            tableBody.append(html);
+            rowCount++;
+
+            btnSave();
+        } else {
+            tableBody.empty();
+
+            $.ajax({
+                url: url+"transaction/po/edit/"+id,
+                type: "get",
+                dataType: "json",
+                success: function(data) {
+                    rowCount = 1;
+                    $.each(data.po_detail, function(key, value) {
+                        html = '<tr id="row-'+rowCount+'">'
+                        +'<td><a href="javascript:;" data-action="delete" class="form-control form-control-sm text-danger"><i class="far fa-trash-alt"></i></a></td>'
+                        +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
+                        +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
+                        +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                        +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                        +'</tr>';
+        
+                        tableBody.append(html);
+                        rowCount++;
+                    });
+                    btnSave();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("Error get data...");
+                }
+            });
+        }
+    }
 });

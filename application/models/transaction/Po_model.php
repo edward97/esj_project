@@ -91,15 +91,16 @@ class Po_model extends CI_Model {
 
         $arr_data = array();
         foreach ($detailid as $i => $item) {
-            $x = explode('-', $item);
+            $code = explode('-', $item);
 
             array_push($arr_data, array(
+                'unq' => rd_code(12),
                 'nm_po_item' => $detailname[$i],
                 'qty' => $detailqty[$i],
                 'rate' => $detailrate[$i],
                 'id_po' => $id,
-                'id_item' => $x[0],
-                'id_size' => $x[1],
+                'id_item' => $code[0],
+                'id_size' => $code[1],
             ));
         }
         $this->db->insert_batch($this->table_detail, $arr_data);
@@ -140,6 +141,13 @@ class Po_model extends CI_Model {
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');
 
+        // array item detail
+        $addr = $this->input->post('addr');
+        $detailid = $this->input->post('detail-id');
+        $detailname = $this->input->post('detail-name');
+        $detailqty = $this->input->post('detail-qty');
+        $detailrate = $this->input->post('detail-rate');
+
         $data = array(
             'date' => $podate,
             'description' => $description,
@@ -151,6 +159,50 @@ class Po_model extends CI_Model {
         );
         $this->db->update($this->table, $data, $where);
 
+        $arr_id = $arr_addr = $arr_data = array();
+        foreach ($addr as $i => $value) {
+            $code = explode('-', $detailid[$i]);
+
+            if ($value != 'New') {
+                array_push($arr_id, $value);
+
+                array_push($arr_addr, array(
+                    'unq' => $value,
+                    'nm_po_item' => $detailname[$i],
+                    'qty' => $detailqty[$i],
+                    'rate' => $detailrate[$i],
+                    'id_po' => $poid,
+                    'id_item' => $code[0],
+                    'id_size' => $code[1],
+                ));
+            } else {
+                array_push($arr_data, array(
+                    'unq' => rd_code(12),
+                    'nm_po_item' => $detailname[$i],
+                    'qty' => $detailqty[$i],
+                    'rate' => $detailrate[$i],
+                    'id_po' => $poid,
+                    'id_item' => $code[0],
+                    'id_size' => $code[1],
+                ));
+            }
+        }
+        // delete data
+        if (!empty($arr_id)) {
+            $this->db->where($where)
+            ->where_not_in('unq', $arr_id)
+            ->delete($this->table_detail);
+        } else {
+            $this->db->delete($this->table_detail, $where);
+        }
+
+        // udpate batch
+        $this->db->update_batch($this->table_detail, $arr_addr, 'unq');
+
+        // insert batch
+        if (!empty($arr_data)) {
+            $this->db->insert_batch($this->table_detail, $arr_data);
+        }
         return $poid;
     }
 
