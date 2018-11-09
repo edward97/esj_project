@@ -2,8 +2,6 @@
 
 $(document).ready(function() {
     id_parent = $("#id-parent").text();
-
-    console.log(id_parent);
     
     table = $("#table-data").DataTable({
         "processing": true,
@@ -92,7 +90,8 @@ $(document).ready(function() {
 
     // save-data
     $(document).on("click", "#save-data", function() {
-        $(this).attr("disabled", true).text("Saving...");
+        id = $(this);
+        id.prop("disabled", true).text("Saving...");
 
         // url
         path = (sv_method === "create") ? url+"setup/size/add" : url+"setup/size/update";
@@ -116,12 +115,12 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
+                id.prop("disabled", false).text("Save");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error adding/update data...");
             }
         });
-        $(this).attr("disabled", false).text("Save");
     });
 
     // event reload table

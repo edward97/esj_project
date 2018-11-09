@@ -6,8 +6,9 @@ $(document).ready(function() {
     $(document).on("submit", "form.form-login", function(e) {
         e.preventDefault();
 
+        id = $(this);
+        id.attr("disabled", true);
         link = url+"welcome/login_act";
-        $(this).attr("disabled", true);
 
         $.ajax({
             url: link,
@@ -38,12 +39,12 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
+                id.attr("disabled", false);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error checking login...");
             }
         });
-        $(this).attr("disabled", false);
     });
 
     // sign-out

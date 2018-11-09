@@ -99,7 +99,7 @@ $(document).ready(function() {
     // save-data
     $(document).on("click", "#save-data", function() {
         id = $(this);
-        id.attr("disabled", true).text("Saving...");
+        id.prop("disabled", true).text("Saving...");
 
         // url
         path = (sv_method === "create") ? url+"transaction/po/add" : url+"transaction/po/update";
@@ -126,7 +126,7 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
-                id.attr("disabled", false).text("Save");
+                id.prop("disabled", false).text("Save");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error adding/update data...");

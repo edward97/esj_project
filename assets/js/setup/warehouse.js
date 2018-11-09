@@ -86,7 +86,8 @@ $(document).ready(function() {
 
     // save-data
     $(document).on("click", "#save-data", function() {
-        $(this).attr("disabled", true).text("Saving...");
+        id = $(this);
+        id.prop("disabled", true).text("Saving...");
 
         // url
         path = (sv_method === "create") ? url+"setup/warehouse/add" : url+"setup/warehouse/update";
@@ -110,12 +111,12 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
+                id.prop("disabled", false).text("Save");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error adding/update data...");
             }
         });
-        $(this).attr("disabled", false).text("Save");
     });
 
     // event reload table
