@@ -32,8 +32,8 @@ class Divisi extends CI_Controller {
 			$row[] = $i->id_divisi;
 			$row[] = $i->nm_divisi;
 
-			$row[] = '<a href="javascript:;" class="btn-custom btn-primary" data-edit="'.$i->id_divisi.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="btn-custom btn-danger" data-delete="'.$i->id_divisi.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-edit="'.$i->id_divisi.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="btn btn-custom btn-danger" data-delete="'.$i->id_divisi.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}

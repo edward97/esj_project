@@ -33,8 +33,8 @@ class Supplier extends CI_Controller {
 			$row[] = $i->nm_supplier;
 			$row[] = $i->address;
 
-			$row[] = '<a href="javascript:;" class="btn-custom btn-primary" data-edit="'.$i->id_supplier.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="btn-custom btn-danger" data-delete="'.$i->id_supplier.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-edit="'.$i->id_supplier.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="btn btn-custom btn-danger" data-delete="'.$i->id_supplier.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
