@@ -1,5 +1,5 @@
 "use strict";
-let id, id_parent, table, link, sv_method, path, html, tableBody, rowCount;
+let id, id_parent, table, sv_method, path, html, script, tableBody, rowCount, btnAction;
 
 $(document).ready(function() {
     // sign-in
@@ -8,10 +8,10 @@ $(document).ready(function() {
 
         id = $(this);
         id.attr("disabled", true);
-        link = url+"welcome/login_act";
+        path = url+"welcome/login_act";
 
         $.ajax({
-            url: link,
+            url: path,
             type: "post",
             data: $(".form-login").serialize(),
             dataType: "json",
@@ -87,9 +87,4 @@ function editModal() {
 function reload_table() {
     $("#table-data").DataTable().ajax.reload(null, false);
 }
-
-function btnSave() {
-    (!$("#table-detail tbody tr").length) ? $("#save-data").prop("disabled", true) : $("#save-data").prop("disabled", false);
-}
 // ---------- end custom ----------
-

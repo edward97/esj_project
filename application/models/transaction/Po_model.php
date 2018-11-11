@@ -69,7 +69,7 @@ class Po_model extends CI_Model {
 
     // create
     public function _create() {
-        $podate = $this->input->post('po-date');
+        $podate = date("Y-m-d H:i", strtotime($this->input->post('po-date')));
         $description = $this->input->post('description');
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');
@@ -106,7 +106,8 @@ class Po_model extends CI_Model {
         $this->db->insert_batch($this->table_detail, $arr_data);
 
         // return last insert id
-        return $id;
+        $q = $this->db->get_where($this->table, array('id_po' => $id))->row_array();
+        return $q['id_po'];
     }
 
     // read
@@ -136,7 +137,7 @@ class Po_model extends CI_Model {
     // update
     public function _update() {
         $poid = $this->input->post('po-id');
-        $podate = $this->input->post('po-date');
+        $podate = date("Y-m-d H:i", strtotime($this->input->post('po-date')));
         $description = $this->input->post('description');
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');

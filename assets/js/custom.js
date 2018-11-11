@@ -5,6 +5,19 @@ jQuery(function ($) {
     let themes = "chiller-theme ice-theme cool-theme light-theme";
     let bgs = "bg1 bg2 bg3 bg4";
 
+    function responsiveView() {
+        wSize = $(window).width();
+    
+        if (wSize <= 768) {
+            $(".page-wrapper").removeClass("toggled");
+        }
+        if (wSize > 768) {
+            $(".page-wrapper").addClass("toggled");
+        }
+    }
+    $(window).on('load', responsiveView);
+    $(window).on('resize', responsiveView);
+
     // add active class on current active page
     $("a.active").closest("div.sidebar-submenu")
     .css('display', 'block')

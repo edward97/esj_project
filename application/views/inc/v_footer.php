@@ -41,24 +41,12 @@
 
 <?php elseif (gt_uri(1) === 'transaction'): ?>
     <!-- Transaction -->
-    <?php if (gt_uri(2) === 'po'): ?><script src="<?=base_url('assets/js/transaction/po.js')?>"></script>
+    <?php if (gt_uri(2) === 'po'): ?><script>let uri = "<?=gt_uri(4)?>";</script><script src="<?=base_url('assets/js/transaction/po.js')?>"></script>
     <?php endif ?>
 <?php endif ?>
 
     <script>
         let url = "<?=base_url()?>";
-
-        function responsiveView() {
-            wSize = $(window).width();
-        
-            if (wSize <= 768) {
-                $(".page-wrapper").removeClass("toggled");
-            } else {
-                $(".page-wrapper").addClass("toggled");
-            }
-        }
-        $(window).on('load', responsiveView);
-        $(window).on('resize', responsiveView);
     </script>
 </body>
 </html>

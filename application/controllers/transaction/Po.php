@@ -35,7 +35,7 @@ class Po extends CI_Controller {
 			$row[] = $i->nm_warehouse;
 			$row[] = $i->description;
 
-			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-edit="'.$i->id_po.'"><i class="far fa-edit"></i></a>
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-direct="'.$i->id_po.'"><i class="far fa-edit"></i></a>
 			<a href="javascript:;" class="btn btn-custom btn-danger" data-delete="'.$i->id_po.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
@@ -64,7 +64,8 @@ class Po extends CI_Controller {
 			$sql = $this->model->_create();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-success" role="alert">[ ID: '.$sql.' ] Add Po - Successfully...</div>';
+			$data['id'] = $sql;
+			$data['msg'] = '[ ID: '.$sql.' ] Add Po - Successfully...';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -94,7 +95,7 @@ class Po extends CI_Controller {
 			$sql = $this->model->_update();
 
 			$data['status'] = TRUE;
-			$data['msg'] = '<div class="alert alert-primary" role="alert">[ ID: '.$sql.' ] Update Po - Successfully...</div>';
+			$data['msg'] = '[ ID: '.$sql.' ] Update Po - Successfully...';
 		} else {
 			foreach ($_POST as $key => $value) {
 				$data['msg'][$key] = form_error($key);
@@ -138,6 +139,26 @@ class Po extends CI_Controller {
 			return FALSE;
 		} else {
 			return TRUE;
+		}
+	}
+
+	// -------------------- PO DETAIL --------------------
+	public function act() {
+		$uri = gt_uri(4);
+
+		if ($uri === 'new') {
+			$data['title'] = 'New PO';
+
+			$this->load->view('inc/v_header', $data);
+			$this->load->view('transaction/v_po_detail');
+			$this->load->view('inc/v_footer');
+		}
+		elseif ($uri === 'detail') {
+			$data['title'] = 'Detail PO';
+
+			$this->load->view('inc/v_header', $data);
+			$this->load->view('transaction/v_po_detail');
+			$this->load->view('inc/v_footer');
 		}
 	}
 }
