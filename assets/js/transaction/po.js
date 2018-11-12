@@ -1,22 +1,23 @@
 "use strict";
 
 script = function() {
-    btnAction = $("#save-data");
+    actEdit = $("#edit-data");
+    actSave = $("#save-data");
     sv_method = $('[name="po-id"]').val();
     tableBody = $("#table-detail tbody");
     rowCount = 1;
 
     function btnSave() {
-        (!$("#table-detail tbody tr").length) ? btnAction.prop("disabled", true) : btnAction.prop("disabled", false);
+        (!$("#table-detail tbody tr").length) ? actSave.prop("disabled", true) : actSave.prop("disabled", false);
     }
 
     function addHtml() {
         html = '<tr id="row-'+rowCount+'">'
-        +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button></td>'
-        +'<td><input type="hidden" name="addr[]"value="New"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'"></td>'
-        +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'"></td>'
-        +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'"></td>'
-        +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'"></td>'
+        +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
+        +'<td><input type="hidden" name="addr[]"value="New"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'"></td>'
+        +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'"></td>'
+        +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'"></td>'
+        +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'"></td>'
         +'</tr>';
 
         tableBody.append(html);
@@ -41,11 +42,11 @@ script = function() {
     
                 $.each(data.po_detail, function(key, value) {
                     html = '<tr id="row-'+rowCount+'">'
-                    +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button></td>'
-                    +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
-                    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-                    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
-                    +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                    +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
+                    +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
+                    +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
+                    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                    +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
                     +'</tr>';
     
                     tableBody.append(html);
@@ -53,8 +54,11 @@ script = function() {
                 });
 
                 $("#form-data :input").each(function() {
-                    $(this).prop("disabled", true);
+                    if ($(this).hasClass("queen")) {
+                        $(this).prop("disabled", true);
+                    }
                 });
+                actEdit.prop("disabled", false);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error get data...");
@@ -70,6 +74,18 @@ script = function() {
         } else {
             window.location.href = url+"transaction/po/act/detail/"+id;
         }
+    }
+
+    function editData() {
+        $(this).prop("disabled", true);
+
+        $("#form-data :input").each(function() {
+            id = $(this);
+
+            if (id.hasClass("queen")) {
+                $(this).prop("disabled", false);
+            }
+        });
     }
 
     function deleteData() {
@@ -150,19 +166,23 @@ script = function() {
 
     function someEvent() {
         if (uri === "new") {
+            actEdit.prop("disabled", true);
             addHtml();
         } else if(uri !== "new" && uri !== "") {
             editHtml();
         }
 
         // add-data
-        $(document).on("click", "[data-direct]",addData);
+        $(document).on("click", "[data-direct]", addData);
+
+        // edit-data
+        actEdit.on("click", editData);
 
         // delete-data
         $(document).on("click", "[data-delete]", deleteData);
 
         // save-data
-        btnAction.on("click", saveData);
+        actSave.on("click", saveData);
 
         // reload-table
         $(document).on("click", "#reload-data", reload_table);
@@ -176,7 +196,7 @@ script = function() {
             minDate: '01/01/2018',
             maxDate: '31/12/2030',
             formatDate: 'd/m/Y',
-            format: "d/m/Y H:i",
+            format: "d-M-Y H:i",
             value: '0'
         });
     }

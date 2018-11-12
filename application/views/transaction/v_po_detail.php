@@ -16,7 +16,8 @@
                     <form id="form-data">
                         <div class="card-header">
                             <div class="text-right">
-                                <button type="button" class="btn btn-sm btn-secondary" id="save-data">Save</button>
+                                <button type="button" class="btn btn-sm btn-info" id="edit-data"><i class="fas fa-edit"></i> Edit</button>
+                                <button type="button" class="btn btn-sm btn-secondary queen" id="save-data"><i class="far fa-save"></i> Save</button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -29,26 +30,26 @@
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="po-date" class="required">Date</label>
-                                            <input type="text" name="po-date" class="form-control form-control-sm" id="po-date" placeholder="Date">
+                                            <input type="text" name="po-date" class="form-control form-control-sm queen" id="po-date" placeholder="Date">
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="supplier-id" class="required">Supplier</label>
-                                            <input type="text" name="supplier-id" class="form-control form-control-sm ui-supplier" id="supplier-id" placeholder="Supplier">
+                                            <input type="text" name="supplier-id" class="form-control form-control-sm ui-supplier queen" id="supplier-id" placeholder="Supplier">
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="warehouse-id" class="required">Warehouse</label>
-                                            <input type="text" name="warehouse-id" class="form-control form-control-sm ui-warehouse" id="warehouse-id" placeholder="Warehouse">
+                                            <input type="text" name="warehouse-id" class="form-control form-control-sm ui-warehouse queen" id="warehouse-id" placeholder="Warehouse">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-5">
                                     <label for="description" class="required">Description</label>
-                                    <textarea name="description" class="form-control form-control-sm" id="description" rows="5"></textarea>
+                                    <textarea name="description" class="form-control form-control-sm queen" id="description" rows="5"></textarea>
                                 </div>
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-hover" id="table-detail" style="width: 100%">
+                                <table class="table table-sm table-hover" id="table-detail" style="width: 100%">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -62,7 +63,7 @@
                                     <tbody></tbody>
                                 </table>
                             </div>
-                            <button type="button" data-action="add" class="btn btn-custom btn-success"><i class="fas fa-plus"></i> Add Row</button>
+                            <button type="button" data-action="add" class="btn btn-custom btn-success queen"><i class="fas fa-plus"></i> Add Row</button>
                         </div>
                     </form>
                 </div>

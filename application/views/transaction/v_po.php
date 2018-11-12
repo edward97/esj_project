@@ -25,8 +25,7 @@
                                 </div>
                                 
                                 <div class="float-right">
-                                    <a href="javascript:;" class="btn btn-custom btn-success" data-direct="new"><i class="fas fa-plus"></i> New PO</a>
-                                    <a href="javascript:;" class="btn btn-custom btn-success" data-add=""><i class="fas fa-plus"></i></a>
+                                    <a href="javascript:;" class="btn btn-custom btn-success" data-direct="new"><i class="fas fa-plus"></i></a>
                                     <a href="javascript:;" class="btn btn-custom btn-info" id="reload-data"><i class="fas fa-sync-alt"></i></a>
                                 </div>
                             </div>

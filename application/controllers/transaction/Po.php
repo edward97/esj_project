@@ -30,7 +30,7 @@ class Po extends CI_Controller {
 			
 			$row[] = ++$no;
 			$row[] = $i->id_po;
-			$row[] = $i->date;
+			$row[] = mdate("%d-%M-%Y %H:%i", strtotime($i->date));
 			$row[] = $i->nm_supplier;
 			$row[] = $i->nm_warehouse;
 			$row[] = $i->description;
@@ -75,7 +75,11 @@ class Po extends CI_Controller {
 	}
 
 	public function edit($id) {
-		$data['po'] = $this->model->_read_where($id);
+		$arr = $this->model->_read_where($id);
+		// change format date
+		$arr->date = mdate("%d-%M-%Y %H:%i", strtotime($arr->date));
+		$data['po'] = $arr;
+
 		$data['po_detail'] = $this->model->_read_where_list($id);
 		echo json_encode($data);
 	}

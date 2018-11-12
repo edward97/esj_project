@@ -47,6 +47,19 @@
 
     <script>
         let url = "<?=base_url()?>";
+
+        function responsiveView() {
+            wSize = $(window).width();
+        
+            if (wSize <= 768) {
+                $(".page-wrapper").removeClass("toggled");
+            }
+            if (wSize > 768) {
+                $(".page-wrapper").addClass("toggled");
+            }
+        }
+        $(window).on('load', responsiveView);
+        $(window).on('resize', responsiveView);
     </script>
 </body>
 </html>
