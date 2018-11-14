@@ -1,5 +1,5 @@
 "use strict";
-let id, id_parent, table, sv_method, path, html, script, tableBody, rowCount, actSave, actEdit;
+let id, id_parent, val, table, sv_method, path, html, script, tableBody, rowCount, actSave, actEdit;
 
 $(document).ready(function() {
     // sign-in

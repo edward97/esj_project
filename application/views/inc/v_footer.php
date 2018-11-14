@@ -24,6 +24,9 @@
     <!-- TinyMCE -->
     <script src="<?=base_url('assets/vendor/tinymce/tinymce.min.js')?>"></script>
 
+    <!-- jQuery number plug-in 2.1.3 -->
+    <script src="<?=base_url('assets/vendor/customd-jquery-number/jquery.number.min.js')?>"></script>
+
     <!-- Custom JS -->
     <script src="<?=base_url('assets/js/custom.js')?>"></script>
     <script src="<?=base_url('assets/js/custom-autocomplete.js')?>"></script>

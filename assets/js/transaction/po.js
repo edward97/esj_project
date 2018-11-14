@@ -11,19 +11,25 @@ script = function() {
         (!$("#table-detail tbody tr").length) ? actSave.prop("disabled", true) : actSave.prop("disabled", false);
     }
 
+    function numberFormat() {
+        $(".numb").number(true, 2, ',', '.');
+    }
+
     function addHtml() {
         html = '<tr id="row-'+rowCount+'">'
         +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
         +'<td><input type="hidden" name="addr[]"value="New"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'"></td>'
         +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'"></td>'
-        +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'"></td>'
-        +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'"></td>'
+        +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen numb" id="detail-qty-'+rowCount+'"></td>'
+        +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen numb" id="detail-rate-'+rowCount+'"></td>'
+        +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm numb numb-total" id="detail-total-'+rowCount+'" disabled></td>'
         +'</tr>';
 
         tableBody.append(html);
         rowCount++;
 
         btnSave();
+        numberFormat();
     }
 
     function editHtml() {
@@ -41,17 +47,21 @@ script = function() {
                 $('[name="description"]').val(data.po.description);
     
                 $.each(data.po_detail, function(key, value) {
+                    val = value.qty * value.rate;
+
                     html = '<tr id="row-'+rowCount+'">'
                     +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
                     +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
                     +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-                    +'<td><input type="number" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
-                    +'<td><input type="number" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                    +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen numb" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                    +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen numb" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                    +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm numb numb-total" id="detail-total-'+rowCount+'" value="'+val+'" disabled></td>'
                     +'</tr>';
     
                     tableBody.append(html);
                     rowCount++;
                 });
+                hitungGrandTotal();
 
                 $("#form-data :input").each(function() {
                     if ($(this).hasClass("queen")) {
@@ -59,6 +69,8 @@ script = function() {
                     }
                 });
                 actEdit.prop("disabled", false);
+
+                numberFormat();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error get data...");
@@ -162,6 +174,38 @@ script = function() {
             $(this).parents("tr").remove();
             btnSave();
         }
+        hitungGrandTotal();
+    }
+
+    function getId(data) {
+        id = data.split("-");
+        return id[2];
+    }
+
+    function hitungTotal() {
+        let current = $(this), q, qty, rate;
+
+        id = getId(current.attr("id"));
+
+        qty = $("#detail-qty-"+id).val();
+        rate = $("#detail-rate-"+id).val();
+
+        q = qty * rate;
+        $("#detail-total-"+id).val(q);
+        $("#detail-total-"+id).number(true, 2, ',', '.');
+
+        hitungGrandTotal();
+    }
+
+    function hitungGrandTotal() {
+        id = 0;
+        $("#form-data :input").each(function() {
+            if ($(this).hasClass("numb-total")) {
+                id = parseFloat(id)+parseFloat($(this).val());
+            }
+        });
+        $("#grandtotal").text(id);
+        $("#grandtotal").number(true, 2, ',', '.');
     }
 
     function someEvent() {
@@ -189,6 +233,10 @@ script = function() {
 
         // add-row
         $(document).on("click", "[data-action]", actRow);
+
+        // qty | rate
+        $(document).on("input", '[name="detail-qty[]"]', hitungTotal);
+        $(document).on("input", '[name="detail-rate[]"]', hitungTotal);
 
         // datetime
         $.datetimepicker.setLocale('id');
@@ -224,6 +272,5 @@ $(document).ready(function() {
             },
         ],
     });
-    
     script.init();
 });

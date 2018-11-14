@@ -57,6 +57,7 @@
                                             <th>Itemname</th>
                                             <th>Qty</th>
                                             <th>Rate</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
 
@@ -64,6 +65,19 @@
                                 </table>
                             </div>
                             <button type="button" data-action="add" class="btn btn-custom btn-success queen"><i class="fas fa-plus"></i> Add Row</button>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table class="table" style="margin-top: 1rem">
+                                        <tbody>
+                                            <tr>
+                                                <td>Grand Total : Rp</td>
+                                                <td id="grandtotal">0,00</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

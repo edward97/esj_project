@@ -35,6 +35,7 @@ $(document).ready(function() {
                 $("#detail-name-"+id).val(ui.item.label);
                 $("#detail-qty-"+id).val(0);
                 $("#detail-rate-"+id).val(0);
+                $("#detail-total-"+id).val(0);
             }
         });
     });
