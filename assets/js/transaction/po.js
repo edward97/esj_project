@@ -237,16 +237,6 @@ script = function() {
         // qty | rate
         $(document).on("input", '[name="detail-qty[]"]', hitungTotal);
         $(document).on("input", '[name="detail-rate[]"]', hitungTotal);
-
-        // datetime
-        $.datetimepicker.setLocale('id');
-        $('#po-date').datetimepicker({
-            minDate: '01/01/2018',
-            maxDate: '31/12/2030',
-            formatDate: 'd/m/Y',
-            format: "d-M-Y H:i",
-            value: '0'
-        });
     }
 
     function init() {

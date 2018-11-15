@@ -33,9 +33,9 @@ $(document).ready(function() {
             select: function(event, ui) {
                 // $("#detail-id-"+id).prop("disabled", true);
                 $("#detail-name-"+id).val(ui.item.label);
-                $("#detail-qty-"+id).val(0);
-                $("#detail-rate-"+id).val(0);
-                $("#detail-total-"+id).val(0);
+                // $("#detail-qty-"+id).val(0);
+                // $("#detail-rate-"+id).val(0);
+                // $("#detail-total-"+id).val(0);
             }
         });
     });

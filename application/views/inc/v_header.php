@@ -133,6 +133,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li>
                                         <a href="<?=site_url('transaction/po')?>" <?=at_link('transaction/po')?>>Purchase Order</a>
                                     </li>
+                                    <li>
+                                        <a href="<?=site_url('transaction/pr')?>" <?=at_link('transaction/pr')?>>Purchase Receipt</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

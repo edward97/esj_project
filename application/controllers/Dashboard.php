@@ -106,6 +106,19 @@ class Dashboard extends CI_Controller {
 				}
 			}
 		}
+		elseif (isset($_GET['term']) && $id == 'po') {
+			$result = $this->beta->_search('tbl_po', 'id_po', $_GET['term'])->result();
+
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->id_po,
+						'value' => $i->id_po,
+						'supplierid' => $i->id_supplier,
+					));
+				}
+			}
+		}
 		echo json_encode($data);
 	}
 }
