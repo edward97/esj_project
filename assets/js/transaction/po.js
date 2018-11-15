@@ -12,7 +12,7 @@ script = function() {
     }
 
     function numberFormat() {
-        $(".numb").number(true, 2, ',', '.');
+        $(".numb").number(true, 2);
     }
 
     function addHtml() {
@@ -192,7 +192,7 @@ script = function() {
 
         q = qty * rate;
         $("#detail-total-"+id).val(q);
-        $("#detail-total-"+id).number(true, 2, ',', '.');
+        $("#detail-total-"+id).number(true, 2);
 
         hitungGrandTotal();
     }
@@ -205,7 +205,7 @@ script = function() {
             }
         });
         $("#grandtotal").text(id);
-        $("#grandtotal").number(true, 2, ',', '.');
+        $("#grandtotal").number(true, 2);
     }
 
     function someEvent() {

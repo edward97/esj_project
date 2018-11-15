@@ -5,9 +5,7 @@ $(document).ready(function() {
     // sign-in
     $(document).on("submit", "form.form-login", function(e) {
         e.preventDefault();
-
-        id = $(this);
-        id.attr("disabled", true);
+        $("#log-check").prop("disabled", true).find("#txt").text("Cheking...");
         path = url+"welcome/login_act";
 
         $.ajax({
@@ -39,7 +37,7 @@ $(document).ready(function() {
                         html.after(value);
                     });
                 }
-                id.attr("disabled", false);
+                $("#log-check").prop("disabled", false).find("#txt").text("SIGN IN");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert("Error checking login...");
