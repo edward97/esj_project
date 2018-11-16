@@ -37,6 +37,19 @@ class Beta_model extends CI_Model {
 
 		return $this->db->get($table);
     }
+
+    // searh data - like custom - size
+    public function _search_custom_size($data) {
+		$this->db->select('*');
+		$this->db->from('tbl_items_detail');
+		$this->db->join('tbl_items', 'tbl_items.id_item = tbl_items_detail.id_item');
+		$this->db->order_by('tbl_items.nm_item', 'ASC');
+		$this->db->order_by('tbl_items_detail.nm_size', 'ASC');
+		$this->db->like('tbl_items_detail.nm_size', $data, 'both');
+		$this->db->or_like('tbl_items.nm_item', $data, 'both');
+		$this->db->limit(5);
+		return $this->db->get();
+	}
     
     // custom - get list table
     public function _get_table() {

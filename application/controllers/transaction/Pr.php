@@ -29,14 +29,14 @@ class Pr extends CI_Controller {
 			$row = array();
 			
 			$row[] = ++$no;
-			$row[] = $i->id_po;
+			$row[] = $i->id_pr;
 			$row[] = mdate("%d-%M-%Y %H:%i", strtotime($i->date));
 			$row[] = $i->nm_supplier;
 			$row[] = $i->nm_warehouse;
 			$row[] = $i->description;
 
-			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-direct="'.$i->id_po.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="btn btn-custom btn-danger" data-delete="'.$i->id_po.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-direct="'.$i->id_pr.'"><i class="far fa-edit"></i></a>
+			<a href="javascript:;" class="btn btn-custom btn-danger" data-delete="'.$i->id_pr.'"><i class="far fa-trash-alt"></i></a>';
 
 			$data[] = $row;
 		}
@@ -49,102 +49,110 @@ class Pr extends CI_Controller {
 		echo json_encode($output);
 	}
 
-	// public function add() {
-	// 	$data = array(
-	// 		'status' => FALSE,
-	// 		'msg' => array()
-	// 	);
+	public function add() {
+		$data = array(
+			'status' => FALSE,
+			'msg' => array()
+		);
 
-	// 	$this->form_validation->set_rules('po-date', 'Date', 'trim|required');
-	// 	$this->form_validation->set_rules('supplier-id', 'Supplier', 'trim|required|callback_supplier_check');
-	// 	$this->form_validation->set_rules('warehouse-id', 'Warehouse', 'trim|required|callback_warehouse_check');
-	// 	$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
+		$this->form_validation->set_rules('pr-date', 'Date', 'trim|required');
+		$this->form_validation->set_rules('supplier-id', 'Supplier', 'trim|required|callback_supplier_check');
+		$this->form_validation->set_rules('warehouse-id', 'Warehouse', 'trim|required|callback_warehouse_check');
+		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
-	// 	if ($this->form_validation->run()) {
-	// 		$sql = $this->model->_create();
+		if ($this->form_validation->run()) {
+			$sql = $this->model->_create();
 
-	// 		$data['status'] = TRUE;
-	// 		$data['id'] = $sql;
-	// 		$data['msg'] = '[ ID: '.$sql.' ] Add Po - Successfully...';
-	// 	} else {
-	// 		foreach ($_POST as $key => $value) {
-	// 			$data['msg'][$key] = form_error($key);
-	// 		}
-	// 	}
-	// 	echo json_encode($data);
-	// }
+			$data['status'] = TRUE;
+			$data['id'] = $sql;
+			$data['msg'] = '[ ID: '.$sql.' ] Add Pr - Successfully...';
+		} else {
+			foreach ($_POST as $key => $value) {
+				$data['msg'][$key] = form_error($key);
+			}
+		}
+		echo json_encode($data);
+	}
 
-	// public function edit($id) {
-	// 	$arr = $this->model->_read_where($id);
-	// 	// change format date
-	// 	$arr->date = mdate("%d-%M-%Y %H:%i", strtotime($arr->date));
-	// 	$data['po'] = $arr;
+	public function edit($id) {
+		$arr = $this->model->_read_where($id);
+		// change format date
+		$arr->date = mdate("%d-%M-%Y %H:%i", strtotime($arr->date));
+		$data['pr'] = $arr;
 
-	// 	$data['pr_detail'] = $this->model->_read_where_list($id);
-	// 	echo json_encode($data);
-	// }
+		$data['pr_detail'] = $this->model->_read_where_list($id);
+		echo json_encode($data);
+	}
 
-	// public function update() {
-	// 	$data = array(
-	// 		'status' => FALSE,
-	// 		'msg' => array()
-	// 	);
+	public function update() {
+		$data = array(
+			'status' => FALSE,
+			'msg' => array()
+		);
 
-	// 	$this->form_validation->set_rules('po-date', 'Date', 'trim|required');
-	// 	$this->form_validation->set_rules('supplier-id', 'Supplier', 'trim|required|callback_supplier_check');
-	// 	$this->form_validation->set_rules('warehouse-id', 'Warehouse', 'trim|required|callback_warehouse_check');
-	// 	$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
+		$this->form_validation->set_rules('pr-date', 'Date', 'trim|required');
+		$this->form_validation->set_rules('supplier-id', 'Supplier', 'trim|required|callback_supplier_check');
+		$this->form_validation->set_rules('warehouse-id', 'Warehouse', 'trim|required|callback_warehouse_check');
+		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
-	// 	if ($this->form_validation->run()) {
-	// 		$sql = $this->model->_update();
+		if ($this->form_validation->run()) {
+			$sql = $this->model->_update();
 
-	// 		$data['status'] = TRUE;
-	// 		$data['msg'] = '[ ID: '.$sql.' ] Update Po - Successfully...';
-	// 	} else {
-	// 		foreach ($_POST as $key => $value) {
-	// 			$data['msg'][$key] = form_error($key);
-	// 		}
-	// 	}
-	// 	echo json_encode($data);
-	// }
+			$data['status'] = TRUE;
+			$data['msg'] = '[ ID: '.$sql.' ] Update Pr - Successfully...';
+		} else {
+			foreach ($_POST as $key => $value) {
+				$data['msg'][$key] = form_error($key);
+			}
+		}
+		echo json_encode($data);
+	}
 
-	// public function delete($id) {
-	// 	$data = $this->model->_delete($id);
-	// 	echo json_encode($data);
-	// }
+	public function delete($id) {
+		$data = $this->model->_delete($id);
+		echo json_encode($data);
+	}
 
-	// // ----------------------
-	// // custom form_validation
-	// public function supplier_check() {
-	// 	$supplierid = $this->input->post('supplier-id');
+	// ----------------------
+	// custom form_validation
+	public function supplier_check() {
+		$supplierid = $this->input->post('supplier-id');
 
-	// 	$where = array(
-	// 		'id_supplier' => $supplierid,
-	// 	);
-	// 	$check = $this->beta->_read_where('tbl_supplier', $where)->num_rows();
+		$where = array(
+			'id_supplier' => $supplierid,
+		);
+		$check = $this->beta->_read_where('tbl_supplier', $where)->num_rows();
 
-	// 	if (!$check) {
-	// 		$this->form_validation->set_message('supplier_check', 'The {field} does not exists');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-    // }
-    // public function warehouse_check() {
-	// 	$warehouseid = $this->input->post('warehouse-id');
+		if (!$check) {
+			$this->form_validation->set_message('supplier_check', 'The {field} does not exists');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+    }
+    public function warehouse_check() {
+		$warehouseid = $this->input->post('warehouse-id');
 
-	// 	$where = array(
-	// 		'id_warehouse' => $warehouseid,
-	// 	);
-	// 	$check = $this->beta->_read_where('tbl_warehouse', $where)->num_rows();
+		$where = array(
+			'id_warehouse' => $warehouseid,
+		);
+		$check = $this->beta->_read_where('tbl_warehouse', $where)->num_rows();
 
-	// 	if (!$check) {
-	// 		$this->form_validation->set_message('warehouse_check', 'The {field} does not exists');
-	// 		return FALSE;
-	// 	} else {
-	// 		return TRUE;
-	// 	}
-	// }
+		if (!$check) {
+			$this->form_validation->set_message('warehouse_check', 'The {field} does not exists');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	public function search() {
+		$data = array();
+		$uri = gt_uri(4);
+
+		$data = $this->model->_read_item_po();
+		echo json_encode($data);
+	}
 
 	// // -------------------- PO DETAIL --------------------
 	public function act() {

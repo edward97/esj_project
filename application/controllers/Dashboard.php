@@ -115,6 +115,7 @@ class Dashboard extends CI_Controller {
 						'label' => $i->id_po,
 						'value' => $i->id_po,
 						'supplierid' => $i->id_supplier,
+						'warehouseid' => $i->id_warehouse,
 					));
 				}
 			}

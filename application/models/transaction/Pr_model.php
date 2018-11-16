@@ -68,71 +68,80 @@ class Pr_model extends CI_Model {
     // ----------------------------------------
 
     // create
-    // public function _create() {
-    //     $podate = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('pr-date')));
-    //     $description = $this->input->post('description');
-    //     $supplierid = $this->input->post('supplier-id');
-    //     $warehouseid = $this->input->post('warehouse-id');
+    public function _create() {
+        $podate = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('pr-date')));
+        $poid = $this->input->post('po-id');
+        $description = $this->input->post('description');
+        $supplierid = $this->input->post('supplier-id');
+        $warehouseid = $this->input->post('warehouse-id');
 
-    //     // array item detail
-    //     $detailid = $this->input->post('detail-id');
-    //     $detailname = $this->input->post('detail-name');
-    //     $detailqty = $this->input->post('detail-qty');
-    //     $detailrate = $this->input->post('detail-rate');
+        // array item detail
+        $detailid = $this->input->post('addr');
+        $detailqty = $this->input->post('detail-qty');
 
-    //     $data = array(
-    //         'date' => $podate,
-    //         'description' => $description,
-    //         'id_supplier' => $supplierid,
-    //         'id_warehouse' => $warehouseid,
-    //     );
-    //     $this->db->insert($this->table, $data);
-    //     $id = $this->db->insert_id();
+        $data = array(
+            'date' => $podate,
+            'description' => $description,
+            'id_po' => $poid,
+            'id_supplier' => $supplierid,
+            'id_warehouse' => $warehouseid,
+        );
+        $this->db->insert($this->table, $data);
+        $id = $this->db->insert_id();
 
-    //     $arr_data = array();
-    //     foreach ($detailid as $i => $item) {
-    //         $code = explode('-', $item);
+        $arr_data = array();
+        foreach ($detailid as $i => $item) {
 
-    //         array_push($arr_data, array(
-    //             'unq' => rd_code(12),
-    //             'nm_po_item' => $detailname[$i],
-    //             'qty' => $detailqty[$i],
-    //             'rate' => $detailrate[$i],
-    //             'id_pr' => $id,
-    //             'id_item' => $code[0],
-    //             'id_size' => $code[1],
-    //         ));
-    //     }
-    //     $this->db->insert_batch($this->table_detail, $arr_data);
+            array_push($arr_data, array(
+                'pr_qty' => $detailqty[$i],
+                'id_pr' => $id,
+                'id_po_detail' => $item,
+            ));
+        }
+        $this->db->insert_batch($this->table_detail, $arr_data);
 
-    //     // return last insert id
-    //     $q = $this->db->get_where($this->table, array('id_pr' => $id))->row_array();
-    //     return $q['id_pr'];
-    // }
+        // return last insert id
+        $q = $this->db->get_where($this->table, array('id_pr' => $id))->row_array();
+        return $q['id_pr'];
+    }
 
-    // // read
-    // public function _read() {
-    //     return $this->db->get($this->table)->result();
-    // }
+    // read
+    public function _read() {
+        return $this->db->get($this->table)->result();
+    }
 
-    // // read by id
-    // public function _read_where($id) {
-    //     $where = array(
-	// 		'id_pr' => $id
-    //     );
+    public function _read_item_po() {
+        $id = $this->input->get('id');
         
-    //     // return row data
-	// 	return $this->db->get_where($this->table, $where)->row();
-    // }
+        $this->db->select('*');
+        $this->db->from('tbl_po_detail');
+        $this->db->join('tbl_items',  'tbl_items.id_item = tbl_po_detail.id_item', 'left');
+        $this->db->join('tbl_items_detail',  'tbl_items_detail.id_size = tbl_po_detail.id_size', 'left');
+        $this->db->where('tbl_po_detail.id_po', $id);
 
-    // // read list by id
-    // public function _read_where_list($id) {
-    //     $where = array(
-	// 		'id_pr' => $id
-    //     );
-    //     // return row data
-	// 	return $this->db->get_where($this->table_detail, $where)->result();
-    // }
+        return $this->db->get()->result();
+    }
+
+    // read by id
+    public function _read_where($id) {
+        $where = array(
+			'id_pr' => $id
+        );
+        
+        // return row data
+		return $this->db->get_where($this->table, $where)->row();
+    }
+
+    // read list by id
+    public function _read_where_list($id) {
+        $this->db->select('*');
+        $this->db->from($this->table_detail);
+        $this->db->join('tbl_po_detail',  'tbl_po_detail.id_po_detail = tbl_pr_detail.id_po_detail', 'left');
+        $this->db->where('tbl_pr_detail.id_pr', $id);
+
+        // return row data
+		return $this->db->get()->result();
+    }
 
     // // update
     // public function _update() {

@@ -6,7 +6,7 @@
                     <div class="col-md-12">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Transaction</li>
-                            <li class="breadcrumb-item"><a href="<?=site_url('transaction/po')?>">Purchase Receipt</a></li>
+                            <li class="breadcrumb-item"><a href="<?=site_url('transaction/pr')?>">Purchase Receipt</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Detail</li>
                         </ol>
                     </div>
@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="supplier-id" class="required">Supplier</label>
-                                            <input type="text" name="supplier-id" class="form-control form-control-sm" id="supplier-id" placeholder="Supplier" disabled>
+                                            <input type="text" name="supplier-id" class="form-control form-control-sm" id="supplier-id" placeholder="Supplier" readonly>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label for="warehouse-id" class="required">Warehouse</label>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-5">
-                                    <label for="description" class="required">Description</label>
+                                    <label for="description">Description</label>
                                     <textarea name="description" class="form-control form-control-sm queen" id="description" rows="5"></textarea>
                                 </div>
                             </div>
@@ -55,11 +55,8 @@
                             <div class="row">
                                 <div class="form-group col-md-2">
                                     <label for="item-id">Item ID</label>
-                                    <input list="item-list" name="item-id" class="form-control form-control-sm" id="item-id">
-                                    <datalist id="item-list">
-                                        <option value="aa">Google</option>
-                                        <option value="bb">True</option>
-                                    </datalist>
+                                    <input list="item-list" name="item-id" class="form-control form-control-sm" id="item-id" disabled>
+                                    <datalist id="item-list"></datalist>
                                 </div>
 
                                 <div class="form-group col-md-4">
@@ -69,18 +66,20 @@
 
                                 <div class="form-group col-md-2">
                                     <label for="item-qty">Qty</label>
-                                    <input type="text" name="item-qty" class="form-control form-control-sm" id="item-qty">
+                                    <input type="text" name="item-qty" class="form-control form-control-sm queen numb" id="item-qty">
                                 </div>
 
                                  <div class="form-group col-md-3">
                                     <label for="item-rate">Rate</label>
-                                    <input type="text" name="item-rate" class="form-control form-control-sm" id="item-rate">
+                                    <input type="text" name="item-rate" class="form-control form-control-sm numb" id="item-rate" disabled>
                                 </div>
 
                                 <div class="form-group col-md-1">
                                     <label for="">&nbsp;</label>
-                                    <button type="button" class="btn btn-sm btn-success btn-block"><i class="fas fa-plus"></i></button>
+                                    <button type="button" data-action="add" class="btn btn-sm btn-success btn-block queen"><i class="fas fa-plus"></i></button>
                                 </div>
+
+                                <input type="hidden" name="po-id-detail" id="po-id-detail">
                             </div>
 
                             <div class="table-responsive">
