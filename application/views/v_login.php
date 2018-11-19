@@ -13,6 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
 
+    <!-- DateTimePicker jQuery plugin select date and time -->
+    <link rel="stylesheet" href="<?=base_url('assets/vendor/datetimepicker/jquery.datetimepicker.min.css')?>" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/custom.css') ?>" />
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png') ?>" />
@@ -122,6 +125,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Backstretch - You can use an image of whatever size. This script will stretch to fit in any screen size.-->
     <script type="text/javascript" src="<?php echo base_url('assets/vendor/jquery.backstretch.min.js') ?>"></script>
+
+    <!-- DateTimePicker jQuery plugin select date and time -->
+    <script src="http://localhost/esj_project/assets/vendor/datetimepicker/jquery.datetimepicker.full.min.js"></script>
     
     <!-- Custom JS -->
     <script src="<?php echo base_url('assets/js/beta.js') ?>"></script>
