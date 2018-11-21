@@ -35,6 +35,7 @@
 <?php if (gt_uri(1) === 'setup'): ?>
     <!-- Setup -->
     <?php if (gt_uri(2)     === 'divisi'):     ?><script src="<?=base_url('assets/js/setup/divisi.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'permintaan'):       ?><script src="<?=base_url('assets/js/setup/permintaan.js')?>"></script>
     <?php elseif (gt_uri(2) === 'item'):       ?><script src="<?=base_url('assets/js/setup/item.js')?>"></script>
     <?php elseif (gt_uri(2) === 'size'):       ?><script src="<?=base_url('assets/js/setup/size.js')?>"></script>
     <?php elseif (gt_uri(2) === 'supplier'):   ?><script src="<?=base_url('assets/js/setup/supplier.js')?>"></script>

@@ -107,6 +107,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <a href="<?=site_url('setup/divisi')?>" <?=at_link('setup/divisi')?>>Divisi</a>
                                     </li>
                                     <li>
+                                        <a href="<?=site_url('setup/permintaan')?>" <?=at_link('setup/permintaan')?>>Permintaan</a>
+                                    </li>
+                                    <li>
                                         <a href="<?=site_url('setup/item')?>" <?=at_link('setup/item')?>>Item</a>
                                     </li>
                                     <li>
