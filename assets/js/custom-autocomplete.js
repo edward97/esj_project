@@ -8,6 +8,20 @@ $(document).ready(function() {
         $(this).autocomplete("search");
     });
 
+    $(".ui-user").autocomplete({
+        source: url+"dashboard/search/user",
+        minLength: 0,
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
+    $(".ui-permintaan").autocomplete({
+        source: url+"dashboard/search/permintaan",
+        minLength: 0,
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
     $(".ui-supplier").autocomplete({
         source: url+"dashboard/search/supplier",
         minLength: 0,

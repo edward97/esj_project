@@ -99,7 +99,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="javascript:;">
                                 <i class="fas fa-cogs"></i>
                                 <span>Setup</span>
-                                <span class="badge badge-pill badge-danger">New</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -162,6 +161,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <a href="<?=site_url('database')?>" <?=at_link('database')?>>
                                 <i class="fas fa-database"></i>
                                 <span>Database</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?=site_url('formedit')?>" <?=at_link('formedit')?>>
+                                <i class="fab fa-wpforms"></i>
+                                <span>Form Edit</span>
+                                <span class="badge badge-pill badge-danger">New</span>
                             </a>
                         </li>
                     </ul>

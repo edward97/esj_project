@@ -70,6 +70,30 @@ class Dashboard extends CI_Controller {
 				}
 			}
 		}
+		elseif (isset($_GET['term']) && $id == 'user') {
+			$result = $this->beta->_search('tbl_users', 'nm_user', $_GET['term'])->result();
+
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->nm_user,
+						'value' => $i->id_user
+					));
+				}
+			}
+		}
+		elseif (isset($_GET['term']) && $id == 'permintaan') {
+			$result = $this->beta->_search('tbl_permintaan', 'nm_permintaan', $_GET['term'])->result();
+
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->nm_permintaan,
+						'value' => $i->id_permintaan
+					));
+				}
+			}
+		}
 		elseif (isset($_GET['term']) && $id == 'supplier') {
 			$result = $this->beta->_search('tbl_supplier', 'nm_supplier', $_GET['term'])->result();
 
