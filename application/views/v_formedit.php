@@ -84,13 +84,15 @@
                                         <label for="formedit-id">Formedit ID</label>
                                         <input type="text" name="formedit-id" class="form-control form-control-sm" id="formedit-id" placeholder="[Auto]" readonly>
                                     </div>
+                                </div>
 
-                                    <div class="form-group col-md-4">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
                                         <label for="user-id" class="required">User ID</label>
                                         <input type="text" name="user-id" class="form-control form-control-sm ui-user" id="user-id" placeholder="User ID">
                                     </div>
 
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-6">
                                         <label for="formedit-date" class="required">Date</label>
                                         <input type="text" name="formedit-date" data-type="date" class="form-control form-control-sm queen" id="formedit-date" placeholder="Date">
                                     </div>
@@ -101,7 +103,7 @@
                                         <label for="permintaan-id" class="required">Permintaan ID</label>
                                         <input type="text" name="permintaan-id" class="form-control form-control-sm ui-permintaan" id="permintaan-id" placeholder="Permintaan ID">
                                     </div>
-                                    
+
                                     <div class="form-group col-md-6">
                                         <label for="no-transaksi" class="required">No. Transaksi</label>
                                         <input type="text" name="no-transaksi" class="form-control form-control-sm" id="no-transaksi" placeholder="No. Transaksi">
