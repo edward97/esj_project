@@ -61,3 +61,15 @@ function ct_theme($x, $y, $z = 'selected') {
     }
     return $data;
 }
+
+// change display format date
+function d_date($x) {
+    $data = mdate("%d-%M-%Y %H:%i", strtotime($x));
+    return $data;
+}
+
+// change insert format date
+function i_date($x) {
+    $data = mdate("%Y-%m-%d %H:%i", strtotime($x));
+    return $data;
+}

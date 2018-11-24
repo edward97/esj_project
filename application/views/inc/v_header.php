@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="sidebar-content">
                 <!-- sidebar-brand -->
                 <div class="sidebar-brand">
-                    <a href="javascript:;">beta project v1.0</a>
+                    <a href="javascript:;">beta project v1.1</a>
                     <div id="close-sidebar">
                         <i class="fas fa-times"></i>
                     </div>

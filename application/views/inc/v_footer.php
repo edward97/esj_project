@@ -45,13 +45,13 @@
 
 <?php elseif (gt_uri(1) === 'transaction'): ?>
     <!-- Transaction -->
-    <?php if (gt_uri(2)     === 'po'): ?><script>let uri = "<?=gt_uri(4)?>";</script><script src="<?=base_url('assets/js/transaction/po.js')?>"></script>
-    <?php elseif (gt_uri(2) === 'pr'): ?><script>let uri = "<?=gt_uri(4)?>";</script><script src="<?=base_url('assets/js/transaction/pr.js')?>"></script>
+    <?php if (gt_uri(2)     === 'po'): ?><script src="<?=base_url('assets/js/transaction/po.js')?>"></script>
+    <?php elseif (gt_uri(2) === 'pr'): ?><script src="<?=base_url('assets/js/transaction/pr.js')?>"></script>
     <?php endif ?>
 
 <?php elseif (gt_uri(1) === 'formedit'): ?>
     <!-- form edit -->
-    <script>let uri = "<?=gt_uri(4)?>";</script><script src="<?=base_url('assets/js/formedit.js')?>"></script>
+    <script src="<?=base_url('assets/js/formedit.js')?>"></script>
 
 <?php endif ?>
 

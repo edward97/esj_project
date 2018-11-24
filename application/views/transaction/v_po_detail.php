@@ -7,7 +7,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">Transaction</li>
                             <li class="breadcrumb-item"><a href="<?=site_url('transaction/po')?>">Purchase Order</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+                            <li class="breadcrumb-item active" aria-current="page"><?=ucfirst(gt_uri(4))?></li>
                         </ol>
                     </div>
                 </div>

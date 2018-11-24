@@ -1,0 +1,44 @@
+--------- DIVISI --------
+    divisi-id
+    divisi-nm
+---------- ### ----------
+
+--------- ITEM ----------
+    item-id
+    item-nm
+    item-uom
+---------- ### ----------
+
+--------- SIZE ----------
+    size-id
+    size-nm
+
+    FK :
+    item-id
+---------- ### ----------
+
+------- PERMINTAAN ------
+    permintaan-id
+    permintaan-nm
+---------- ### ----------
+
+------- SUPPLIER --------
+    supplier-id
+    supplier-nm
+    supplier-addr
+---------- ### ----------
+
+---------- USER ---------
+    user-id
+    user-nm
+    user-pass
+
+    FK :
+    divisi-id
+---------- ### ----------
+
+------- WAREHOUSE -------
+    warehouse-id
+    warehouse-nm
+---------- ### ----------
+
