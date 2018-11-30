@@ -3,20 +3,14 @@
         <main class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <h2>Dashboard template</h2>
                         <p>This is a responsive dashboard template with dropdown menu based on bootstrap 4 framework.</p>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </div>
-
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="card shadow">
                             <div class="card-body">
                                 <h5 class="card-title">Themes</h5>

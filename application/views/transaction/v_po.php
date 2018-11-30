@@ -3,25 +3,14 @@
         <main class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2>Purchase Order</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum suscipit itaque hic laborum, quia maxime similique maiores dolorem error.</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Transaction</li>
-                            <li class="breadcrumb-item active" aria-current="page">Purchase Order</li>
-                        </ol>
-                    </div>
-
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="card shadow">
                             <div class="card-header clearfix">
                                 <div class="float-left">
-                                    <i class="fas fa-angle-right"></i> Purchase Order List
+                                    <ul class="list-custom">
+                                        <li class="list-custom-item"><i class="fas fa-code-branch fa-sm"></i> Transaction</li>
+                                        <li class="list-custom-item text-muted"><i class="fas fa-chart-bar fa-sm"></i> Purchase Order</li>
+                                    </ul>
                                 </div>
                                 
                                 <div class="float-right">

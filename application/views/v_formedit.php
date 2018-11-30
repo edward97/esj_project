@@ -1,26 +1,14 @@
-
         <!-- page-content -->
         <main class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2>Form Edit</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, eaque! Quas voluptatem est perferendis cum saepe.</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Form Edit</li>
-                        </ol>
-                    </div>
-
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="card shadow">
                             <div class="card-header clearfix">
                                 <div class="float-left">
-                                    <i class="fas fa-angle-right"></i> Form Edit List
+                                    <ul class="list-custom">
+                                        <li class="list-custom-item text-muted"><i class="fab fa-wpforms fa-sm"></i> Form Edit</li>
+                                    </ul>
                                 </div>
                                 
                                 <div class="float-right">

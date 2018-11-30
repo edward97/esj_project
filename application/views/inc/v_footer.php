@@ -53,6 +53,11 @@
     <!-- form edit -->
     <script src="<?=base_url('assets/js/formedit.js')?>"></script>
 
+<?php elseif (gt_uri(1) === 'setting'): ?>
+    <!-- Setting -->
+    <?php if (gt_uri(2) === 'profile'): ?><script src="<?=base_url('assets/js/setting/profile.js')?>"></script>
+    <?php endif ?>
+
 <?php endif ?>
 
     <script>

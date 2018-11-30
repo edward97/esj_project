@@ -1,8 +1,8 @@
 "use strict";
 
 script = function() {
-    actEdit = $("#edit-data");
-    actSave = $("#save-data");
+    btnEdit = $("#edit-data");
+    btnSave = $("#save-data");
     sv_method = $('[name="pr-id"]').val();
     tableBody = $("#table-detail tbody");
     rowCount = 1;
@@ -233,11 +233,11 @@ script = function() {
     }
 
     function someEvent() {
-        if (uri === "new") {
-            actEdit.prop("disabled", true);
-        } else if(uri !== "new" && uri !== "") {
-            editHtml();
-        }
+        // if (uri === "new") {
+        //     btnEdit.prop("disabled", true);
+        // } else if(uri !== "new" && uri !== "") {
+        //     editHtml();
+        // }
 
         // add-data
         $(document).on("click", "[data-direct]", addData);
@@ -252,7 +252,7 @@ script = function() {
         $(document).on("click", "#reload-data", reload_table);
 
         // save-data
-        actSave.on("click", saveData);
+        btnSave.on("click", saveData);
 
         // get po item
         $(document).on("change", "#item-id", itemPo);

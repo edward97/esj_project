@@ -558,18 +558,33 @@ body {
     margin-right: 0px;
 }
 
+/*----------------  Custom style  --------------- */
+.list-custom {
+    padding: 0;
+    margin: 0;
+}
+
+.list-custom > li.list-custom-item {
+    display: inline;
+    padding: 0;
+}
+
+.list-custom-item+.list-custom-item::before{
+    content:"> ";
+}
+
 /*----------------  Bootstrap custom  --------------- */
 .card {
     margin-bottom: 1rem;
 }
 
-.breadcrumb {
+/* .breadcrumb {
     background-color: rgba(0,0,0,.03);
-}
+} */
 
-.breadcrumb-item+.breadcrumb-item::before{
+/* .breadcrumb-item+.breadcrumb-item::before{
     content:">";
-}
+} */
 
 .form-control {
     -webkit-border-radius: 0px;

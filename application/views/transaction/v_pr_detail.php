@@ -2,24 +2,23 @@
         <!-- page-content -->
         <main class="page-content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Transaction</li>
-                            <li class="breadcrumb-item"><a href="<?=site_url('transaction/pr')?>">Purchase Receipt</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Detail</li>
-                        </ol>
-                    </div>
-                </div>
-
                 <div class="card">
                     <form id="form-data">
-                        <div class="card-header">
-                            <div class="text-right">
+                        <div class="card-header clearfix">
+                            <div class="float-left">
+                                <ul class="list-custom">
+                                    <li class="list-custom-item"><i class="fas fa-code-branch fa-sm"></i> Transaction</li>
+                                    <li class="list-custom-item"><a href="<?=site_url('transaction/pr')?>"><i class="fas fa-chart-bar fa-sm"></i> Purchase Receipt</a></li>
+                                    <li class="list-custom-item text-muted"><i class="fas fa-list fa-sm"></i> <?=ucfirst(gt_uri(4))?></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="float-right">
                                 <button type="button" class="btn btn-sm btn-info" id="edit-data"><i class="fas fa-edit"></i> Edit</button>
                                 <button type="button" class="btn btn-sm btn-secondary queen" id="save-data"><i class="far fa-save"></i> Save</button>
                             </div>
                         </div>
+
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-7">

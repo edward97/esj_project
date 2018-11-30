@@ -127,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="javascript:;">
-                                <i class="fas fa-cogs"></i>
+                                <i class="fas fa-code-branch"></i>
                                 <span>Transaction</span>
                             </a>
                             <div class="sidebar-submenu">
@@ -141,7 +141,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </ul>
                             </div>
                         </li>
-                      
+
                         <li class="header-menu">
                             <span>Extra</span>
                         </li>
@@ -292,7 +292,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span class="badge-sonar"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuMessage">
-                        <a class="dropdown-item" href="javascript:;">My profile</a>
+                        <a class="dropdown-item" href="<?=site_url('setting/profile')?>">My profile</a>
                         <a class="dropdown-item" href="javascript:;">Help</a>
                         <a class="dropdown-item" href="javascript:;">Setting</a>
                     </div>

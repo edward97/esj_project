@@ -3,21 +3,10 @@
         <main class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2>Database</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, eaque! Quas voluptatem est perferendis cum saepe.</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item active">Database</li>
-                        </ol>
-                    </div>
-
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="card shadow">
+                            <h5 class="card-header"><i class="fas fa-database fa-xs"></i> Database</h5>
+
                             <div class="card-body">
                                 <?=$this->session->flashdata('msg')?>
 

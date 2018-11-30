@@ -3,25 +3,14 @@
         <main class="page-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2>Divisi</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum suscipit itaque hic laborum, quia maxime similique maiores dolorem error.</p>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Setup</li>
-                            <li class="breadcrumb-item active" aria-current="page">Divisi</li>
-                        </ol>
-                    </div>
-
-                    <div class="col-md-12">
+                    <div class="col-sm-12">
                         <div class="card shadow">
                             <div class="card-header clearfix">
                                 <div class="float-left">
-                                    <i class="fas fa-angle-right"></i> Divisi List
+                                    <ul class="list-custom">
+                                        <li class="list-custom-item"><i class="fas fa-cogs fa-sm"></i> Setup</li>
+                                        <li class="list-custom-item text-muted"><i class="fas fa-briefcase fa-sm"></i> Divisi</li>
+                                    </ul>
                                 </div>
                                 
                                 <div class="float-right">
