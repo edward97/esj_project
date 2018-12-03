@@ -1,17 +1,86 @@
 "use strict";
 
-$(function() {
-    table = function() {
+script = function() {
+    btnSave = $("#save-data");
+    btnEdit = $("#edit-data");
+    btnCancel = $("#cancel-data");
+    $('[data-en="1"]').prop("disabled", true);
+
+    function getData() {
         $.get(url+"setting/profile/list", function(data) {
             data = JSON.parse(data);
 
             $('[name="user-id"]').val(data.id_user);
             $('[name="user-nm"]').val(data.nm_user);
+            $('[name="divisi-nm"]').val(data.nm_divisi);
             $('[name="divisi-id"]').val(data.id_divisi);
         });
-    }();
+    }
 
+    function saveData() {
+        $.ajax({
+            url: url+"setup/user/update",
+            type: "post",
+            data: $("#form-data").serialize(),
+            dataType: "json",
+            success: function(data) {
+                if (data.status) {
+                    $(".form-control").removeClass("is-invalid").next().remove();
 
+                    btnSave.prop("disabled", true);
+                    btnEdit.prop("disabled", false);
+                    btnCancel.prop("disabled", true);
+                    $('[data-en="1"]').prop("disabled", true);
+                } else {
+                    $.each(data.msg, function(key, value) {
+                        html = $("#"+key);
+                        html.removeClass("is-invalid").addClass(value.length > 0 ? "is-invalid" : "").next().remove();
+                        html.after(value);
+                    });
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert("Error adding/update data...");
+            }
+        });
+    }
+
+    function editData() {
+        btnSave.prop("disabled", false);
+        btnEdit.prop("disabled", true);
+        btnCancel.prop("disabled", false);
+        $('[data-en="1"]').prop("disabled", false);
+    }
+
+    function cancelData() {
+        $(".form-control").removeClass("is-invalid").next().remove();
+
+        btnSave.prop("disabled", true);
+        btnEdit.prop("disabled", false);
+        btnCancel.prop("disabled", true);
+        $('[data-en="1"]').prop("disabled", true);
+
+        $("#form-data")[0].reset();
+        getData();
+    }
+
+    function someEvent() {
+        getData();
+
+        btnSave.on("click", saveData);
+        btnEdit.on("click", editData);
+        btnCancel.on("click", cancelData);
+    }
+
+    function init() {
+        someEvent();
+    } return {
+        init: init
+    }
+}();
+
+$(function() {
+    script.init();
 });
 
 

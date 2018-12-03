@@ -55,7 +55,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|is_unique[tbl_users.nm_user]');
 		$this->form_validation->set_rules('user-pass', 'Password', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('divisi-id', 'Divisi', 'trim|required|callback_divisi_check');
+		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|callback_divisi_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
@@ -84,7 +84,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|callback_user_check');
 		$this->form_validation->set_rules('user-pass', 'Password', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('divisi-id', 'Divisi', 'trim|required|callback_divisi_check');
+		$this->form_validation->set_rules('divisi-nm', 'Divisi', 'trim|required|callback_divisi_check');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
 		if ($this->form_validation->run()) {
@@ -127,7 +127,7 @@ class User extends CI_Controller {
 
 	public function divisi_check($data) {
 		$where = array(
-			'id_divisi' => $data
+			'nm_divisi' => $data
 		);
 		$check = $this->beta->_read_where('tbl_divisi', $where)->num_rows();
 		if (!$check) {

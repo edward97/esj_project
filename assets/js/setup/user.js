@@ -43,7 +43,7 @@ $(document).ready(function() {
             success: function(data) {
                 $('[name="user-id"]').val(data.id_user);
                 $('[name="user-nm"]').val(data.nm_user);
-                $('[name="divisi-id"]').val(data.id_divisi);
+                $('[name="divisi-nm"]').val(data.nm_divisi);
 
                 // show-modal
                 $("#modal-data").modal("show");

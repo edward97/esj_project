@@ -85,10 +85,11 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="divisi-id" class="required">Divisi</label>
-                                        <input type="text" name="divisi-id" class="form-control form-control-sm ui-divisi" id="divisi-id" placeholder="Divisi">
+                                        <label for="divisi-nm" class="required">Divisi</label>
+                                        <input type="text" name="divisi-nm" class="form-control form-control-sm ui-divisi" id="divisi-nm" placeholder="Divisi">
                                     </div>
                                 </div>
+                                <input type="hidden" name="divisi-id" value="">
                             </form>
                         </div>
 

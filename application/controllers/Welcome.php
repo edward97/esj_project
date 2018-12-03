@@ -55,7 +55,7 @@ class Welcome extends CI_Controller {
 				'nm_user' => $user,
 				'pass_user' => md5($pass),
 			);
-			$query = $this->beta->_read_where('tbl_users', $where);
+			$query = $this->beta->_read_user_detail('tbl_users', $where);
 
 			if ($query->num_rows()) {
 				$val = $query->row_array();
@@ -64,6 +64,7 @@ class Welcome extends CI_Controller {
 					'logged_in' => TRUE,
 					'ses_id' => $val['id_user'],
 					'ses_nm' => strtoupper($val['nm_user']),
+					'ses_job' => ucwords($val['nm_divisi']),
 					'ses_color' => $val['nav_color'],
 					'ses_bg' => $val['nav_bg'],
 					'ses_status' => $val['nav_status'],

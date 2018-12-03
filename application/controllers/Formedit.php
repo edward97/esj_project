@@ -55,10 +55,10 @@ class Formedit extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('user-id', 'Username', 'trim|required|max_length[255]|callback_user_check');
+		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|callback_user_check');
 		$this->form_validation->set_rules('formedit-date', 'Date', 'trim|required');
 		$this->form_validation->set_rules('no-transaksi', 'No. Transaksi', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('permintaan-id', 'Permintaan', 'trim|required|max_length[255]|callback_permintaan_check');
+		$this->form_validation->set_rules('permintaan-nm', 'Permintaan', 'trim|required|max_length[255]|callback_permintaan_check');
 		$this->form_validation->set_rules('description', 'Keterangan', 'trim|required|max_length[255]');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
@@ -77,6 +77,8 @@ class Formedit extends CI_Controller {
 
 	public function edit($id) {
 		$data = $this->model->_read_where($id);
+		// change format date
+		$data->date = mdate("%d-%M-%Y %H:%i", strtotime($data->date));
 		echo json_encode($data);
 	}
 
@@ -86,10 +88,10 @@ class Formedit extends CI_Controller {
 			'msg' => array()
 		);
 
-		$this->form_validation->set_rules('user-id', 'Username', 'trim|required|max_length[255]|callback_user_check');
+		$this->form_validation->set_rules('user-nm', 'Username', 'trim|required|max_length[255]|callback_user_check');
 		$this->form_validation->set_rules('formedit-date', 'Date', 'trim|required');
 		$this->form_validation->set_rules('no-transaksi', 'No. Transaksi', 'trim|required|max_length[255]');
-		$this->form_validation->set_rules('permintaan-id', 'Permintaan', 'trim|required|max_length[255]|callback_permintaan_check');
+		$this->form_validation->set_rules('permintaan-nm', 'Permintaan', 'trim|required|max_length[255]|callback_permintaan_check');
 		$this->form_validation->set_rules('description', 'Keterangan', 'trim|required|max_length[255]');
 		$this->form_validation->set_error_delimiters('<div class="invalid-feedback">', '</div>');
 
@@ -115,7 +117,7 @@ class Formedit extends CI_Controller {
 	// custom form_validation
 	public function user_check($data) {
 		$where = array(
-			'id_user' => $data,
+			'nm_user' => $data,
 		);
 		$check = $this->beta->_read_where('tbl_users', $where)->num_rows();
 
@@ -129,7 +131,7 @@ class Formedit extends CI_Controller {
 
 	public function permintaan_check($data) {
 		$where = array(
-			'id_permintaan' => $data,
+			'nm_permintaan' => $data,
 		);
 		$check = $this->beta->_read_where('tbl_permintaan', $where)->num_rows();
 

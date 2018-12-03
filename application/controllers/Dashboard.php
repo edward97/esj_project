@@ -65,7 +65,8 @@ class Dashboard extends CI_Controller {
 				foreach ($result as $i) {
 					array_push($data, array(
 						'label' => $i->nm_divisi,
-						'value' => $i->id_divisi,
+						'value' => $i->nm_divisi,
+						'desc' => $i->id_divisi,
 					));
 				}
 			}
@@ -77,7 +78,8 @@ class Dashboard extends CI_Controller {
 				foreach ($result as $i) {
 					array_push($data, array(
 						'label' => $i->nm_user,
-						'value' => $i->id_user
+						'value' => $i->nm_user,
+						'desc' => $i->id_user,
 					));
 				}
 			}
@@ -89,61 +91,62 @@ class Dashboard extends CI_Controller {
 				foreach ($result as $i) {
 					array_push($data, array(
 						'label' => $i->nm_permintaan,
-						'value' => $i->id_permintaan
+						'value' => $i->nm_permintaan,
+						'desc' => $i->id_permintaan,
 					));
 				}
 			}
 		}
-		elseif (isset($_GET['term']) && $id == 'supplier') {
-			$result = $this->beta->_search('tbl_supplier', 'nm_supplier', $_GET['term'])->result();
+		// elseif (isset($_GET['term']) && $id == 'supplier') {
+		// 	$result = $this->beta->_search('tbl_supplier', 'nm_supplier', $_GET['term'])->result();
 
-			if (count($result)) {
-				foreach ($result as $i) {
-					array_push($data, array(
-						'label' => $i->nm_supplier,
-						'value' => $i->id_supplier
-					));
-				}
-			}
-		}
-		elseif (isset($_GET['term']) && $id == 'warehouse') {
-			$result = $this->beta->_search('tbl_warehouse', 'nm_warehouse', $_GET['term'])->result();
+		// 	if (count($result)) {
+		// 		foreach ($result as $i) {
+		// 			array_push($data, array(
+		// 				'label' => $i->nm_supplier,
+		// 				'value' => $i->id_supplier
+		// 			));
+		// 		}
+		// 	}
+		// }
+		// elseif (isset($_GET['term']) && $id == 'warehouse') {
+		// 	$result = $this->beta->_search('tbl_warehouse', 'nm_warehouse', $_GET['term'])->result();
 
-			if (count($result)) {
-				foreach ($result as $i) {
-					array_push($data, array(
-						'label' => $i->nm_warehouse,
-						'value' => $i->id_warehouse
-					));
-				}
-			}
-		}
-		elseif (isset($_GET['term']) && $id == 'item') {
-			$result = $this->beta->_search_custom_size($_GET['term'])->result();
+		// 	if (count($result)) {
+		// 		foreach ($result as $i) {
+		// 			array_push($data, array(
+		// 				'label' => $i->nm_warehouse,
+		// 				'value' => $i->id_warehouse
+		// 			));
+		// 		}
+		// 	}
+		// }
+		// elseif (isset($_GET['term']) && $id == 'item') {
+		// 	$result = $this->beta->_search_custom_size($_GET['term'])->result();
 
-			if (count($result)) {
-				foreach ($result as $i) {
-					array_push($data, array(
-						'label' => $i->nm_item.'-'.$i->nm_size,
-                        'value' => $i->id_item.'-'.$i->id_size,
-					));
-				}
-			}
-		}
-		elseif (isset($_GET['term']) && $id == 'po') {
-			$result = $this->beta->_search('tbl_po', 'id_po', $_GET['term'])->result();
+		// 	if (count($result)) {
+		// 		foreach ($result as $i) {
+		// 			array_push($data, array(
+		// 				'label' => $i->nm_item.'-'.$i->nm_size,
+        //                 'value' => $i->id_item.'-'.$i->id_size,
+		// 			));
+		// 		}
+		// 	}
+		// }
+		// elseif (isset($_GET['term']) && $id == 'po') {
+		// 	$result = $this->beta->_search('tbl_po', 'id_po', $_GET['term'])->result();
 
-			if (count($result)) {
-				foreach ($result as $i) {
-					array_push($data, array(
-						'label' => $i->id_po,
-						'value' => $i->id_po,
-						'supplierid' => $i->id_supplier,
-						'warehouseid' => $i->id_warehouse,
-					));
-				}
-			}
-		}
+		// 	if (count($result)) {
+		// 		foreach ($result as $i) {
+		// 			array_push($data, array(
+		// 				'label' => $i->id_po,
+		// 				'value' => $i->id_po,
+		// 				'supplierid' => $i->id_supplier,
+		// 				'warehouseid' => $i->id_warehouse,
+		// 			));
+		// 		}
+		// 	}
+		// }
 		echo json_encode($data);
 	}
 }

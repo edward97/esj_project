@@ -62,7 +62,7 @@ $(document).ready(function() {
     });
 
     // custom-datetimepicker
-    $.datetimepicker.setLocale('id');
+    // $.datetimepicker.setLocale('id');
     $('[data-type="date"]').datetimepicker({
         minDate: '01/01/2018',
         maxDate: '31/12/2030',
@@ -95,4 +95,11 @@ function editModal() {
 function reload_table() {
     $("#table-data").DataTable().ajax.reload(null, false);
 }
+
+function currentDate() {
+    $('[data-type="date"]').datetimepicker({
+        value: '0'
+    });
+}
+
 // ---------- end custom ----------

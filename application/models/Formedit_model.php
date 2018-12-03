@@ -69,7 +69,7 @@ class Formedit_model extends CI_Model {
     // create
     public function _create() {
         $userid = $this->input->post('user-id');
-        $date = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('formedit-date')));
+        $date = i_date($this->input->post('formedit-date'));
         $notransaksi = $this->input->post('no-transaksi');
         $permintaan = $this->input->post('permintaan-id');
         $description = $this->input->post('description');
@@ -84,7 +84,7 @@ class Formedit_model extends CI_Model {
         $this->db->insert($this->table, $data);
 
         // return last insert id
-        return $this->db->insert_id();
+        return $date;
     }
 
     // read
@@ -94,6 +94,8 @@ class Formedit_model extends CI_Model {
 
     // read by id
     public function _read_where($id) {
+        $this->db->join('tbl_users', 'tbl_users.id_user = tbl_formedit.id_user', 'left');
+        $this->db->join('tbl_permintaan', 'tbl_permintaan.id_permintaan = tbl_formedit.id_permintaan', 'left');
         $where = array(
 			'id_formedit' => $id
         );
@@ -105,7 +107,7 @@ class Formedit_model extends CI_Model {
     // update
     public function _update() {
         $formeditid = $this->input->post('formedit-id');
-        $date = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('formedit-date')));
+        $date = i_date($this->input->post('formedit-date'));
         $userid = $this->input->post('user-id');
         $notransaksi = $this->input->post('no-transaksi');
         $permintaan = $this->input->post('permintaan-id');

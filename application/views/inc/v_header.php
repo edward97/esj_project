@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="user-info">
                         <span class="user-name"><?=$this->session->userdata('ses_nm')?></span>
-                        <span class="user-role">Administrator</span>
+                        <span class="user-role"><?=$this->session->userdata('ses_job')?></span>
 
                         <span class="user-status">
                             <i class="fas fa-circle"></i>

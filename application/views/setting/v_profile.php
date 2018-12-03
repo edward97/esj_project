@@ -13,35 +13,36 @@
                                 </div>
                                 
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-custom btn-secondary queen" id="save-data"><i class="far fa-save"></i> Save</button>
+                                    <button type="button" class="btn btn-custom btn-secondary" id="save-data" disabled><i class="far fa-save"></i> Save</button>
                                     <button type="button" class="btn btn-custom btn-info" id="edit-data"><i class="fas fa-edit"></i> Edit</button>
-                                    <button type="button" class="btn btn-custom btn-danger" id="cancel-data"><i class="far fa-trash-alt"></i> Cancel</button>
+                                    <button type="button" class="btn btn-custom btn-danger" id="cancel-data" disabled><i class="far fa-trash-alt"></i> Cancel</button>
                                 </div>
                             </div>
 
                             <div class="card-body">
                                 <form id="form-data">
                                     <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6">
+                                        <div class="form-group col-md-6 col-sm-6">
                                             <label for="user-id">User ID</label>
                                             <input type="text" name="user-id" class="form-control form-control-sm" id="user-id" placeholder="[Auto]" readonly>
                                         </div>
 
-                                        <div class="form-group col-md-3 col-sm-6">
+                                        <div class="form-group col-md-6 col-sm-6">
+                                            <label for="divisi-nm">Divisi</label>
+                                            <input type="text" name="divisi-nm" class="form-control form-control-sm" id="divisi-nm" placeholder="Divisi" readonly>
+                                        </div>
+
+                                        <div class="form-group col-md-6 col-sm-6">
                                             <label for="user-nm" class="required">Username</label>
-                                            <input type="text" name="user-nm" class="form-control form-control-sm" id="user-nm" placeholder="Username">
+                                            <input type="text" name="user-nm" data-en="1" class="form-control form-control-sm" id="user-nm" placeholder="Username">
                                         </div>
 
-                                        <div class="form-group col-md-3 col-sm-6">
+                                        <div class="form-group col-md-6 col-sm-6">
                                             <label for="user-pass" class="required">Password</label>
-                                            <input type="password" name="user-pass" class="form-control form-control-sm" id="user-pass" placeholder="Password">
-                                        </div>
-
-                                        <div class="form-group col-md-3 col-sm-6">
-                                            <label for="divisi-id" class="required">Divisi</label>
-                                            <input type="text" name="divisi-id" class="form-control form-control-sm ui-divisi" id="divisi-id" placeholder="Divisi">
+                                            <input type="password" name="user-pass" data-en="1" class="form-control form-control-sm" id="user-pass" placeholder="Password">
                                         </div>
                                     </div>
+                                    <input type="hidden" name="divisi-id" value="">
                                 </form>
                             </div>
                         </div>

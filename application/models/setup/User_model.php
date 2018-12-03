@@ -89,6 +89,7 @@ class User_model extends CI_Model {
 
     // read by id
     public function _read_where($id) {
+        $this->db->join('tbl_divisi', 'tbl_divisi.id_divisi = tbl_users.id_divisi', 'left');
         $where = array(
 			'id_user' => $id
         );

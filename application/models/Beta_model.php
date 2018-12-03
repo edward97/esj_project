@@ -55,5 +55,13 @@ class Beta_model extends CI_Model {
     public function _get_table() {
 		$sql = $this->db->query("SELECT t.TABLE_NAME AS t_name FROM INFORMATION_SCHEMA.TABLES AS t WHERE t.TABLE_SCHEMA = 'db_project'");
 		return $sql;
-	}
+    }
+    
+    public function _read_user_detail($table, $where) {
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->join('tbl_divisi', 'tbl_divisi.id_divisi = tbl_users.id_divisi', 'left');
+        $this->db->where($where);
+        return $this->db->get();
+    }
 }

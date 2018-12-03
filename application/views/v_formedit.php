@@ -76,20 +76,20 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="user-id" class="required">User ID</label>
-                                        <input type="text" name="user-id" class="form-control form-control-sm ui-user" id="user-id" placeholder="User ID">
+                                        <label for="user-nm" class="required">User</label>
+                                        <input type="text" name="user-nm" class="form-control form-control-sm ui-user" id="user-nm" placeholder="User">
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="formedit-date" class="required">Date</label>
-                                        <input type="text" name="formedit-date" data-type="date" class="form-control form-control-sm queen" id="formedit-date" placeholder="Date">
+                                        <input type="text" name="formedit-date" data-type="date" class="form-control form-control-sm" id="formedit-date" placeholder="Date">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="permintaan-id" class="required">Permintaan ID</label>
-                                        <input type="text" name="permintaan-id" class="form-control form-control-sm ui-permintaan" id="permintaan-id" placeholder="Permintaan ID">
+                                        <label for="permintaan-nm" class="required">Permintaan</label>
+                                        <input type="text" name="permintaan-nm" class="form-control form-control-sm ui-permintaan" id="permintaan-nm" placeholder="Permintaan">
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -104,6 +104,8 @@
                                         <textarea name="description" class="form-control form-control-sm" id="description" rows="7"></textarea>
                                     </div>
                                 </div>
+                                <input type="hidden" name="user-id" value="">
+                                <input type="hidden" name="permintaan-id" value="">
                             </form>
                         </div>
 

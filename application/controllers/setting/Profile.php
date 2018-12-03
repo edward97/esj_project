@@ -9,6 +9,7 @@ class Profile extends CI_Controller {
             redirect('welcome/login');
         }
 		$this->load->model('beta_model', 'beta');
+		$this->load->model('setup/user_model', 'model');
 	}
 
 	public function index() {
@@ -25,10 +26,8 @@ class Profile extends CI_Controller {
 	}
 
 	public function list() {
-		$where = array(
-			'id_user' => $this->session->userdata('ses_id'),
-		);
-		$data = $this->beta->_read_where('tbl_users', $where)->row();
+		$id = $this->session->userdata('ses_id');
+		$data = $this->model->_read_where($id);
 		echo json_encode($data);
 	}
 
@@ -37,7 +36,7 @@ class Profile extends CI_Controller {
 	}
 
 	public function edit() {
-
+		
 	}
 
 	public function update() {

@@ -23,6 +23,7 @@ $(document).ready(function() {
 
         // call function
         addModal();
+        currentDate();
 
         // show-modal
         $("#modal-data").modal("show");
@@ -43,10 +44,14 @@ $(document).ready(function() {
             success: function(data) {
                 $('[name="formedit-id"]').val(data.id_formedit);
                 $('[name="formedit-date"]').val(data.date);
-                $('[name="user-id"]').val(data.id_user);
+                $('[name="user-nm"]').val(data.nm_user);
                 $('[name="no-transaksi"]').val(data.no_transaksi);
-                $('[name="permintaan-id"]').val(data.id_permintaan);
+                $('[name="permintaan-nm"]').val(data.nm_permintaan);
                 $('[name="description"]').val(data.description);
+
+                $('[name="user-id"]').val(data.id_user);
+                $('[name="permintaan-id"]').val(data.id_permintaan);
+
 
                 // show-modal
                 $("#modal-data").modal("show");
