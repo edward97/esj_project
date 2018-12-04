@@ -15,7 +15,7 @@
                                 <div class="float-right">
                                     <button type="button" class="btn btn-custom btn-secondary" id="save-data" disabled><i class="far fa-save"></i> Save</button>
                                     <button type="button" class="btn btn-custom btn-info" id="edit-data"><i class="fas fa-edit"></i> Edit</button>
-                                    <button type="button" class="btn btn-custom btn-danger" id="cancel-data" disabled><i class="far fa-trash-alt"></i> Cancel</button>
+                                    <button type="button" class="btn btn-custom btn-danger" id="cancel-data" disabled><i class="fas fa-times"></i> Cancel</button>
                                 </div>
                             </div>
 
@@ -85,5 +85,3 @@
             </div>
         </main>
         <!-- end page-content -->
-    </div>
-    <!-- page-wrapper -->

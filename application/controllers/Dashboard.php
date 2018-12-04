@@ -97,30 +97,32 @@ class Dashboard extends CI_Controller {
 				}
 			}
 		}
-		// elseif (isset($_GET['term']) && $id == 'supplier') {
-		// 	$result = $this->beta->_search('tbl_supplier', 'nm_supplier', $_GET['term'])->result();
+		elseif (isset($_GET['term']) && $id == 'supplier') {
+			$result = $this->beta->_search('tbl_supplier', 'nm_supplier', $_GET['term'])->result();
 
-		// 	if (count($result)) {
-		// 		foreach ($result as $i) {
-		// 			array_push($data, array(
-		// 				'label' => $i->nm_supplier,
-		// 				'value' => $i->id_supplier
-		// 			));
-		// 		}
-		// 	}
-		// }
-		// elseif (isset($_GET['term']) && $id == 'warehouse') {
-		// 	$result = $this->beta->_search('tbl_warehouse', 'nm_warehouse', $_GET['term'])->result();
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->nm_supplier,
+						'value' => $i->nm_supplier,
+						'desc' => $i->id_supplier,
+					));
+				}
+			}
+		}
+		elseif (isset($_GET['term']) && $id == 'warehouse') {
+			$result = $this->beta->_search('tbl_warehouse', 'nm_warehouse', $_GET['term'])->result();
 
-		// 	if (count($result)) {
-		// 		foreach ($result as $i) {
-		// 			array_push($data, array(
-		// 				'label' => $i->nm_warehouse,
-		// 				'value' => $i->id_warehouse
-		// 			));
-		// 		}
-		// 	}
-		// }
+			if (count($result)) {
+				foreach ($result as $i) {
+					array_push($data, array(
+						'label' => $i->nm_warehouse,
+						'value' => $i->nm_warehouse,
+						'desc' => $i->id_warehouse,
+					));
+				}
+			}
+		}
 		// elseif (isset($_GET['term']) && $id == 'item') {
 		// 	$result = $this->beta->_search_custom_size($_GET['term'])->result();
 

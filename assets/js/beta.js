@@ -1,5 +1,5 @@
 "use strict";
-let id, id_parent, val, table, sv_method, path, html, script, tableBody, rowCount, btnSave, btnEdit, btnCancel;
+let id, id_parent, val, table, sv_method, path, html, script, tableBody, rowCount, btnNew, btnSave, btnEdit, btnCancel, btnFind;
 
 $(document).ready(function() {
     // sign-in
@@ -60,16 +60,6 @@ $(document).ready(function() {
             }
         });
     });
-
-    // custom-datetimepicker
-    // $.datetimepicker.setLocale('id');
-    $('[data-type="date"]').datetimepicker({
-        minDate: '01/01/2018',
-        maxDate: '31/12/2030',
-        formatDate: 'd/m/Y',
-        format: "d-M-Y H:i",
-        value: '0'
-    });
 });
 
 // ---------- custom ----------
@@ -98,6 +88,10 @@ function reload_table() {
 
 function currentDate() {
     $('[data-type="date"]').datetimepicker({
+        minDate: '01/01/2018',
+        maxDate: '31/12/2030',
+        formatDate: 'd/m/Y',
+        format: "d-M-Y H:i",
         value: '0'
     });
 }

@@ -1,70 +1,41 @@
 "use strict";
 
 script = function() {
-    btnSave = $("#save-data");
-    btnEdit = $("#edit-data");
-    btnCancel = $("#cancel-data");
-    sv_method = $('[name="po-id"]').val();
-    tableBody = $("#table-detail tbody");
-    rowCount = 1;
+    btnNew      = $("#new-data");
+    btnSave     = $("#save-data");
+    btnEdit     = $("#edit-data");
+    btnCancel   = $("#cancel-data");
+    btnFind     = $("#find-data");
 
-    function splitData(x) {
-        val = x.split("%");
-        return val;
-    }
+    tableBody   = $("#table-detail tbody");
+    rowCount    = 1;
 
-    function checkData() {
-        val = splitData($(this).data("action"));
-        id = val[1];
+    function findData() {
+        table = $("#table-data").DataTable({
+            "destroy": true,
+            "processing": true,
+            "serverSide": true,
+            "order": [],
+            "ajax": {
+                "url": url+"transaction/po/list",
+                "type": "post",
+            },
+            "columnDefs": [
+                {
+                    "targets": [0, -1],
+                    "orderable": false,
+                },
+            ],
+        });
 
-        if (val[0] === "new") {
-            window.location.href = url+"transaction/po/act/new";
-        }
-        else if(val[0] === "edit") {
-            window.location.href = url+"transaction/po/act/detail/"+id;
-        }
-        else if(val[0] === "delete") {
-            swal({
-                title: "Are you sure want to delete this data?",
-                text: "You cant undo this data anymore!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((res) => {
-                if (res) {
-                    $.ajax({
-                        url: url+"transaction/po/delete/"+id,
-                        type: "post",
-                        dataType: "json",
-                        success: function(data) {
-                            if (data.status) {
-                                swal("Poof! Delete success!", { icon: "success" }).then(reload_table());
-                            } else {
-                                swal("Error code: "+data.msg.code, "Message: "+data.msg.message, "error");
-                            }
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            alert("Error deleting data...");
-                        }
-                    });
-                }
-            });
-        }
-        else {
-            reload_table();
-        }
+        $("#modal-data").modal("show");
     }
 
     function someEvent() {
-        // if (uri === "new") {
-        //     actEdit.prop("disabled", true);
-        //     addHtml();
-        // } else if(uri !== "new" && uri !== "") {
-        //     editHtml();
-        // }
+        // beta.js
+        currentDate();
 
-        // add-data
-        $(document).on("click", "[data-action]", checkData);
+        btnFind.on("click", findData);
     }
 
     function init() {
@@ -75,21 +46,6 @@ script = function() {
 }();
 
 $(function() {
-    table = $("#table-data").DataTable({
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-            "url": url+"transaction/po/list",
-            "type": "post",
-        },
-        "columnDefs": [
-            {
-                "targets": [0, -1],
-                "orderable": false,
-            },
-        ],
-    });
     script.init();
 });
 

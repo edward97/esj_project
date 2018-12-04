@@ -34,19 +34,27 @@ $(document).ready(function() {
         $(this).autocomplete("search");
     });
 
-    // $(".ui-supplier").autocomplete({
-    //     source: url+"dashboard/search/supplier",
-    //     minLength: 0,
-    // }).focus(function() {
-    //     $(this).autocomplete("search");
-    // });
+    $(".ui-supplier").autocomplete({
+        source: url+"dashboard/search/supplier",
+        minLength: 0,
 
-    // $(".ui-warehouse").autocomplete({
-    //     source: url+"dashboard/search/warehouse",
-    //     minLength: 0,
-    // }).focus(function() {
-    //     $(this).autocomplete("search");
-    // });
+        select: function(event, ui) {
+            $('[name="supplier-id"]').val(ui.item.desc);
+        }
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
+
+    $(".ui-warehouse").autocomplete({
+        source: url+"dashboard/search/warehouse",
+        minLength: 0,
+
+        select: function(event, ui) {
+            $('[name="warehouse-id"]').val(ui.item.desc);
+        }
+    }).focus(function() {
+        $(this).autocomplete("search");
+    });
 
     // $(document).on("focus", ".ui-item", function() {
     //     id = $(this).attr("id").split("-");

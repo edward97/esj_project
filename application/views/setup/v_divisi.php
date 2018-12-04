@@ -86,5 +86,3 @@
             </div>
         </main>
         <!-- end page-content -->
-    </div>
-    <!-- page-wrapper -->

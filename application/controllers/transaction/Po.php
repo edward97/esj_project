@@ -33,10 +33,8 @@ class Po extends CI_Controller {
 			$row[] = d_date($i->date);
 			$row[] = $i->nm_supplier;
 			$row[] = $i->nm_warehouse;
-			$row[] = $i->description;
 
-			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-action="edit%'.$i->id_po.'"><i class="far fa-edit"></i></a>
-			<a href="javascript:;" class="btn btn-custom btn-danger" data-action="delete%'.$i->id_po.'"><i class="far fa-trash-alt"></i></a>';
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-action="edit%'.$i->id_po.'"><i class="fas fa-eye"></i> Detail</a>';
 
 			$data[] = $row;
 		}
@@ -47,26 +45,6 @@ class Po extends CI_Controller {
 			'data' => $data
 		);
 		echo json_encode($output);
-	}
-
-	// -------------------- PO DETAIL --------------------
-	public function act() {
-		$uri = gt_uri(4);
-
-		if ($uri === 'new') {
-			$data['title'] = 'New PO';
-
-			$this->load->view('inc/v_header', $data);
-			$this->load->view('transaction/v_po_detail');
-			$this->load->view('inc/v_footer');
-		}
-		elseif ($uri === 'detail') {
-			$data['title'] = 'Detail PO';
-
-			$this->load->view('inc/v_header', $data);
-			$this->load->view('transaction/v_po_detail');
-			$this->load->view('inc/v_footer');
-		}
 	}
 }
 
