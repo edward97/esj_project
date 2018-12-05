@@ -34,7 +34,7 @@ class Po extends CI_Controller {
 			$row[] = $i->nm_supplier;
 			$row[] = $i->nm_warehouse;
 
-			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-action="edit%'.$i->id_po.'"><i class="fas fa-eye"></i> Detail</a>';
+			$row[] = '<a href="javascript:;" class="btn btn-custom btn-primary" data-action="detail%'.$i->id_po.'"><i class="fas fa-eye"></i> Detail</a>';
 
 			$data[] = $row;
 		}

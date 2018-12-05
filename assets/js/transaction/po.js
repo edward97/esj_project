@@ -10,6 +10,77 @@ script = function() {
     tableBody   = $("#table-detail tbody");
     rowCount    = 1;
 
+    // --------------------
+
+    function splitData(data) {
+        id = data.split("%");
+        return id;
+    }
+
+    // disable | enable save button
+    function checkRow() {
+        (!$("#table-detail tbody tr").length) ? btnSave.prop("disabled", true) : btnSave.prop("disabled", false);
+    }
+
+    // enable input
+    function onData() {
+        $("[data-edit=0]").prop("disabled", true);
+        $("[data-edit=1]").prop("disabled", false);
+    }
+    // disable input
+    function offData() {
+        $("[data-edit=0]").prop("disabled", true);
+        $("[data-edit=1]").prop("disabled", true);
+    }
+    // add row
+    function addRow() {
+        html = '<tr id="row-'+rowCount+'">'
+        +'<td><button type="button" class="bg-danger text-white" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
+        +'<td><input type="hidden" name="addr[]"value="New"><input type="text" data-edit="1" name="detail-id[]" class="ui-item" id="detail-id-'+rowCount+'"></td>'
+        +'<td><input type="text" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'"></td>'
+        +'<td><input type="text" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'"></td>'
+        +'<td><input type="text" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'"></td>'
+        +'<td><input type="text" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'"></td>'
+        +'<td><input type="text" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'"></td>'
+        +'</tr>';
+
+        tableBody.append(html);
+        rowCount++;
+
+        checkRow();
+    }
+    // remove row
+    function removeRow() {
+        $(this).parents("tr").remove();
+        checkRow();
+    }
+
+    function newData() {
+        $("#form-data")[0].reset();
+        currentDate();
+        addRow();
+
+        $(".box-1").hide();
+        $(".box-2").show();
+        checkRow();
+        onData();
+    }
+    function saveData() {
+
+    }
+    function editData() {
+
+    }
+    function cancelData() {
+        $("#form-data")[0].reset();
+
+        $(".box-1").show();
+        $(".box-2").hide();
+
+        rowCount = 1;
+        tableBody.empty();
+        offData();
+    }
     function findData() {
         table = $("#table-data").DataTable({
             "destroy": true,
@@ -27,14 +98,24 @@ script = function() {
                 },
             ],
         });
-
         $("#modal-data").modal("show");
     }
 
     function someEvent() {
-        // beta.js
-        currentDate();
+        offData();
 
+        // add-row
+        $("#add-row").on("click", addRow);
+        // remove-row
+        $(document).on("click", "#remove-row", removeRow);
+
+        // refresh-data
+        $("#reload-data").on("click", reload_table);
+
+        btnNew.on("click", newData);
+        btnSave.on("click", saveData);
+        btnEdit.on("click", editData);
+        btnCancel.on("click", cancelData);
         btnFind.on("click", findData);
     }
 
@@ -62,8 +143,8 @@ $(function() {
 //         (!$("#table-detail tbody tr").length) ? actSave.prop("disabled", true) : actSave.prop("disabled", false);
 //     }
 
-//     function numberFormat() {
-//         $(".numb").number(true, 2);
+//     functionerFormat() {
+//         $("")er(true, 2);
 //     }
 
 //     function addHtml() {
@@ -71,16 +152,16 @@ $(function() {
 //         +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
 //         +'<td><input type="hidden" name="addr[]"value="New"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'"></td>'
 //         +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'"></td>'
-//         +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen numb" id="detail-qty-'+rowCount+'"></td>'
-//         +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen numb" id="detail-rate-'+rowCount+'"></td>'
-//         +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm numb numb-total" id="detail-total-'+rowCount+'" disabled></td>'
+//         +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'"></td>'
+//         +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'"></td>'
+//         +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm-total" id="detail-total-'+rowCount+'" disabled></td>'
 //         +'</tr>';
 
 //         tableBody.append(html);
 //         rowCount++;
 
 //         btnSave();
-//         numberFormat();
+//        erFormat();
 //     }
 
 //     function editHtml() {
@@ -104,9 +185,9 @@ $(function() {
 //                     +'<td><button type="button" data-action="delete" class="btn btn-sm btn-danger queen"><i class="far fa-trash-alt"></i></button></td>'
 //                     +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" name="detail-id[]" class="form-control form-control-sm ui-item queen" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
 //                     +'<td><input type="text" name="detail-name[]" class="form-control form-control-sm queen" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-//                     +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen numb" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
-//                     +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen numb" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
-//                     +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm numb numb-total" id="detail-total-'+rowCount+'" value="'+val+'" disabled></td>'
+//                     +'<td><input type="text" name="detail-qty[]" class="form-control form-control-sm queen" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+//                     +'<td><input type="text" name="detail-rate[]" class="form-control form-control-sm queen" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+//                     +'<td><input type="text" name="detail-total[]" class="form-control form-control-sm-total" id="detail-total-'+rowCount+'" value="'+val+'" disabled></td>'
 //                     +'</tr>';
     
 //                     tableBody.append(html);
@@ -121,7 +202,7 @@ $(function() {
 //                 });
 //                 actEdit.prop("disabled", false);
 
-//                 numberFormat();
+//                erFormat();
 //             },
 //             error: function(jqXHR, textStatus, errorThrown) {
 //                 alert("Error get data...");
@@ -243,7 +324,7 @@ $(function() {
 
 //         q = qty * rate;
 //         $("#detail-total-"+id).val(q);
-//         $("#detail-total-"+id).number(true, 2);
+//         $("#detail-total-"+id)er(true, 2);
 
 //         hitungGrandTotal();
 //     }
@@ -251,12 +332,12 @@ $(function() {
 //     function hitungGrandTotal() {
 //         id = 0;
 //         $("#form-data :input").each(function() {
-//             if ($(this).hasClass("numb-total")) {
+//             if ($(this).hasClass(-total")) {
 //                 id = parseFloat(id)+parseFloat($(this).val());
 //             }
 //         });
 //         $("#grandtotal").text(id);
-//         $("#grandtotal").number(true, 2);
+//         $("#grandtotal")er(true, 2);
 //     }
 
 //     function someEvent() {
