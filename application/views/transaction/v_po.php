@@ -16,12 +16,13 @@
                                 <div class="box-1">
                                     <button type="button" class="btn btn-sm btn-success" id="new-data"><i class="fas fa-plus"></i> New</button>
                                     <button type="button" class="btn btn-sm btn-info" id="edit-data" disabled><i class="fas fa-edit"></i> Edit</button>
+                                    <button type="button" class="btn btn-sm btn-danger" id="delete-data" disabled><i class="far fa-trash-alt"></i> Delete</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary" id="find-data"><i class="fas fa-search"></i> Find</button>
                                 </div>
 
                                 <div class="box-2" style="display: none;">
+                                    <button type="button" class="btn btn-sm btn-warning" id="cancel-data"><i class="fas fa-times"></i> Cancel</button>
                                     <button type="button" class="btn btn-sm btn-secondary" id="save-data"><i class="far fa-save"></i> Save</button>
-                                    <button type="button" class="btn btn-sm btn-danger" id="cancel-data"><i class="fas fa-times"></i> Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Grand Total : Rp</td>
-                                                <td id="grandtotal">0,00</td>
+                                                <td id="grand-total">0.00</td>
                                             </tr>
                                         </tbody>
                                     </table>

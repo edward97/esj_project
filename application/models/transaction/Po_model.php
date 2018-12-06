@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Po_model extends CI_Model {
     private $table = 'tbl_po';
     private $table_detail = 'tbl_po_detail';
-    private $column_order = array(NULL, 'id_po', 'date', 'nm_supplier', 'nm_warehouse', 'description', NULL);
-    private $column_search = array('id_po', 'date', 'nm_supplier', 'nm_warehouse', 'description');
+    private $column_order = array(NULL, 'id_po', 'date', 'nm_supplier', 'nm_warehouse', NULL);
+    private $column_search = array('id_po', 'date', 'nm_supplier', 'nm_warehouse');
     private $order = array('id_po' => 'DESC');
     
     private function _get_data() {
@@ -69,7 +69,7 @@ class Po_model extends CI_Model {
 
     // create
     public function _create() {
-        $podate = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('po-date')));
+        $podate = i_date($this->input->post('po-date'));
         $description = $this->input->post('description');
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');
@@ -106,8 +106,8 @@ class Po_model extends CI_Model {
         $this->db->insert_batch($this->table_detail, $arr_data);
 
         // return last insert id
-        $q = $this->db->get_where($this->table, array('id_po' => $id))->row_array();
-        return $q['id_po'];
+        $id = sprintf("%05d", $id);
+        return $id;
     }
 
     // read
@@ -117,6 +117,9 @@ class Po_model extends CI_Model {
 
     // read by id
     public function _read_where($id) {
+        $this->db->join('tbl_supplier', 'tbl_supplier.id_supplier = tbl_po.id_supplier', 'left');
+        $this->db->join('tbl_warehouse', 'tbl_warehouse.id_warehouse = tbl_po.id_warehouse', 'left');
+
         $where = array(
 			'id_po' => $id
         );
@@ -127,6 +130,8 @@ class Po_model extends CI_Model {
 
     // read list by id
     public function _read_where_list($id) {
+        $this->db->join('tbl_items', 'tbl_items.id_item = tbl_po_detail.id_item', 'left');
+
         $where = array(
 			'id_po' => $id
         );
@@ -137,7 +142,7 @@ class Po_model extends CI_Model {
     // update
     public function _update() {
         $poid = $this->input->post('po-id');
-        $podate = mdate("%Y-%m-%d %H:%i", strtotime($this->input->post('po-date')));
+        $podate = i_date($this->input->post('po-date'));
         $description = $this->input->post('description');
         $supplierid = $this->input->post('supplier-id');
         $warehouseid = $this->input->post('warehouse-id');
@@ -165,8 +170,10 @@ class Po_model extends CI_Model {
             $code = explode('-', $detailid[$i]);
 
             if ($value != 'New') {
+                // delete records
                 array_push($arr_id, $value);
-
+                
+                // update records
                 array_push($arr_addr, array(
                     'unq' => $value,
                     'nm_po_item' => $detailname[$i],
@@ -177,6 +184,7 @@ class Po_model extends CI_Model {
                     'id_size' => $code[1],
                 ));
             } else {
+                // new records
                 array_push($arr_data, array(
                     'unq' => rd_code(12),
                     'nm_po_item' => $detailname[$i],
