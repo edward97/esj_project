@@ -101,6 +101,7 @@ class Po extends CI_Controller {
 			$sql = $this->model->_update();
 
 			$data['status'] = TRUE;
+			$data['id'] = $sql;
 			$data['msg'] = '[ ID: '.$sql.' ] Update Po - Successfully...';
 		} else {
 			foreach ($_POST as $key => $value) {
