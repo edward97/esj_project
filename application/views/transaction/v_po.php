@@ -56,23 +56,22 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-sm table-hover" id="table-detail" style="width: 100%">
+                                <table class="table table-sm table-hover" id="table-detail" style="width: 63rem">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Item ID</th>
-                                            <th>Itemname</th>
-                                            <th>Qty</th>
-                                            <th>Uom</th>
-                                            <th>Rate</th>
-                                            <th>Total</th>
+                                            <th style="width: 2rem">#</th>
+                                            <th style="width: 7rem">Item ID</th>
+                                            <th style="width: 20rem">Itemname</th>
+                                            <th style="width: 7rem">Qty</th>
+                                            <th style="width: 5rem">Uom</th>
+                                            <th style="width: 10rem">Rate</th>
+                                            <th style="width: 12rem">Total</th>
                                         </tr>
                                     </thead>
 
                                     <tbody></tbody>
                                 </table>
                             </div>
-                            <hr>
                             <button type="button" data-edit="1" class="btn btn-custom btn-success" id="add-row"><i class="fas fa-plus"></i> Add Row</button>
 
                             <div class="row">

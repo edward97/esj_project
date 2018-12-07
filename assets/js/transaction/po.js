@@ -37,13 +37,13 @@ script = function() {
     // add row
     function addRow() {
         html = '<tr id="row-'+rowCount+'">'
-        +'<td><button type="button" style="margin-top: .25rem" data-edit="1" class="btn btn-custom btn-danger" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
-        +'<td><input type="hidden" name="addr[]" value="New"><input type="text" data-edit="1" name="detail-id[]" class="ui-item" id="detail-id-'+rowCount+'"></td>'
-        +'<td><input type="text" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'"></td>'
-        +'<td><input type="text" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'"></td>'
-        +'<td><input type="text" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'"></td>'
-        +'<td><input type="text" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'"></td>'
-        +'<td><input type="text" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'"></td>'
+        +'<td><button type="button" style="margin-top: .4rem" data-edit="1" class="btn btn-custom btn-danger" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
+        +'<td><input type="hidden" name="addr[]" value="New"><input type="text" class="form-control form-control-sm ui-item" data-edit="1" name="detail-id[]" id="detail-id-'+rowCount+'"></td>'
+        +'<td><input type="text" class="form-control form-control-sm" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'"></td>'
+        +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'"></td>'
+        +'<td><input type="text" class="form-control form-control-sm" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'"></td>'
+        +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'"></td>'
+        +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'"></td>'
         +'</tr>';
 
         tableBody.append(html);
@@ -208,13 +208,13 @@ script = function() {
    
                 $.each(data.po_detail, function(key, value) {
                     html = '<tr id="row-'+rowCount+'">'
-                    +'<td><button type="button" style="margin-top: .25rem" data-edit="1" class="btn btn-custom btn-danger" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
-                    +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" data-edit="1" name="detail-id[]" class="ui-item" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
-                    +'<td><input type="text" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-                    +'<td><input type="text" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
-                    +'<td><input type="text" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'" value="'+value.uom+'"></td>'
-                    +'<td><input type="text" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
-                    +'<td><input type="text" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'" value="'+(value.qty * value.rate)+'"></td>'
+                    +'<td><button type="button" style="margin-top: .4rem" data-edit="1" class="btn btn-custom btn-danger" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
+                    +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" class="form-control form-control-sm ui-item" data-edit="1" name="detail-id[]" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'" value="'+value.uom+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'" value="'+(value.qty * value.rate)+'"></td>'
                     +'</tr>';
 
                     tableBody.append(html);
