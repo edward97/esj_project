@@ -24,10 +24,6 @@ class Pr extends CI_Controller {
 		
 	}
 
-	public function create() {
-
-	}
-
 	public function store() {
 
 	}

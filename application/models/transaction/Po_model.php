@@ -81,8 +81,8 @@ class Po_model extends CI_Model {
         $detailrate = $this->input->post('detail-rate');
 
         $data = array(
-            'date' => $podate,
-            'description' => $description,
+            'po_date' => $podate,
+            'po_description' => $description,
             'id_supplier' => $supplierid,
             'id_warehouse' => $warehouseid,
         );
@@ -94,10 +94,10 @@ class Po_model extends CI_Model {
             $code = explode('-', $item);
 
             array_push($arr_data, array(
-                'unq' => rd_code(12),
+                'po_unq' => rd_code(12),
                 'nm_po_item' => $detailname[$i],
-                'qty' => $detailqty[$i],
-                'rate' => $detailrate[$i],
+                'po_qty' => $detailqty[$i],
+                'po_rate' => $detailrate[$i],
                 'id_po' => $id,
                 'id_item' => $code[0],
                 'id_size' => $code[1],
@@ -155,8 +155,8 @@ class Po_model extends CI_Model {
         $detailrate = $this->input->post('detail-rate');
 
         $data = array(
-            'date' => $podate,
-            'description' => $description,
+            'po_date' => $podate,
+            'po_description' => $description,
             'id_supplier' => $supplierid,
             'id_warehouse' => $warehouseid,
         );
@@ -175,10 +175,10 @@ class Po_model extends CI_Model {
                 
                 // update records
                 array_push($arr_addr, array(
-                    'unq' => $value,
+                    'po_unq' => $value,
                     'nm_po_item' => $detailname[$i],
-                    'qty' => $detailqty[$i],
-                    'rate' => $detailrate[$i],
+                    'po_qty' => $detailqty[$i],
+                    'po_rate' => $detailrate[$i],
                     'id_po' => $poid,
                     'id_item' => $code[0],
                     'id_size' => $code[1],
@@ -186,10 +186,10 @@ class Po_model extends CI_Model {
             } else {
                 // new records
                 array_push($arr_data, array(
-                    'unq' => rd_code(12),
+                    'po_unq' => rd_code(12),
                     'nm_po_item' => $detailname[$i],
-                    'qty' => $detailqty[$i],
-                    'rate' => $detailrate[$i],
+                    'po_qty' => $detailqty[$i],
+                    'po_rate' => $detailrate[$i],
                     'id_po' => $poid,
                     'id_item' => $code[0],
                     'id_size' => $code[1],
@@ -199,14 +199,14 @@ class Po_model extends CI_Model {
         // delete data
         if (!empty($arr_id)) {
             $this->db->where($where)
-            ->where_not_in('unq', $arr_id)
+            ->where_not_in('po_unq', $arr_id)
             ->delete($this->table_detail);
         } else {
             $this->db->delete($this->table_detail, $where);
         }
 
         // udpate batch
-        $this->db->update_batch($this->table_detail, $arr_addr, 'unq');
+        $this->db->update_batch($this->table_detail, $arr_addr, 'po_unq');
 
         // insert batch
         if (!empty($arr_data)) {

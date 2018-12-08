@@ -78,7 +78,9 @@ script = function() {
         checkRow();
         onData();
     }
-    function saveData() {
+    function saveData(e) {
+        e.preventDefault();
+        
         $("[data-edit]").prop("disabled", false);
         id = $("#po-id");
 
@@ -199,22 +201,22 @@ script = function() {
             dataType: "json",
             success: function(data) {
                 $('[name="po-id"]').val(data.po.id_po);
-                $('[name="po-date"]').val(data.po.date);
+                $('[name="po-date"]').val(data.po.po_date);
                 $('[name="supplier-id"]').val(data.po.id_supplier);
                 $('[name="supplier-nm"]').val(data.po.nm_supplier);
                 $('[name="warehouse-id"]').val(data.po.id_warehouse);
                 $('[name="warehouse-nm"]').val(data.po.nm_warehouse);
-                $('[name="description"]').val(data.po.description);
+                $('[name="description"]').val(data.po.po_description);
    
                 $.each(data.po_detail, function(key, value) {
                     html = '<tr id="row-'+rowCount+'">'
                     +'<td><button type="button" style="margin-top: .4rem" data-edit="1" class="btn btn-custom btn-danger" id="remove-row"><i class="far fa-trash-alt"></i></button></td>'
-                    +'<td><input type="hidden" name="addr[]" value="'+value.unq+'"><input type="text" class="form-control form-control-sm ui-item" data-edit="1" name="detail-id[]" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
+                    +'<td><input type="hidden" name="addr[]" value="'+value.po_unq+'"><input type="text" class="form-control form-control-sm ui-item" data-edit="1" name="detail-id[]" id="detail-id-'+rowCount+'" value="'+value.id_item+'-'+value.id_size+'"></td>'
                     +'<td><input type="text" class="form-control form-control-sm" data-edit="1" name="detail-name[]" id="detail-name-'+rowCount+'" value="'+value.nm_po_item+'"></td>'
-                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'" value="'+value.qty+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-qty[]" id="detail-qty-'+rowCount+'" value="'+value.po_qty+'"></td>'
                     +'<td><input type="text" class="form-control form-control-sm" data-edit="0" name="detail-uom[]" id="detail-uom-'+rowCount+'" value="'+value.uom+'"></td>'
-                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'" value="'+value.rate+'"></td>'
-                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'" value="'+(value.qty * value.rate)+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="1" name="detail-rate[]" id="detail-rate-'+rowCount+'" value="'+value.po_rate+'"></td>'
+                    +'<td><input type="text" class="form-control form-control-sm text-right" data-edit="0" name="detail-total[]" id="detail-total-'+rowCount+'" value="'+(value.po_qty * value.po_rate)+'"></td>'
                     +'</tr>';
 
                     tableBody.append(html);

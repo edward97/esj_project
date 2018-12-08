@@ -30,7 +30,7 @@ class Po extends CI_Controller {
 			
 			$row[] = ++$no;
 			$row[] = $i->id_po;
-			$row[] = d_date($i->date);
+			$row[] = d_date($i->po_date);
 			$row[] = $i->nm_supplier;
 			$row[] = $i->nm_warehouse;
 
@@ -45,10 +45,6 @@ class Po extends CI_Controller {
 			'data' => $data
 		);
 		echo json_encode($output);
-	}
-
-	public function create() {
-
 	}
 
 	public function store() {
@@ -79,7 +75,7 @@ class Po extends CI_Controller {
 	public function edit($id) {
 		$arr = $this->model->_read_where($id);
 		// change format date
-		$arr->date = d_date($arr->date);
+		$arr->po_date = d_date($arr->po_date);
 		$data['po'] = $arr;
 		$data['po_detail'] = $this->model->_read_where_list($id);
 
